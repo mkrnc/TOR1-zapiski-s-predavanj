@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipe SYSTEM "ipe.dtd">
+<ipe version="70010" creator="Ipe 7.0.10">
+<info created="D:20100224161647" modified="D:20111207172413"/>
+<ipestyle name="ipe6">
+<symbol name="mark/circle(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</symbol>
+<symbol name="mark/disk(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+</path>
+</symbol>
+<symbol name="mark/fdisk(sfx)" transformations="translations">
+<group>
+<path fill="sym-stroke" fillrule="eofill">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+<path fill="sym-fill">
+0.4 0 0 0.4 0 0 e
+</path>
+</group>
+</symbol>
+<symbol name="mark/box(sx)" transformations="translations">
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</symbol>
+<symbol name="mark/square(sx)" transformations="translations">
+<path fill="sym-stroke">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+</path>
+</symbol>
+<symbol name="mark/fsquare(sfx)" transformations="translations">
+<group>
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+0 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+<path fill="sym-fill">
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="mark/cross(sx)" transformations="translations">
+<group>
+<path fill="sym-stroke">
+-0.43 -0.57 m
+0.57 0.43 l
+0.43 0.57 l
+-0.57 -0.43 l
+h
+</path>
+<path fill="sym-stroke">
+-0.43 0.57 m
+0.57 -0.43 l
+0.43 -0.57 l
+-0.57 0.43 l
+h
+</path>
+</group>
+</symbol>
+<pen name="heavier" value="0.8"/>
+<pen name="fat" value="1.2"/>
+<pen name="ultrafat" value="2"/>
+<symbolsize name="large" value="5"/>
+<symbolsize name="small" value="2"/>
+<symbolsize name="tiny" value="1.1"/>
+<arrowsize name="large" value="10"/>
+<arrowsize name="small" value="5"/>
+<arrowsize name="tiny" value="3"/>
+<color name="red" value="1 0 0"/>
+<color name="green" value="0 1 0"/>
+<color name="blue" value="0 0 1"/>
+<color name="yellow" value="1 1 0"/>
+<color name="gray1" value="0.125"/>
+<color name="gray2" value="0.25"/>
+<color name="gray3" value="0.375"/>
+<color name="gray4" value="0.5"/>
+<color name="gray5" value="0.625"/>
+<color name="gray6" value="0.75"/>
+<color name="gray7" value="0.875"/>
+<dashstyle name="dashed" value="[4] 0"/>
+<dashstyle name="dotted" value="[1 3] 0"/>
+<dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
+<dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
+<textsize name="large" value="\large"/>
+<textsize name="Large" value="\Large"/>
+<textsize name="LARGE" value="\LARGE"/>
+<textsize name="huge" value="\huge"/>
+<textsize name="Huge" value="\Huge"/>
+<textsize name="small" value="\small"/>
+<textsize name="footnote" value="\footnotesize"/>
+<textsize name="tiny" value="\tiny"/>
+<textstyle name="center" begin="\begin{center}" end="\end{center}"/>
+<textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
+<textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
+</ipestyle>
+<page>
+<layer name="alpha"/>
+<view layers="alpha" active="alpha"/>
+<text layer="alpha" matrix="1 0 0 1 6.19806 157.517" transformations="translations" pos="238 286" stroke="black" type="label" valign="baseline">delna urejenost</text>
+<text matrix="1 0 0 1 -132.517 112.666" transformations="translations" pos="270 359" stroke="black" type="label" valign="baseline">navidezna urejenost</text>
+<text matrix="1 0 0 1 -146.218 -42.4059" transformations="translations" pos="254 470" stroke="black" type="label" valign="baseline">\v sibka urejenost</text>
+<text matrix="1 0 0 1 121.409 -79.833" transformations="translations" pos="54 424" stroke="black" type="label" valign="baseline">linearna urejenost</text>
+<text matrix="1 0 0 1 -57.0138 34.4853" transformations="translations" pos="467 376" stroke="black" type="label" valign="baseline">stroga linearna urejenost</text>
+<text matrix="1 0 0 1 -90.8472 201.577" transformations="translations" pos="469 274" stroke="black" type="label" valign="baseline">stroga delna urejenost</text>
+<text matrix="1 0 0 1 197 166" transformations="translations" pos="63 348" stroke="black" type="label" valign="baseline">tranzitivnost</text>
+<path matrix="1 0 0 1 -6.37229 9.10327" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="1 0 0 1 -60.5367 -34.1372" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="1 0 0 1 -103.322 -78.2881" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="1 0 0 1 -63.2677 -138.825" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="1 0 0 1 -24.6154 -63.8457" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="1 0 0 1 113.336 -30.9511" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="1 0 0 1 128.111 -88.0836" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="0.841397 0 0 1.37649 28.1462 -158.327" stroke="black">
+214.771 378.223 m
+172.6 418.54 l
+</path>
+<path stroke="black">
+173.161 423.1 m
+212.003 462.965 l
+</path>
+<path stroke="black">
+265.52 506.985 m
+216.52 466.438 l
+</path>
+<path stroke="black">
+269.933 506.206 m
+385.259 469.876 l
+</path>
+<path matrix="-1.3331 0 0 0.905671 904.457 44.1046" stroke="black">
+386.676 465.67 m
+377.423 408.518 l
+</path>
+<path matrix="1 0 0 1 118.661 -160.172" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path matrix="0.961883 0 0 1.13589 29.8576 -121.061" stroke="black">
+386.676 465.67 m
+377.423 408.518 l
+</path>
+<text matrix="1 0 0 1 -67.7379 -37.6035" transformations="translations" pos="467 376" stroke="black" type="label" valign="baseline">dobra urejenost</text>
+<path matrix="1 0 0 1 -25.4893 -104.688" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path stroke="black">
+246.787 392.047 m
+213.56 361.551 l
+</path>
+<text matrix="1 0 0 1 19.8895 108.937" transformations="translations" pos="238 286" stroke="black" type="label" valign="baseline">mre\v za</text>
+<text matrix="1 0 0 1 65.5026 66.7099" transformations="translations" pos="238 286" stroke="black" type="label" valign="baseline">polna mre\v za</text>
+<path matrix="1 0 0 1 21.9445 -140.543" stroke="black">
+2.91447 0 0 2.91447 274.423 499.328 e
+</path>
+<path stroke="black">
+215.606 462.838 m
+247.997 437.766 l
+</path>
+<path stroke="black">
+249.796 432.567 m
+249.063 397.551 l
+</path>
+<path stroke="black">
+251.135 392.73 m
+294.004 360.49 l
+</path>
+</page>
+</ipe>

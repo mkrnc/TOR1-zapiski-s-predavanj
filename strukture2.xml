@@ -1,0 +1,97 @@
+<ipe version="60032" creator="Ipe 6.0 preview 32">
+<info created="D:20100224161647" modified="D:20100322130401" bbox="cropbox"/>
+<ipestyle>
+</ipestyle>
+<ipestyle>
+</ipestyle>
+<ipestyle>
+</ipestyle>
+<ipestyle>
+</ipestyle>
+<ipestyle>
+</ipestyle>
+<page gridsize="16">
+<layer name="alpha"/>
+<view layers="alpha" active="alpha"/>
+<text layer="alpha" stroke="black" matrix="1 0 0 1 6.198062 157.516904" pos="238 286" type="label" width="66.224" height="6.926" depth="1.93" valign="baseline" size="normal">delna urejenost</text>
+<text stroke="black" matrix="1 0 0 1 -132.517481 112.665579" pos="270 359" type="label" width="86.149" height="6.926" depth="1.93" valign="baseline" size="normal">navidezna urejenost</text>
+<text stroke="black" matrix="1 0 0 1 -146.218476 -42.405853" pos="254 470" type="label" width="64.896" height="6.926" depth="1.93" valign="baseline" size="normal">\v sibka urejenost</text>
+<text stroke="black" matrix="1 0 0 1 121.408796 -79.833037" pos="54 424" type="label" width="77.875" height="6.926" depth="1.93" valign="baseline" size="normal">linearna urejenost</text>
+<text stroke="black" matrix="1 0 0 1 -57.013773 34.485263" pos="467 376" type="label" width="107.846" height="6.926" depth="1.93" valign="baseline" size="normal">stroga linearna urejenost</text>
+<text stroke="black" matrix="1 0 0 1 -90.847153 201.576764" pos="469 274" type="label" width="96.195" height="6.926" depth="1.93" valign="baseline" size="normal">stroga delna urejenost</text>
+<text stroke="black" matrix="1 0 0 1 197 166" pos="63 348" type="label" width="55.708" height="6.654" depth="0" valign="baseline" size="normal">tranzitivnost</text>
+<path stroke="black" matrix="1 0 0 1 -6.372286 9.103265" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="1 0 0 1 -60.536714 -34.137245" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="1 0 0 1 -103.32206 -78.288081" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="1 0 0 1 -63.267731 -138.824895" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="1 0 0 1 -24.615385 -63.845668" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="1 0 0 1 113.335651 -30.951102" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="1 0 0 1 128.110873 -88.083616" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="0.841397 0 0 1.376489 28.146159 -158.327377" pen="normal">
+214.7714 378.222758 m
+172.599933 418.540312 l
+</path>
+<path stroke="black" pen="normal">
+173.161291 423.100286 m
+212.003221 462.965419 l
+</path>
+<path stroke="black" pen="normal">
+265.51976 506.984813 m
+216.519712 466.437927 l
+</path>
+<path stroke="black" pen="normal">
+269.932803 506.205929 m
+385.259028 469.875907 l
+</path>
+<path stroke="black" matrix="-1.333102 0 0 0.905671 904.456663 44.104646" pen="normal">
+386.675757 465.670411 m
+377.423399 408.518195 l
+</path>
+<path stroke="black" matrix="1 0 0 1 118.661169 -160.172373" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" matrix="0.961883 0 0 1.135887 29.857598 -121.060591" pen="normal">
+386.675757 465.670411 m
+377.423399 408.518195 l
+</path>
+<text stroke="black" matrix="1 0 0 1 -67.737942 -37.603494" pos="467 376" type="label" width="67.912" height="6.926" depth="1.93" valign="baseline" size="normal">dobra urejenost</text>
+<path stroke="black" matrix="1 0 0 1 -25.489304 -104.687725" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" pen="normal">
+246.787437 392.046808 m
+213.56031 361.550677 l
+</path>
+<text stroke="black" matrix="1 0 0 1 19.88946 108.937022" pos="238 286" type="label" width="26.041" height="6.261" depth="0" valign="baseline" size="normal">mre\v za</text>
+<text stroke="black" matrix="1 0 0 1 65.502569 66.709894" pos="238 286" type="label" width="53.439" height="6.926" depth="1.93" valign="baseline" size="normal">polna mre\v za</text>
+<path stroke="black" matrix="1 0 0 1 21.944469 -140.542527" pen="normal">
+2.914467 0 0 2.914467 274.422512 499.327528 e
+</path>
+<path stroke="black" pen="normal">
+215.605924 462.837565 m
+247.996756 437.765864 l
+</path>
+<path stroke="black" pen="normal">
+249.796069 432.567414 m
+249.062681 397.551393 l
+</path>
+<path stroke="black" pen="normal">
+251.135114 392.730425 m
+294.003614 360.490467 l
+</path>
+</page>
+</ipe>
