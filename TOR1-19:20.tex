@@ -1,4 +1,9 @@
-\documentclass[12pt,a4paper]{article}
+\RequirePackage{silence} % :-\
+    \WarningFilter{scrbook}{Usage of package `titlesec'}
+    \WarningFilter{titlesec}{Non standard sectioning command detected}
+\documentclass[11pt,paper=b5,footinclude,headinclude]{scrbook} % KOMA-Script book
+\usepackage[T1]{fontenc}
+\usepackage[style=arsclassica, parts=false, eulermath=true, palatino=true, eulerchapternumbers=true]{classicthesis}
 
 \usepackage{etoolbox}
 \providetoggle{long}
@@ -8,9 +13,8 @@
 \newcommand{\komentar}[1]{\textcolor{red}{[#1]}} %for displaying red texts
 
 \usepackage{fullpage}
-\usepackage{fancyhdr}
+%\usepackage{fancyhdr}
 \usepackage{enumerate}
-\pagestyle{fancy}
 
 
 \usepackage[slovene]{babel} % slovenske nastavitve (naslovi, deljenje besed ...)
@@ -31,12 +35,18 @@
 \def\sledi {{~\Rightarrow~}}
 \def\brez {{\,\setminus\,}}
 \def\cee {{~\Leftrightarrow~}}
-\def\zgled{\noindent{\bf\color{blue} Zgled: }}
+\def\zgled{\noindent\textbf{\color{blue} Zgled: }}
 \def\kz{{\hfill{\color{blue}$\blacktriangle$}}}% konec zgleda
 %\parskip=7pt
 %
 %\textwidth=17cm\textheight=22cm\parindent=15pt\parskip=5pt
 %\oddsidemargin=-5mm  \headheight=0pt \pagestyle{plain}
+
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+%\theoremstyle{definition} %theorem
+
 \newtheorem*{trditev}{Trditev}
 \newtheorem*{izrek}{Izrek}
 \newtheorem*{problem}{Naloga}
@@ -44,9 +54,40 @@
 \newtheorem*{posledica}{Posledica}
 \newtheorem*{definicija}{Definicija}
 
-\def\proofname{Dokaz}
 
 \begin{document}
+
+\title{Teoretične osnove računalništva I}
+
+
+\date{FAMNIT, Jesen 2020}
+\author{Diskretne strukture za računalničarje\\}
+\maketitle
+
+\section*{Predgovor}
+Pred tabo so zapiski iz predavanj za predmet TOR1, ki se predava študentom prvega letnika na FAMNIT, Univerza na Primorskem.
+Vse od leta 2017 ko sem začel s predavanjem tega predmeta se je vsebina spreminjala, tako da kar se da ustreza potrebnemu predznanju kot ga študent računalništva potrebuje.
+Od leta 2020 naprej sem se odločil tale TeX projekt odpreti kot repozitorij javnosti, tako da lahko zares vsak študent predlaga svoje naloge (oz. rešitve), ki se jih ustrezno vključi v tole skripto.
+
+Dokument je zamišljen kot dopolnjevanje predavanj, in se ga ne sme jemati kot samostojno gradivo za pripravo na izpit. 
+Morebitna vprašanja in najdene napake, lepo prosim, sporočite na 
+\url{matjaz.krnc@upr.si}, oz. istvarite t.i. "Issue" na našem javnem repozitorijy
+\begin{center}
+    \url{https://github.com/mkrnc/TCS1-course-notes.git}.    
+\end{center}
+
+\medskip
+Gradivo je osnovano na nekaterih starejših izročkih od mojih predhodnih predavateljev tega istega predmeta, med katerimi so 
+\begin{center}
+    prof. \textbf{M. Milanič}, 
+    prof. \textbf{N. Prijatelj}, ter 
+    prof. \textbf{P. Škraba}.
+\end{center}
+
+%Among most notable student contributors are:
+
+\tableofcontents
+
 
 \section{Matematična logika}
 
@@ -72,7 +113,7 @@ O razvoju logike in teorije množic si lahko preberete v Prijateljevi knjigi (Os
 
 \subsection{Osnovne povezave in pravilnostne tabele}
 
-{\bf \underline{Negacija:}} Ne $A$; ni res, da $A$
+\textbf{ \underline{Negacija:}} Ne $A$; ni res, da $A$
 
 Oznaka: $\neg A$.
 
@@ -97,7 +138,7 @@ $$\begin{tabular}{c|c|c}
 \end{tabular}$$
 
 \medskip
-{\bf \underline{Konjunkcija:}} $A$ in $B$
+\textbf{ \underline{Konjunkcija:}} $A$ in $B$
 
 Oznaka: $A\inn  B$
 
@@ -107,7 +148,7 @@ kadar sta obe izjavi $A$ in $B$ pravilni, in nepravilna sicer.
 Zgled: {\em Sneg pada. Veter piha. Konjunkcija: Sneg pada in veter piha.}
 
 \medskip
-{\bf \underline{Disjunkcija:}} $A$ ali $B$ (inkluzivno)
+\textbf{ \underline{Disjunkcija:}} $A$ ali $B$ (inkluzivno)
 
 Oznaka: $A\ali B$
 
@@ -118,7 +159,7 @@ Zgled: {\em Janez bo jutri vprašan fiziko. Janez bo jutri vprašan matematiko.
 Disjunkcija: Janez bo jutri vprašan fiziko ali matematiko.}
 
 \medskip
-{\bf \underline{Implikacija:}} Če $A$, potem $B$
+\textbf{ \underline{Implikacija:}} Če $A$, potem $B$
 
 Oznaka: $A\sledi B$
 
@@ -132,7 +173,7 @@ $B$ - konsekvens
 \zgled: {\em Če Andrej naredi maturo, potem mu kupim kolo.}
 
 \medskip
-{\bf \underline{Ekvivalenca:}} $A$ če in samo če $B$
+\textbf{ \underline{Ekvivalenca:}} $A$ če in samo če $B$
 
 Oznaka: $A\cee B$
 
@@ -151,7 +192,7 @@ $A$ natanko tedaj kot $B$
 \zgled {\em Andreju kupim kolo, če in samo če naredi maturo.}
 
 \medskip
-{\bf Pravilnostne tabele za konjuncijo, disjunkcijo, implikacijo in ekvivalenco:}
+\textbf{ Pravilnostne tabele za konjuncijo, disjunkcijo, implikacijo in ekvivalenco:}
 $$\begin{tabular}{c|c|c|c|c|c}
   \hline
   % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
@@ -165,7 +206,7 @@ $$\begin{tabular}{c|c|c|c|c|c}
 
 \medskip
 
-Izjave, dobljene z uprabo $5$ osnovnih povezav, so {\it sestavljene}. V splošnem pravimo, da je dana izjava {\it sestavljena}, če je izid
+Izjave, dobljene z uprabo $5$ osnovnih povezav, so \emph{ sestavljene}. V splošnem pravimo, da je dana izjava \emph{ sestavljena}, če je izid
 zaporedne uporabe $5$ osnovnih povezav na osnovnih izjavah $A_1,\ldots, A_n$, pa tudi na izjavah, ki smo jih že prej napravili.
 Dvomom o tem, katera povezava sledi prej in katera pozneje, se izognemo z uporabo oklepajev.
 Uporabo oklepajev pa z uporabo naslednjega dogovora omejimo, kolikor se da:
@@ -227,7 +268,7 @@ O razvoju logike in teorije množic si lahko preberete v Prijateljevi knjigi (Os
 
 \subsection{Osnovne povezave in pravilnostne tabele}
 
-{\bf \underline{Negacija:}} Ne $A$; ni res, da $A$
+\textbf{ \underline{Negacija:}} Ne $A$; ni res, da $A$
 
 Oznaka: $\neg A$.
 
@@ -252,7 +293,7 @@ $$\begin{tabular}{c|c|c}
 \end{tabular}$$
 
 \medskip
-{\bf \underline{Konjunkcija:}} $A$ in $B$
+\textbf{ \underline{Konjunkcija:}} $A$ in $B$
 
 Oznaka: $A\inn  B$
 
@@ -262,7 +303,7 @@ kadar sta obe izjavi $A$ in $B$ pravilni, in nepravilna sicer.
 Zgled: {\em Sneg pada. Veter piha. Konjunkcija: Sneg pada in veter piha.}
 
 \medskip
-{\bf \underline{Disjunkcija:}} $A$ ali $B$ (inkluzivno)
+\textbf{ \underline{Disjunkcija:}} $A$ ali $B$ (inkluzivno)
 
 Oznaka: $A\ali B$
 
@@ -273,7 +314,7 @@ Zgled: {\em Janez bo jutri vprašan fiziko. Janez bo jutri vprašan matematiko.
 Disjunkcija: Janez bo jutri vprašan fiziko ali matematiko.}
 
 \medskip
-{\bf \underline{Implikacija:}} Če $A$, potem $B$
+\textbf{ \underline{Implikacija:}} Če $A$, potem $B$
 
 Oznaka: $A\sledi B$
 
@@ -287,7 +328,7 @@ $B$ - konsekvens
 \zgled: {\em Če Andrej naredi maturo, potem mu kupim kolo.}
 
 \medskip
-{\bf \underline{Ekvivalenca:}} $A$ če in samo če $B$
+\textbf{ \underline{Ekvivalenca:}} $A$ če in samo če $B$
 
 Oznaka: $A\cee B$
 
@@ -306,7 +347,7 @@ $A$ natanko tedaj kot $B$
 \zgled {\em Andreju kupim kolo, če in samo če naredi maturo.}
 
 \medskip
-{\bf Pravilnostne tabele za konjuncijo, disjunkcijo, implikacijo in ekvivalenco:}
+\textbf{ Pravilnostne tabele za konjuncijo, disjunkcijo, implikacijo in ekvivalenco:}
 $$\begin{tabular}{c|c|c|c|c|c}
   \hline
   % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
@@ -320,7 +361,7 @@ $$\begin{tabular}{c|c|c|c|c|c}
 
 \medskip
 
-Izjave, dobljene z uprabo $5$ osnovnih povezav, so {\it sestavljene}. V splošnem pravimo, da je dana izjava {\it sestavljena}, če je izid
+Izjave, dobljene z uprabo $5$ osnovnih povezav, so \emph{ sestavljene}. V splošnem pravimo, da je dana izjava \emph{ sestavljena}, če je izid
 zaporedne uporabe $5$ osnovnih povezav na osnovnih izjavah $A_1,\ldots, A_n$, pa tudi na izjavah, ki smo jih že prej napravili.
 Dvomom o tem, katera povezava sledi prej in katera pozneje, se izognemo z uporabo oklepajev.
 Uporabo oklepajev pa z uporabo naslednjega dogovora omejimo, kolikor se da:
@@ -439,12 +480,12 @@ Izjava ni tavtologija, je pa protislovje.
 
 \bigskip
 
-{\bf Domača naloga:}
+\textbf{ Domača naloga:}
 
-%{\bf 1.} Preštudiraj dodatno gradivo o izjavah, objavljeno na e-učilnici.
+%\textbf{ 1.} Preštudiraj dodatno gradivo o izjavah, objavljeno na e-učilnici.
 
 \medskip
-{\bf 1.}  Dani sta izjavi $A$: ``Andrej govori francosko.'' in $B$: ``Andrej govori dansko.''
+\textbf{ 1.}  Dani sta izjavi $A$: ``Andrej govori francosko.'' in $B$: ``Andrej govori dansko.''
 V naravnem jeziku zapiši naslednje sestavljene izjave:
 
 (a) $A\ali B$
@@ -460,7 +501,7 @@ V naravnem jeziku zapiši naslednje sestavljene izjave:
 (f) $\neg (\neg A\inn \neg B)$
 
 \medskip
-{\bf 2.}  Dani sta izjavi $A$: ``Janez je bogat.'' in $B$: ``Janez je srečen.''
+\textbf{ 2.}  Dani sta izjavi $A$: ``Janez je bogat.'' in $B$: ``Janez je srečen.''
 
 Naslednje izjave zapiši simbolično:
 
@@ -478,7 +519,7 @@ Naslednje izjave zapiši simbolično:
 S pomočjo pravilnostnih tabele lahko rešujemo uganke o vitezih in oprodah.
 Vitezi vselej govorijo resnico, oprode pa vselej lažejo.
 
-{\bf Naloga:} Artur in Bine podata naslednji izjavi:
+\textbf{ Naloga:} Artur in Bine podata naslednji izjavi:
 \begin{itemize}
   \item Artur: ``Bine je oproda."
   \item Bine: ``Nobeden od naju ni oproda."
@@ -508,7 +549,7 @@ $$\begin{tabular}{c|c|c|c|c|c|c}
 Artur je vitez, Bine pa oproda.\qed
 
 \bigskip
-{\bf Še ena podobna naloga:} Tokrat podata Artur in Bine naslednji izjavi:
+\textbf{ Še ena podobna naloga:} Tokrat podata Artur in Bine naslednji izjavi:
 \begin{itemize}
   \item Artur: ``Jaz in Bine nisva iste vrste."~
   \item Bine: ``Natanko eden od naju je vitez."
@@ -533,7 +574,7 @@ Oba sta oprodi.\qed
 
 \medskip
 
-{\bf Domača naloga:} Reši naslednji nalogi o vitezih in oprodah:
+\textbf{ Domača naloga:} Reši naslednji nalogi o vitezih in oprodah:
 \begin{itemize}
   \item Artur: ``Ni res, da je Bine oproda."~Bine: ``Nisva oba iste vrste."
   \item Artur: ``Ni res, da je Cene oproda."~Bine: ``Cene je vitez ali pa sem jaz vitez."~Cene: ``Bine je oproda."
@@ -594,7 +635,7 @@ $$\begin{tabular}{c|c|c|c|c|c}
   4. & 0, 0 & 1 & 0 & 1 & 0 \\
 \end{tabular}$$
 
-{\bf Domača naloga:} S pomočjo pravilnostnih tabel (ali kako drugače) se prepričaj v pravilnost
+\textbf{ Domača naloga:} S pomočjo pravilnostnih tabel (ali kako drugače) se prepričaj v pravilnost
 preostalih ekvivalenc.
 
 \bigskip
@@ -602,9 +643,9 @@ S pomočjo zgornjih ekvivalenc se lahko prepričamo, da $5$ osnovnih povezav med
 Vse sestavljene izjave lahko izrazimo {\em samo z dvema osnovnima povezavama}, če ju le primerno izberemo.
 Zadošča že:
 \begin{enumerate}
-  \item[{\bf (a)}] negacija $\neg$ in  disjunkcija $\ali$
-  \item[{\bf (b)}] negacija $\neg$ in konjunkcija $\inn$
-  \item[{\bf (c)}] negacija $\neg$ in implikacija $\sledi$
+  \item[\textbf{ (a)}] negacija $\neg$ in  disjunkcija $\ali$
+  \item[\textbf{ (b)}] negacija $\neg$ in konjunkcija $\inn$
+  \item[\textbf{ (c)}] negacija $\neg$ in implikacija $\sledi$
 \end{enumerate}
 Te izbire so edine mogoče.
 
@@ -626,7 +667,7 @@ Vzemimo izjavo ``Če je kakšna reč lepa, potem je minljiva."
 Od zadnjič dolgujemo še rešitev naslednje naloge: iz danih izjav $A_1,\ldots, A_n$ konstruiraj izjavo,
 ki bo imela pri vsakem izmed $2^n$ določil vnaprej predpisano vrednost.
 
-{\bf 1. način:}
+\textbf{ 1. način:}
 Vsakemu določilu $d$ za izjave $A_1,\ldots, A_n$ priredimo konjunkcijo
 $$C_1\inn \ldots \inn C_n\,,$$
 in sicer takole: izjava je $C_i = A_i$, če ima $A_i$ v določilu $d$ vrednost 1, in naj bo
@@ -643,7 +684,7 @@ Ta postopek deluje v vsakem primeru, le v primeru protislovja ne! Za protislovje
 konstruiramo posebej, npr.~$A_1\inn \neg A_1$.
 
 \bigskip
-{\bf 2. način:}
+\textbf{ 2. način:}
 
 $d$ - določilo
 
@@ -667,7 +708,7 @@ lahko konstruiramo iskano izjavo posebej, npr.~$A_1\ali \neg A_1$ (``zakon izklj
 izjava je bodisi pravilna bodisi nepravilna).
 
 \bigskip
-{\bf Zgled:}
+\textbf{ Zgled:}
 Iščemo izjavo $D$, sestavljeno iz izjav $A, B$ in $C$, za katero velja:
 $$\begin{tabular}{c|c|c|c|c|c}
   \hline
@@ -763,7 +804,7 @@ Poglejmo si dve zelo preprosti vezji:
 \end{center}
 \end{figure}
 
-Zaporedno vezje je zaprto natanko tedaj, kadar sta obe stikali zaprti: {\bf konjunkcija}.
+Zaporedno vezje je zaprto natanko tedaj, kadar sta obe stikali zaprti: \textbf{ konjunkcija}.
 
 (2) {\em vzporedno vezani stikali:}
 
@@ -774,7 +815,7 @@ Zaporedno vezje je zaprto natanko tedaj, kadar sta obe stikali zaprti: {\bf konj
 \end{figure}
 
 Vzporedno vezje je zaprto natanko tedaj, kadar je vsaj eno stikalo zaprto:
-{\bf disjunkcija}.
+\textbf{ disjunkcija}.
 
 \medskip
 Vsakemu takemu vezju ustreza neka logična izjava, sestavljena iz izjav, ki ustrezajo stikalom.
@@ -936,7 +977,7 @@ Ustrezni vezji pa sta:
 
 \kz
 
-{\bf Domača naloga:} Sestavite vezje, prirejeno izjavi
+\textbf{ Domača naloga:} Sestavite vezje, prirejeno izjavi
 $$(A\sledi B) \ali (\neg B\sledi C) \ali (A \cee C)\,.$$
 
 
@@ -953,7 +994,7 @@ $$(A\sledi B) \ali (\neg B\sledi C) \ali (A \cee C)\,.$$
 je $B\sledi C$ tavtologija.
 
 \smallskip
-{\bf Domača naloga:} Dokažite trditev, da je $B\sledi C$ tavtologija če in samo če je podprostor pravilnosti antecedensa vsebovan v podprostoru pravilnosti konsekvensa.
+\textbf{ Domača naloga:} Dokažite trditev, da je $B\sledi C$ tavtologija če in samo če je podprostor pravilnosti antecedensa vsebovan v podprostoru pravilnosti konsekvensa.
 }\\
 }
 
@@ -1043,7 +1084,7 @@ pravilna. Torej ne obstaja tako določilo, za katero bi bila izjava  $A \sledi B
 \iftoggle{long}{
 {\color{blue}
 
-{\bf Nekaj komentarjev k implikacijam:}
+\textbf{ Nekaj komentarjev k implikacijam:}
 
 (1.) Iz pravilnosti antecedensa in pravilnosti implikacije sklepamo na pravilnost konsekvensa. To je t.i.~{\em zakon osamitve}.
 \begin{itemize}
@@ -1059,7 +1100,7 @@ Sklep: Šel bom na predavanja.\kz
 
 (2.) {\em mešani hipotetični silogizem} {\em načina tollendo tollens} (lat. način, ki zanika z zanikanjem)
 
-{\bf Zgleda:}
+\textbf{ Zgleda:}
 
 1. Kjer je dim, je tudi ogenj.
 
@@ -1077,7 +1118,7 @@ Sklep: Pohlepnemu malo ni zadosti.
 (3.) {\em disjunktivni silogizem} {\em načina tollendo ponens}
 (lat. način, ki potrjuje z zanikanjem)
 
-{\bf Zgled:}
+\textbf{ Zgled:}
 
 Koper je država ali pa je mesto.
 
@@ -1117,18 +1158,18 @@ Predpostavimo, da je $A$ pravilna izjava in direktno izpeljemo pravilnost izjave
 
 \zgled
 
-{\it Če je $n$ liho naravno število, je tudi $n^2$ liho število.}
+\emph{ Če je $n$ liho naravno število, je tudi $n^2$ liho število.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 Naj bo $n$ liho naravno število. Tedaj ga lahko zapišemo kot $n = 2k-1$, kjer je $k$ naravno število. Sledi $n^2 = (2k-1)^2 = 4k^2-4k+1 = 2(2k^2-2k)+1$, torej je $n^2$ liho število.\qed
 
 \medskip
 
 \begin{center}
 \fbox{\parbox{0.5\linewidth}{\noindent
-{\bf Direktni dokaz implikacije $A \sledi  B$}
+\textbf{ Direktni dokaz implikacije $A \sledi  B$}
 
-{\bf Dokaz:}
+\textbf{ Dokaz:}
 
 Predpostavimo $A$.
 
@@ -1149,9 +1190,9 @@ direktno dokazovati ekvivalentno implikacijo $\neg B \sledi \neg A$.
 \medskip
 \zgled
 
-{\it Če je $n^2$ sodo število, je $n$ sodo število.}
+\emph{ Če je $n^2$ sodo število, je $n$ sodo število.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 Izjava je ekvivalentna implikaciji:
 
 Če je $n$ število, ki ni sodo, je $n^2$ število, ki ni sodo.
@@ -1164,9 +1205,9 @@ To pa smo že dokazali.\qed
 
 \begin{center}
 \fbox{\parbox{0.5\linewidth}{\noindent
-{\bf Indirektni dokaz implikacije $A \sledi  B$}
+\textbf{ Indirektni dokaz implikacije $A \sledi  B$}
 
-{\bf Dokaz:}
+\textbf{ Dokaz:}
 
 Predpostavimo $\neg B$.
 
@@ -1187,9 +1228,9 @@ Posledično $A \sledi  B$.\hspace{-2cm}\qed
 \medskip
 \zgled
 
-{\it Število $\sqrt 2$ ni racionalno.}
+\emph{ Število $\sqrt 2$ ni racionalno.}
 
-\medskip \noindent{\bf Dokaz.} Predpostavimo, da je $\sqrt 2$ racionalno število. Tedaj ga lahko zapišemo kot $\sqrt 2 = p/q$, kjer sta $p$ in $q$ tuji si naravni števili.
+\medskip \noindent\textbf{ Dokaz.} Predpostavimo, da je $\sqrt 2$ racionalno število. Tedaj ga lahko zapišemo kot $\sqrt 2 = p/q$, kjer sta $p$ in $q$ tuji si naravni števili.
 
 Sledi
 
@@ -1213,9 +1254,9 @@ Torej je tudi $q$ sodo število. To pa je protislovje. (Predpostavili smo, da st
 \medskip
 \begin{center}
 \fbox{\parbox{0.7\linewidth}{\noindent
-{\bf Dokaz izjave $A$ s protislovjem}
+\textbf{ Dokaz izjave $A$ s protislovjem}
 
-{\bf Dokaz:}
+\textbf{ Dokaz:}
 
 Predpostavimo $\neg A$.
 
@@ -1244,10 +1285,10 @@ Pogosto je dokaz implikacije v eno smer lažji od dokaza v drugo smer.
 
 \zgled
 
-{\it Pozitivno celo število $p>1$ je praštevilo natanko tedaj, ko ne obstaja tako naravno število
+\emph{ Pozitivno celo število $p>1$ je praštevilo natanko tedaj, ko ne obstaja tako naravno število
 $n$, večje od $1$ in manjše ali enako $\sqrt{p}$, ki deli $p$.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 
 (i) Dokazujemo indirektno. Predpostavimo, da obstaja tako naravno število
 $n$, večje od $1$ in manjše ali enako $\sqrt{p}$, ki deli $p$. Torej je $n$ delitelj $p$, različen od
@@ -1264,9 +1305,9 @@ Naj bo torej $n$ tako število izmed $n_1$ in $n_2$, za katerega velja  $n\le \s
 \medskip
 \zgled
 
-{\it Naj bosta $m$ in $n$ celi števili. Tedaj sta števili $m$ in $n$ iste parnosti natanko tedaj, ko je število $m^2 + n^2$ sodo.}
+\emph{ Naj bosta $m$ in $n$ celi števili. Tedaj sta števili $m$ in $n$ iste parnosti natanko tedaj, ko je število $m^2 + n^2$ sodo.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 
 (i) Predpostavimo, da sta $m$ in $n$ iste parnosti. Obravnavamo dva primera.
 \begin{enumerate}[(a)]
@@ -1292,9 +1333,9 @@ Povzemimo:
 
 \begin{center}
 \fbox{\parbox{0.5\linewidth}{\noindent
-{\bf Dokaz ekvivalence $A\cee B$ v dveh delih}
+\textbf{ Dokaz ekvivalence $A\cee B$ v dveh delih}
 
-{\bf Dokaz:}
+\textbf{ Dokaz:}
 
 (i) Dokažemo $A\sledi B$.
 
@@ -1316,13 +1357,13 @@ jo zamenjamo z zaporedjem ekvivalentnih izjav, ki se konča z izjavo $B$.
 \medskip
 \zgled
 
-{\it Dan je trikotnik $T$ s stranicami dolžin $a$, $b$, $c$. S pomočjo kosinusnega izreka
+\emph{ Dan je trikotnik $T$ s stranicami dolžin $a$, $b$, $c$. S pomočjo kosinusnega izreka
 dokaži, da je $T$ pravokotni trikotnik s hipotenuzo dolžine $c$ natanko tedaj, ko je $a^2+b^2 = c^2$.}
 
 Kosinusni izrek: $a^2+b^2 = c^2+2ab \cos \gamma$, kjer je $\gamma$ kot med stranicama dolžin $a$ in $b$.
 
 \medskip
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 
 Iz kosinusnega izreka sledi
 
@@ -1342,9 +1383,9 @@ Torej je $a^2+b^2 = c^2$ natanko tedaj, ko je $T$ pravokotni trikotnik s hipoten
 
 \begin{center}
 \fbox{\parbox{0.5\linewidth}{\noindent
-{\bf ``Če in samo če'' dokaz $A\cee B$}
+\textbf{ ``Če in samo če'' dokaz $A\cee B$}
 
-{\bf Dokaz:}
+\textbf{ Dokaz:}
 
 $A$~~če in samo če~~$C_1$
 
@@ -1364,9 +1405,9 @@ Včasih nam pri dokazu pravilnosti izjave $A$ pomaga, če pregledamo vse primere
 
 \begin{center}
 	\fbox{\parbox{0.6\linewidth}{\noindent
-			{\bf Dokazovanje $A$ s pomočjo analize primerov.}
+			\textbf{ Dokazovanje $A$ s pomočjo analize primerov.}
 			
-			{\bf Dokaz:}
+			\textbf{ Dokaz:}
 			
 			Primer 1: predpostavimo $B$
 			
@@ -1405,7 +1446,7 @@ $2^{(2^n)}$.
 \bigskip
 Oglejmo si konstrukcijo vseh možnih izjav za $n = 1$ in $n=2$.
 
-{\bf n = 1}
+\textbf{ n = 1}
 
 Imamo eno samo izjavo, $A$. Iz nje lahko sestavimo $2^{(2^1)} = 4$ izjave, $C_1,\ldots, C_4$.
 
@@ -1428,7 +1469,7 @@ Za $C_3$ pa $\neg A$.
 
 
 \bigskip
-{\bf n = 2}
+\textbf{ n = 2}
 
 Imamo dve izjavi, $A$ in $B$. Iz njiju lahko sestavimo $2^{(2^2)} = 16$ izjav,
 $C_1,\ldots, C_{16}$.
@@ -1524,30 +1565,30 @@ Pri tem moramo povedati, katere vrste objekti nas zanimajo (npr.~elementi množi
 
 Naj bo $A(x)$ neka izjava, smiselna za vsak objekt $x$ iz domene pogovora.
 \iftoggle{long}{
-{\color{blue}Taki izjavi pravimo {\it predikat}.
+{\color{blue}Taki izjavi pravimo \emph{ predikat}.
 Predikati oblike $A(x)$ so enomestni. Poznamo pa tudi dvo- in večmestne predikate, npr.~$A(x,y)$, $P(x_1,x_2,x_3)$ ipd.}
 }
-{Taki izjavi pravimo {\it predikat}. Predikati oblike $A(x)$ so enomestni. Poznamo pa tudi dvo- in večmestne predikate, npr.~$A(x,y)$, $P(x_1,x_2,x_3)$ ipd.}
+{Taki izjavi pravimo \emph{ predikat}. Predikati oblike $A(x)$ so enomestni. Poznamo pa tudi dvo- in večmestne predikate, npr.~$A(x,y)$, $P(x_1,x_2,x_3)$ ipd.}
 
 Za zapis izjav s kvantifikatorji bomo uporabljali naslednje oznake:
 \begin{itemize}
   \item
   $(\forall x) A(x)$: to je izjava, ki je pravilna natanko tedaj, ko je za vsak $x$ izjava $A(x)$ pravilna
 
-$\forall$ je t.i.~{\it univerzalni kvantifikator}
+$\forall$ je t.i.~\emph{ univerzalni kvantifikator}
   \item
   $(\exists  x) A(x)$: to je izjava, ki je pravilna natanko tedaj, ko obstaja vsaj en $x$, za katerega je izjava $A(x)$ pravilna
 
-$\exists$ je t.i.~{\it eksistencialni kvantifikator}
+$\exists$ je t.i.~\emph{ eksistencialni kvantifikator}
 
   \item
-  $(\exists!  x) A(x)$: to je izjava, ki je pravilna natanko tedaj, ko obstaja {\bf natanko en} $x$, za katerega je izjava $A(x)$ pravilna
+  $(\exists!  x) A(x)$: to je izjava, ki je pravilna natanko tedaj, ko obstaja \textbf{ natanko en} $x$, za katerega je izjava $A(x)$ pravilna
 
 Ekvivalentno: $(\exists x)A(x) \inn (\forall y)(\forall z)(A(y) \inn A(z) \sledi y = z)$
 \end{itemize}
 
 \zgled
-Zadnjič smo dokazali izjavo {\it Če je $n$ liho naravno število, je tudi $n^2$ liho število.}
+Zadnjič smo dokazali izjavo \emph{ Če je $n$ liho naravno število, je tudi $n^2$ liho število.}
 To pomeni: za vsako naravno število $n$ velja, da če je liho, potem je tudi $n^2$ liho število.
 To lahko zapišemo kot $(\forall n)A(n)$, kjer je $A(n)$ izjava ``Če je $n$ liho število, potem je tudi $n^2$ liho število."
 \kz
@@ -1595,14 +1636,14 @@ pravilna je v vsakem kontekstu, kjer obstaja objekt, ki ni jabolko ali pa je oku
 \medskip
 Povzemimo:
 
-{\it Izjavo oblike ``vsi $A(x)$ so $B(x)$'' zapišemo kot $(\forall x)(A(x)\sledi B(x))$.
+{Izjavo oblike "vsi $A(x)$ so $B(x)$" zapišemo kot $(\forall x)(A(x)\sledi B(x))$.
 
-Izjavo oblike ``nekateri $A(x)$ so $B(x)$'' pa kot $(\exists x)(A(x)\inn B(x))$.}
-
-\medskip
+Izjavo oblike "nekateri $A(x)$ so $B(x)$" pa kot $(\exists x)(A(x)\inn B(x))$.}
 
 \medskip
-\noindent{\bf Še nekaj zgledov izjav s kvantifikatorji:}
+
+\medskip
+\noindent\textbf{ Še nekaj zgledov izjav s kvantifikatorji:}
 
 \iftoggle{long}{
 {\color{blue}Naj bo domena pogovora množica naravnih števil. Tedaj so naslednje izjave s kvantifikatorji smiselne:}
@@ -1648,7 +1689,7 @@ $(\exists !n)$ ($N(n)\inn n$ je najmanjše naravno število).
 
 \subsubsection{Negacije izjav s kvantifikatorji}
 
-{\bf Negacija $\forall$}
+\textbf{ Negacija $\forall$}
 $$\neg (\forall x)A(x) \cee  (\exists x) (\neg A(x))$$
 
 \medskip
@@ -1662,7 +1703,7 @@ Ekvivalentno: Obstaja vsaj en državljan Slovenije, ki ni rjavolas.\kz
 
 \medskip
 
-\noindent{\bf Negacija $\exists$}
+\noindent\textbf{ Negacija $\exists$}
 $$\neg  (\exists x)A(x) \cee (\forall x) \neg A(x)$$
 
 \medskip
@@ -1747,7 +1788,7 @@ $(\exists x)(\forall y)(y\ge x)\,,$
 obstaja namreč najmanjše naravno število.
 \end{itemize}
 
-{\bf Domača naloga:}
+\textbf{ Domača naloga:}
 %\zgled
 
 Ali je naslednja izjava pravilna?
@@ -1783,12 +1824,12 @@ pravilna za vsak objekt $x$ iz domene pogovora.
 
 \medskip
 \zgled
-{\it Dokaži, da za vsako naravno število $n$ velja $4n^2-4n+1\ge 0$.
+\emph{ Dokaži, da za vsako naravno število $n$ velja $4n^2-4n+1\ge 0$.
 }
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 
-{\it Trditev je oblike $(\forall x)A(x)$, kjer preučujemo naravna števila, $\mathbb{N}$, in je $A(x)$ izjava ``$4x^2 -4x+1 \ge 0$''.}
+\emph{ Trditev je oblike $(\forall x)A(x)$, kjer preučujemo naravna števila, $\mathbb{N}$, in je $A(x)$ izjava ``$4x^2 -4x+1 \ge 0$''.}
 
 Naj bo $n$ poljubno naravno število. Zapišimo $4n^2 -4n+1 = (2n-1)^2$.
 Kvadrat poljubnega realnega števila je nenegativno število.
@@ -1799,11 +1840,11 @@ Torej je $4n^2 -4n+1\ge 0$. Ker je bilo število $n$ poljubno, smo pokazali, da 
 \medskip
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{\noindent
-{\bf Direktni dokaz izjave $(\forall x)A(x)$}
+\textbf{ Direktni dokaz izjave $(\forall x)A(x)$}
 
-\medskip {\bf Dokaz:}
+\medskip \textbf{ Dokaz:}
 
-Naj bo $x$ poljuben objekt iz domene pogovora. {\it (Katere vrste objektov preučujemo, mora biti zapisano v trditvi ali razvidno iz konteksta.)}
+Naj bo $x$ poljuben objekt iz domene pogovora. \emph{ (Katere vrste objektov preučujemo, mora biti zapisano v trditvi ali razvidno iz konteksta.)}
 
 ~~~~$\vdots$
 
@@ -1820,12 +1861,12 @@ Za dokazovanje izjav oblike $(\forall x)A(x)$  pogosto uporabimo dokaz s protisl
 
 \medskip
 \zgled
-{\it Dokaži, da za vse $x\in (0,\pi/2)$ velja $\sin x+\cos x>1$.
+\emph{ Dokaži, da za vse $x\in (0,\pi/2)$ velja $\sin x+\cos x>1$.
 }
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 
-{\it Trditev je oblike
+\emph{ Trditev je oblike
 $(\forall x)A(x)$, kjer je
 %preučujemo elemente odprtega intervala $(0,\pi/2)$ in je
 $A(x)$ izjava ``$0<x<\pi/2\sledi \sin x+\cos x>1$''.}
@@ -1856,9 +1897,9 @@ Ker je izjava $\neg(\forall x)A(x)$ ekvivalentna izjavi $(\exists x)\neg A(x)$, 
 
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{\noindent
-{\bf Dokaz izjave $(\forall x)A(x)$ s protislovjem}
+\textbf{ Dokaz izjave $(\forall x)A(x)$ s protislovjem}
 
-\medskip {\bf Dokaz:}
+\medskip \textbf{ Dokaz:}
 
 Predpostavimo, da $\neg(\forall x)A(x)$.
 
@@ -1881,9 +1922,9 @@ Kako dokazujemo eksistenčne izreke, tj.~trditve oblike $(\exists x)A(x)$?
 Včasih lahko kar direktno.
 
 \zgled
-{\it Dokaži, da obstaja sodo praštevilo.}
+\emph{ Dokaži, da obstaja sodo praštevilo.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 Število $2$ je sodo praštevilo.\qed
 
 \bigskip
@@ -1891,9 +1932,9 @@ Nekateri dokazi so težji. Znameniti matematik Euler je sredi 18.~stoletja vpra�
 
 \smallskip
 \zgled
-{\it Dokaži, da obstaja naravno število, katerega četrta potenca je vsota četrtih potenc treh drugih naravnih števil.}
+\emph{ Dokaži, da obstaja naravno število, katerega četrta potenca je vsota četrtih potenc treh drugih naravnih števil.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 Tako število je npr.~$20.615.673$, saj velja
 $$20615673^4 = 2682440^4+1536539^4+18796760^4\,.$$
 (Zgornjo rešitev je našel Noam Elkies leta 1988. Kmalu zatem je Roger Frye našel najmanjšo rešitev: $95.800^4 + 217.519^4 + 414.560^4 = 422.481^4$.)
@@ -1904,12 +1945,12 @@ Včasih pa je ugodneje uporabiti dokaz s protislovjem.
 
 \medskip
 \zgled
-{\it Hribolazec krene na pot iz doline v ponedeljek ob 9:00 in prispe na vrh gore ob 15:00. Tam prenoči in v torek zjutraj krene nazaj ob 9:00 po isti poti in se vrne v dolino ob 15:00. Na poti navzdol se je vmes večkrat ustavil, ponekod pa hodil hitreje kot prejšnji dan navzgor.
+\emph{ Hribolazec krene na pot iz doline v ponedeljek ob 9:00 in prispe na vrh gore ob 15:00. Tam prenoči in v torek zjutraj krene nazaj ob 9:00 po isti poti in se vrne v dolino ob 15:00. Na poti navzdol se je vmes večkrat ustavil, ponekod pa hodil hitreje kot prejšnji dan navzgor.
 Dokaži, da obstaja točka na poti, na kateri je bil oba dneva ob istem času.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 
-{\it Če merimo čas v urah od $0$ do $6$ ($t = 0$ ustreza času 9:00, $t = 6$ pa času 15:00, je treba dokazati:\\
+\emph{ Če merimo čas v urah od $0$ do $6$ ($t = 0$ ustreza času 9:00, $t = 6$ pa času 15:00, je treba dokazati:\\
  $(\exists t\in (0,6))($točka na poti ob času $t$ v ponedeljek je enaka točki na poti ob času $t$ v torek).}
 
 Recimo, da taka točka ne obstaja. Torej za vsak $t\in (0,6)$ točka na poti ob času $t$ v ponedeljek različna od točke na poti ob času $t$ v torek.
@@ -1925,9 +1966,9 @@ Sledi, da obstaja točka na poti, na kateri je bil hribolazec oba dneva ob istem
 \medskip
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{\noindent
-{\bf Dokaz izjave $(\exists x)A(x)$ s protislovjem}
+\textbf{ Dokaz izjave $(\exists x)A(x)$ s protislovjem}
 
-\medskip {\bf Dokaz:}
+\medskip \textbf{ Dokaz:}
 
 Predpostavimo, da $\neg(\exists x)A(x)$.
 
@@ -1944,18 +1985,18 @@ Sledi, da je izjava $(\forall x)\neg A(x)$ nepravilna, torej je izjava $(\exists
 \subsubsection*{4)~Dokazovanje izjav oblike $(\exists ! x)A(x)$}
 
 \zgled
-{\it Vsako neničelno realno število ima enoličen multiplikativni inverz.}
+\emph{ Vsako neničelno realno število ima enoličen multiplikativni inverz.}
 
-\medskip \noindent{\bf Dokaz.}
+\medskip \noindent\textbf{ Dokaz.}
 
-{\it Izjava ima obliko $(\forall x)(x\neq 0\sledi (\exists ! y)(xy = 1))$, domena pogovora je množica realnih števil.}
+\emph{ Izjava ima obliko $(\forall x)(x\neq 0\sledi (\exists ! y)(xy = 1))$, domena pogovora je množica realnih števil.}
 
 Naj bo $x\neq 0$.
 Obstoj inverza bomo pokazali v dveh korakih: najprej bomo pokazali, da tako število $y$ obstaja, potem pa še, da $x$ ne more imeti dveh različnih inverzov.
 
 $(i)$ Naj bo $y = 1/x$. Ker je $x\neq 0$, je $y$ realno število. Tedaj je $xy = x\cdot (1/x) = 1$. Število $x$ torej ima multiplikativni inverz.
 
-$(ii)$ Naj bosta $y$ in $z$ multiplikativna inverza števila $x$. {\it (Tu ne predpostavimo, da je ta $y$ enak $y$ iz točke $(i)$.)}
+$(ii)$ Naj bosta $y$ in $z$ multiplikativna inverza števila $x$. \emph{ (Tu ne predpostavimo, da je ta $y$ enak $y$ iz točke $(i)$.)}
 
 Sledi $xy = 1$ in $xz = 1$ in od tod
 
@@ -1972,9 +2013,9 @@ Ker je $x\neq 0$, sledi $y - z = 0$, torej $y = z$.
 
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{\noindent
-{\bf Dokaz izjave $(\exists! x)A(x)$}
+\textbf{ Dokaz izjave $(\exists! x)A(x)$}
 
-\medskip {\bf Dokaz:}
+\medskip \textbf{ Dokaz:}
 
 $(i)$ Dokaži pravilnost izjave $(\exists  x)A(x)$ (s katerokoli metodo).
 
@@ -2009,7 +2050,7 @@ Iz $(i)$ in $(ii)$ izpeljemo, da je izjava $(\exists! x)A(x)$ pravilna.\qed
 %
 %\bigskip
 %
-%{\bf Rešitev:}
+%\textbf{ Rešitev:}
 %
 %$K$: Morilka je kuharica.
 %
@@ -2070,7 +2111,7 @@ Množice pa bomo običajno pisali z velikimi črkami: $A,B,\ldots, X,Y,Z$ (+ ind
 \smallskip
 Množice in elemente druži relacija pripadnosti:
 
-$a\in F$: element $a$ {\it pripada} množici $F$, $a$ {\it je element} množice $F$.
+$a\in F$: element $a$ \emph{ pripada} množici $F$, $a$ \emph{ je element} množice $F$.
 
 \smallskip
 
@@ -2081,7 +2122,7 @@ $a\not\in F$: $a$ ni element (ne pripada) množici $F$.
 
 \smallskip
 
-{\bf Zgled:}
+\textbf{ Zgled:}
 Če je $G$ množica vseh sodih števil, je $16\in G$ in $3\not\in G$.
 
 
@@ -2094,7 +2135,7 @@ $$A = B \cee (\forall x) (x\in A\cee x\in B)$$
 Ta definicija je potrebna, saj podaja pomembno lastnost, ki ji mora relacija pripadnosti ustrezati!
 
 \medskip
-{\bf Primer:} Recimo, da so objekti, ki jih preučujemo, ljudje,
+\textbf{ Primer:} Recimo, da so objekti, ki jih preučujemo, ljudje,
 in zapišimo $x\in A$ natanko tedaj, ko je $x$ prednik $A$-ja.
 Ali lahko to definicijo uporabimo, da definiramo ljudi kot množice?
 Zgornja ekvivalenca pravi:
@@ -2103,13 +2144,13 @@ Zgornja ekvivalenca pravi:
   \item {\em Če imata dva človeka iste prednike, potem sta enaka.} To pa ne drži!
 \end{itemize}
 
-\noindent{\bf Načini podajanja množic:}
+\noindent\textbf{ Načini podajanja množic:}
 \begin{enumerate}
   \item Množico lahko podamo tako, da navedemo vse njene elemente:
 $$A = \left\{1,\frac{1}{2}, \frac{\pi}{3}, 2i+8\right\}\,.$$
 Vrstni red {\em ni pomemben!}
 Včasih pa je ta zapis nepraktičen (kadar je množica neskončna ali pa končna, a prevelika).
-  \item Množico lahko podamo tudi tako, da jo opišemo. Opis pa mora biti {\bf nedvoumen:}
+  \item Množico lahko podamo tudi tako, da jo opišemo. Opis pa mora biti \textbf{ nedvoumen:}
 za vsako reč mora veljati bodisi, da je element dane množice, ali pa da ni element te množice.
 
 V splošnem lahko zapišemo:
@@ -2134,7 +2175,7 @@ Množice pa bomo običajno pisali z velikimi črkami: $A,B,\ldots, X,Y,Z$ (+ ind
 \smallskip
 Množice in elemente druži relacija pripadnosti:
 
-$a\in F$: element $a$ {\it pripada} množici $F$, $a$ {\it je element} množice $F$.
+$a\in F$: element $a$ \emph{ pripada} množici $F$, $a$ \emph{ je element} množice $F$.
 
 \smallskip
 
@@ -2145,7 +2186,7 @@ $a\not\in F$: $a$ ni element (ne pripada) množici $F$.
 
 \smallskip
 
-{\bf Zgled:}
+\textbf{ Zgled:}
 Če je $G$ množica vseh sodih števil, je $16\in G$ in $3\not\in G$.
 
 
@@ -2157,7 +2198,7 @@ $$A = B \cee (\forall x) (x\in A\cee x\in B)$$
 \medskip
 Ta definicija je potrebna, saj podaja pomembno lastnost, ki ji mora relacija pripadnosti ustrezati!
 
-{\bf Primer:} Recimo, da so objekti, ki jih preučujemo, ljudje,
+\textbf{ Primer:} Recimo, da so objekti, ki jih preučujemo, ljudje,
 in zapišimo $x\in A$ natanko tedaj, ko je $x$ prednik $A$-ja.
 Ali lahko to definicijo uporabimo, da definiramo ljudi kot množice?
 Zgornja ekvivalenca pravi:
@@ -2166,13 +2207,13 @@ Zgornja ekvivalenca pravi:
   \item {\em Če imata dva človeka iste prednike, potem sta enaka.} To pa ne drži!
 \end{itemize}
 
-\noindent{\bf Načini podajanja množic:}
+\noindent\textbf{ Načini podajanja množic:}
 \begin{enumerate}
   \item Množico lahko podamo tako, da navedemo vse njene elemente:
 $$A = \left\{1,\frac{1}{2}, \frac{\pi}{3}, 2i+8\right\}\,.$$
 Vrstni red {\em ni pomemben!}
 Včasih pa je ta zapis nepraktičen (kadar je množica neskončna ali pa končna, a prevelika).
-  \item Množico lahko podamo tudi tako, da jo opišemo. Opis pa mora biti {\bf nedvoumen:}
+  \item Množico lahko podamo tudi tako, da jo opišemo. Opis pa mora biti \textbf{ nedvoumen:}
 za vsako reč mora veljati bodisi, da je element dane množice, ali pa da ni element te množice.
 
 V splošnem lahko zapišemo:
@@ -2203,7 +2244,7 @@ Ali je $2^{\pi}\in A$? Ne vemo (današnja matematika še ne more odgovoriti na t
 %\end{itemize}
 
 %\medskip
-%{\bf Zgled:}
+%\textbf{ Zgled:}
 %Naj bo $L$ množica vseh ljudi. Izjavi ``$x$ je poročen''~in ``$x$ je star vsaj 20 let''~sta smiselni izjavi za elemente množice $L$. Torej lahko tvorimo množice
 %
 %      $$\{x\in L; x \textrm{ je poročen}\}$$
@@ -2249,7 +2290,7 @@ Očitno velja:
 %$$(\forall x)(P(x)\inn Q(x))\cee (\forall x)P(x)\inn (\forall x)Q(x)\,.$$
 %(Dokaz na vajah.)
 
-%\noindent{\bf Dokaz:}
+%\noindent\textbf{ Dokaz:}
 %
 %$(\Rightarrow)$:
 %
@@ -2318,17 +2359,17 @@ Ker je bil $x$ poljuben, smo dokazali $(\forall x)(x\in A\sledi x\in C)$, tj., $
 
 
 \medskip
-\noindent{\bf V razmislek:} Ali obstajata množici $A$ in $B$, za kateri velja $A\subset B$ in $B\subset A$?
+\noindent\textbf{ V razmislek:} Ali obstajata množici $A$ in $B$, za kateri velja $A\subset B$ in $B\subset A$?
 
 \bigskip
-\noindent{\bf Pozor:} Relacija inkluzije $\subseteq$ in relacija pripadnosti $\in$ sta povsem različna pojma!
+\noindent\textbf{ Pozor:} Relacija inkluzije $\subseteq$ in relacija pripadnosti $\in$ sta povsem različna pojma!
 
 $1\in\{1,2,3\}$, toda $1$ ni podmnožica množice $\{1,2,3\}$.
 Množica $\{1\}$ pa je podmnožica množice $\{1,2,3\}$, toda
 $\{1\}$ ni element množice $\{1,2,3\}$.
 
 \bigskip
-\noindent{\bf V razmislek:} Naj bo $X = \{1,2,\{1\},\{2\}\}$.
+\noindent\textbf{ V razmislek:} Naj bo $X = \{1,2,\{1\},\{2\}\}$.
 Ali je $1$ element množice $X$?
 Ali je $1$ podmnožica množice $X$?
 Ali je $\{1\}$ element množice $X$?
@@ -2343,7 +2384,7 @@ $$X = \emptyset \cee (\forall x)(x\not\in X)$$
 Seveda velja:
 $$(\forall X) (\emptyset \subseteq X)$$
 
-{\bf Domača naloga:} Dokažite, da velja:
+\textbf{ Domača naloga:} Dokažite, da velja:
 $$X = \emptyset\cee (\forall Y)(X\subseteq Y)\,.$$
 
 \subsection*{Unija}
@@ -2351,7 +2392,7 @@ $$X = \emptyset\cee (\forall Y)(X\subseteq Y)\,.$$
 Dani sta množici $A$ in $B$. {\em Unija} teh dveh množic je množica $A\cup B$, ki ima za elemente natanko tiste reči, ki so elementi množice $A$ ali množice $B$:
 $$A\cup B = \{x; x\in A \ali x\in B\}\,.$$
 
-{\bf Zgled:}
+\textbf{ Zgled:}
 $A = \{1,3,5,7\}$, $B = \{1,2,4,8\}$.
 
 $A\cup B = \{1,3,5,7,2,4,8\}$.
@@ -2368,7 +2409,7 @@ $$0,5 = \left\{\frac{1}{2}, \frac{2}{4}, \frac{3}{6}, \cdots\right\}$$
 
 \medskip
 
-{\bf Unija več množic}:
+\textbf{ Unija več množic}:
 
 V splošnem lahko družino množic zapišemo na naslednji način:
 
@@ -2407,7 +2448,7 @@ $$\cup {\cal A} = \cup_{j = 1}^nA_j = A_1\cup\cdots\cup A_n\,.$$
 
 
 \bigskip
-{\bf Osnovne lastnosti unije:}
+\textbf{ Osnovne lastnosti unije:}
 \begin{itemize}
   \item $A\cup B = B\cup A$, komutativnost
   \item $(A\cup B)\cup C = A\cup (B\cup C)$, asociativnost
@@ -2447,25 +2488,25 @@ $$\neg(A\subseteq B)$$
 \qed
 
 \bigskip
-{\bf Domača naloga:} Dokažite preostale lastnosti.
+\textbf{ Domača naloga:} Dokažite preostale lastnosti.
 \bigskip
 
 \subsection*{Presek}
 Dani sta množici $A$ in $B$. {\em Presek} teh dveh množic je množica $A\cap B$, ki ima za elemente natanko tiste reči, ki so elementi množice $A$ in množice $B$:
 $$A\cap B = \{x; x\in A \inn x\in B\}\,.$$
 
-{\bf Zgled:}
+\textbf{ Zgled:}
 $A = \{1,3,5,7\}$, $B = \{1,2,4,8\}$.
 
 $A\cap B = \{1\}$.
 
 \medskip
 
-{\bf Presek več množic}:
+\textbf{ Presek več množic}:
 
 ${\cal A} = \{A_\lambda; \lambda \in J\}$ - družina množic z indeksno množico $J$, $J\neq \emptyset$!
 
-Indeksna množica je poljubna {\bf neprazna} množica!
+Indeksna množica je poljubna \textbf{ neprazna} množica!
 
 Presek neprazne družine ${\cal A}$ definiramo kot
 $$\cap {\cal A} = \cap_{\lambda \in J} A_\lambda = \{x;(\forall\lambda) (\lambda \in J\sledi x\in A_\lambda)\}$$
@@ -2480,7 +2521,7 @@ $A\cap B = \emptyset$, pravimo, da sta si množici $A$ in $B$ {\em tuji}
 (ali da sta {\em disjunktni}).
 
 \bigskip
-{\bf Osnovne lastnosti preseka:}
+\textbf{ Osnovne lastnosti preseka:}
 \begin{itemize}
   \item $A\cap B = B\cap A$, komutativnost
   \item $(A\cap B)\cap C = A\cap (B\cap C)$, asociativnost
@@ -2492,55 +2533,55 @@ $A\cap B = \emptyset$, pravimo, da sta si množici $A$ in $B$ {\em tuji}
 \end{itemize}
 
 \bigskip
-{\bf Domača naloga:} Dokažite te lastnosti. (Dokazi so podobni dokazom analognih lastnosti za unijo.)
+\textbf{ Domača naloga:} Dokažite te lastnosti. (Dokazi so podobni dokazom analognih lastnosti za unijo.)
 
 \bigskip
 Unija in presek sta povezana z distributivnostnima zakonoma:
 $$(A\cup B)\cap C = (A\cap C)\cup (B\cap C)$$
 $$(A\cap B)\cup C = (A\cup C)\cap (B\cup C)$$
 
-%Dokažimo prvi distributivnostni zakon:
-%$(A\cup B)\cap C = (A\cap C)\cup (B\cap C)$.
-%
-%{\em Kako dokažemo enakost dveh množic, $X = Y$? Možnih je več načinov:
-%\begin{enumerate}
-%  \item Po definiciji. Torej
-%    direktno dokažemo pravilnost izjave $(\forall x)(x\in X\cee x\in Y)$.
-%
-%    ALI
-%
-%\item  S pomočjo ekvivalence $X = Y \Longrightarrow X\subseteq Y \inn Y\subseteq X$.
-%\begin{enumerate}
-%          \item   Dokažemo $X\subseteq Y$, tj., pravilnost izjave $(\forall x)(x\in X\sledi x\in Y)$.
-%  \item Dokažemo še $Y\subseteq X$, tj., pravilnost izjave $(\forall x)(x\in Y\sledi x\in X)$.
-%        \end{enumerate}
-%        \end{enumerate}}
-%
-%Poglejmo si 1.~način:
-%$$x\in (A\cup B)\cap C$$
-%$$\cee$$
-%$$(x\in A\cup B) \inn (x\in C)$$
-%$$\cee$$
-%$$(x\in A\ali x\in B) \inn (x\in C)$$
-%$$\cee$$
-%$$(x\in A \inn  x\in C)\ali (x\in B \inn  x\in C) $$
-%$$\cee$$
-%$$(x\in A \cap C)\ali (x\in B \cap C) $$
-%$$\cee$$
-%$$x\in (A \cap C)\cup (B \cap C)\,.$$
-%Ker gornja veriga ekvivalenc velja za poljuben $x$, je izjava
-%$$(\forall x)(x\in (A\cup B)\cap C\cee x\in (A \cap C)\cup (B \cap C))$$
-%pravilna. Torej sta množici enaki.
-%\qed
+Dokažimo prvi distributivnostni zakon:
+$(A\cup B)\cap C = (A\cap C)\cup (B\cap C)$.
 
-%Distributivnostna zakona veljata tudi bolj splošno, za neprazne družine množic:
-%$$(\bigcup_{\lambda\in J}A_\lambda)\cap (\bigcup_{\mu\in K}B_\mu) =
-%\bigcup_{\lambda\in J, \mu\in K}(A_\lambda\cap B_\mu)\,.$$
-%$$(\bigcap_{\lambda\in J}A_\lambda)\cup (\bigcap_{\mu\in K}B_\mu) =
-%\bigcap_{\lambda\in J, \mu\in K}(A_\lambda\cup B_\mu)\,.$$
+{\em Kako dokažemo enakost dveh množic, $X = Y$? Možnih je več načinov:
+\begin{enumerate}
+ \item Po definiciji. Torej
+    direktno dokažemo pravilnost izjave $(\forall x)(x\in X\cee x\in Y)$.
+
+    ALI
+
+\item  S pomočjo ekvivalence $X = Y \Longrightarrow X\subseteq Y \inn Y\subseteq X$.
+\begin{enumerate}
+         \item   Dokažemo $X\subseteq Y$, tj., pravilnost izjave $(\forall x)(x\in X\sledi x\in Y)$.
+ \item Dokažemo še $Y\subseteq X$, tj., pravilnost izjave $(\forall x)(x\in Y\sledi x\in X)$.
+        \end{enumerate}
+        \end{enumerate}}
+
+Poglejmo si 1.~način:
+$$x\in (A\cup B)\cap C$$
+$$\cee$$
+$$(x\in A\cup B) \inn (x\in C)$$
+$$\cee$$
+$$(x\in A\ali x\in B) \inn (x\in C)$$
+$$\cee$$
+$$(x\in A \inn  x\in C)\ali (x\in B \inn  x\in C) $$
+$$\cee$$
+$$(x\in A \cap C)\ali (x\in B \cap C) $$
+$$\cee$$
+$$x\in (A \cap C)\cup (B \cap C)\,.$$
+Ker gornja veriga ekvivalenc velja za poljuben $x$, je izjava
+$$(\forall x)(x\in (A\cup B)\cap C\cee x\in (A \cap C)\cup (B \cap C))$$
+pravilna. Torej sta množici enaki.
+\qed
+
+Distributivnostna zakona veljata tudi bolj splošno, za neprazne družine množic:
+$$(\bigcup_{\lambda\in J}A_\lambda)\cap (\bigcup_{\mu\in K}B_\mu) =
+\bigcup_{\lambda\in J, \mu\in K}(A_\lambda\cap B_\mu)\,.$$
+$$(\bigcap_{\lambda\in J}A_\lambda)\cup (\bigcap_{\mu\in K}B_\mu) =
+\bigcap_{\lambda\in J, \mu\in K}(A_\lambda\cup B_\mu)\,.$$
 
 \medskip
-{\bf Domača naloga:} Dokažite, da za poljubne tri množice $A$, $B$, $C$ velja:
+\textbf{ Domača naloga:} Dokažite, da za poljubne tri množice $A$, $B$, $C$ velja:
 $$(A\cap B)\cup C = A\cap (B\cup C) \cee C\subseteq A\,.$$
 (Pogoj na desni je neodvisen od množice $B$!)
 
@@ -2587,7 +2628,7 @@ Dani sta množici $A$ in $B$.
 {\em Razlika} množic $A$ in $B$ je množica, ki ima za elemente natanko tiste reči, ki so elementi množice $A$, niso pa elementi množice $B$.
 $$A\brez B = \{x; x\in A\inn x\not\in B\}\,.$$
 
-{\bf Zgled:}
+\textbf{ Zgled:}
 Naj bo $A$ množica praštevil, $B$ pa množica vseh pozitivnih lihih števil.
 Tedaj je
 
@@ -2636,9 +2677,2009 @@ $$x\in A\cup B$$
 
 %\newpage
 \bigskip
-{\bf Domača naloga:} Dokažite preostale lastnosti.
+\textbf{ Domača naloga:} Dokažite preostale lastnosti.
 
 \bigskip
 %konec 3. predavanj (T4)
+
+
+
+\bigskip
+
+Zelo pogosto smo v matematiki v temle položaju: podana je neka {\em univerzalna množica} $S$, zanimamo se izključno za elemente in podmnožice množice $S$.
+
+Naj bo $A\subseteq S$. Tedaj lahko definiramo {\em komplement množice $A$ (glede na množico $S$)} kot:
+$$C_SA = \overline A = S\brez A\,.$$
+Če množice $S$ ne definiramo, ne moremo govoriti o komplementu: $\overline \emptyset$ = množica vseh množic --- ta pa ne obstaja (Russellova antinomija)!
+
+\bigskip
+%\newpage
+\zgled
+Naj bo $S = \{0,1,2,3,\ldots\}$ množica naravnih števil, množica $A$ pa množica praštevil.
+Potem je $\overline A = \{0,1,4,6,8,9,10,12,\ldots\}$.
+
+\kz
+
+\medskip
+
+Lastnosti komplementa:
+\begin{itemize}
+  \item
+$\overline S = \emptyset,~~~~\overline \emptyset = S$
+
+  \item
+$\overline{\overline A} = A,~~~A\cup \overline A = S,~~~~A\cap \overline A = \emptyset$
+
+  \item
+$A\brez B = A\cap \overline B$
+
+  \item
+$A\subseteq B \cee  \overline B \subseteq \overline A$
+
+  \item
+$A= B \cee  \overline A = \overline B$
+
+  \item
+$\overline{A\cup B} = \overline A\cap \overline B$,~~~$\overline{A\cap B} = \overline A\cup \overline B$ (De Morganova zakona)
+\end{itemize}
+
+De Morganova zakona veljata tudi za poljubno družino množic ${\cal A} = \{A_\lambda~;~\lambda\in J\}$:
+$$\overline{\cup_{\lambda\in J}A_\lambda} = {\cap_{\lambda\in J}\overline A_\lambda}$$
+$$\overline{\cap_{\lambda\in J}A_\lambda} = {\cup_{\lambda\in J}\overline A_\lambda}$$
+
+Zaradi De Morganovih zakonov se izreki v teoriji množic pogosto pojavljajo v parih.
+Če v neki inkluziji, enakosti ali ekvivalenci o unijah, presekih in komplementih podmnožic neke množice zamenjamo vsako množico z njenim komplementom,
+zamenjamo vse unije in preseke in obrnemo vse inkluzije, je rezultat spet neka veljavna inkluzija, enakost ali ekvivalenca. Temu principu pravimo \textbf{ princip dualnosti}.
+
+%\newpage
+
+\bigskip
+\zgled
+
+Trditev
+$$(A\cap B)\cup C = A\cap (B\cup C) \cee C\subseteq A\,.$$
+postane
+$$(\overline A\cup \overline B)\cap \overline C = \overline A\cup (\overline B\cap \overline C) \cee \overline A\subseteq \overline C\,,$$
+kar je ekvivalentno trditvi
+$$(A\cup B)\cap C = A\cup (B\cap C) \cee A\subseteq C$$
+(zamenjali smo vloge množic in njihovih komplementov).
+\kz
+
+%\newpage
+%\subsection*{Vennovi diagrami}
+
+%Vse odnose in operacije med podmnožicami dane univerzalne množice lahko nazorno prikažemo s t.i.~{\em Vennovimi diagrami}.
+
+%\begin{figure}[ht]
+%\begin{center}
+%\includegraphics[width=111mm]{Venn.eps}
+%\end{center}
+%\end{figure}
+
+%\medskip
+%Seveda pa tako ``slikanje'' nima nobene zveze z dokazovanjem.
+
+%\newpage
+\subsection*{Potenčna množica}
+
+{\em Potenčna množica} dane množice $A$ je družina množic, ki ima za svoje elemente natanko podmnožice množice $A$:
+$${\cal P}(A) = \{X; X\subseteq A\}$$
+
+\textbf{ Zgled:}
+\begin{itemize}
+  \item ${\cal P}(\{1,2\}) = \{\emptyset, \{1\},\{2\},\{1,2\}\}$
+  \item ${\cal P}(\emptyset) = \{\emptyset\}$.
+  \item ${\cal P}(\{\emptyset\}) = \{\emptyset, \{\emptyset\}\}$.
+\end{itemize}
+
+Če ima množica $A$ $n$ elementov, potem ima njena potenčna množica ${\cal P}(A)$ $2^n$ elementov.\footnote{Za vsakega od $n$ elementov množice $A$ je potrebno določiti, neodvisno od ostalih, ali ga množica $X\subseteq A$ vsebuje ali ne. Skupaj imamo torej $n$ neodvisnih izbir ene izmed dveh možnosti, kar nam da, za vse podmnožice $X\subseteq A$, ravno $2^n$ možnosti.}
+
+\bigskip
+Lastnosti:
+\begin{itemize}
+  \item $A\subseteq B\sledi \P(A) \subseteq \P(B)$.
+  \item $\P(A) \cup \P(B) \subseteq \P(A\cup B)$.
+  \item $\P(A)\cap \P(B) =  \P(A\cap B)$.
+\end{itemize}
+
+Prva lastnost sledi iz tranzitivnosti inkluzije:
+
+$X\in \P(A) \inn A\subseteq B\cee X\subseteq A\subseteq B\sledi X\subseteq B\cee X\in \P(B)$.
+
+Dokaz druge lastnosti:
+
+$X\in \P(A) \cup \P(B) \cee X\subseteq A\ali X\subseteq B\sledi X\subseteq A\cup B\cee X\in \P(A\cup B)$.
+
+
+Dokaz tretje lastnosti:
+
+$X\in \P(A)\cap \P(B)\cee X\in \P(A) \inn A\in \P(B)\cee X\subseteq A \inn X\subseteq B$
+
+$\cee X\subseteq A \cap B\cee X\in \P(A\cap B)$
+
+%\textbf{ V razmislek:} Zakaj velja predzadnja ekvivalenca v zgornji verigi ekvivalenc?
+%
+%\medskip
+%\textbf{ Domača naloga:} Formalno dokažite prvo in drugo lastnost.
+
+\medskip
+\textbf{ V razmislek:} Ali v prvi lastnosti velja ekvivalenca?
+
+\medskip
+\textbf{ V razmislek:} Zakaj v drugi lastnosti ne velja enakost?
+
+
+\subsection*{Urejeni par}
+
+Vzemimo dve reči $a$ in $b$.
+%$a\neq b$.
+
+Za množico $\{a,b\}$ vrstni red ni pomemben, $\{a,b\} = \{b,a\}$.
+
+Kadar je vrstni red pomemben, govorimo o {\em urejenem paru}:
+
+$(a,b)$ - urejen par, $(a,b)\neq (b,a)$
+
+$a$ - prva koordinata
+
+$b$ - druga koordinata
+
+Kdaj sta dva urejena para enaka?
+$$(a,b) = (u,v) \cee a = u \inn b = v\,.$$
+
+\medskip
+Urejeni par $(a,b)$ definiramo kot množico $\{\{a\},\{a,b\}\}$.
+
+\medskip
+\textbf{ Domača naloga:}
+Dokažite, da velja $\{\{a\},\{a,b\}\} = \{\{u\},\{u,v\}\}\cee a = u \inn b = v\,.$
+
+
+
+\subsection*{Kartezični produkt}
+
+Pojem kartezičnega produkta ste spoznali že pri Analizi I.
+
+{\em Kartezični produkt} množic $A$ in $B$ je množica, ki ima za elemente natanko vse urejene pare $(x,y)$, kjer je prva koordinata iz množice $A$, druga koordinata pa iz množice $B$:
+$$A\times B = \{(x,y)~;~x\in A\inn y\in B\}$$
+
+
+
+\textbf{ Zgled:} $\{1\}\times \{2,3\} = \{(1,2),(1,3)\}$,
+
+$\{2,3\}\times \{1\} = \{(2,1),(3,1)\}$.
+
+\bigskip
+Lastnosti kartezičnega produkta:
+\begin{itemize}
+  \item $A\times B\neq B\times A$ (razen če je $A = B$)
+  \item $A\times B = \emptyset \cee A= \emptyset \ali B = \emptyset$.
+  \item $A\times (B\cup C) = (A\times B) \cup (A\times C)$.
+  \item $A\times (B\cap C) = (A\times B) \cap (A\times C)$.
+  \item $A\times (B\brez C) = (A\times B) \brez (A\times C)$.
+\end{itemize}
+
+Kartezični produkt treh množic definiramo kot:
+
+$$A\times B\times C = (A\times B)\times C= \{((x,y),z)~;~x\in A \inn y\in B\inn z\in C\}\,.$$
+
+Po navadi pišemo kar: $((x,y),z) = (x,y,z)$ (urejena trojica).
+
+\bigskip
+Kartezični produkt množic $A_1,\ldots, A_n$ definiramo kot
+množico vseh urejenih $n$-teric:
+$$A_1\times A_2\times\cdots \times A_n = \prod_{i = 1}^n A_i = \{(x_1,\ldots, x_n)~;~x_1\in A_1\inn x_2\in A_2\inn\cdots \inn x_n\in A_n\}\,.$$
+Če so vsi faktorji enaki, $A_1 = A_2 = \ldots,  = A_n = S$, dobimo {\em $n$-kratni kartezični produkt množice $S$ s samo seboj},
+$$S^n = \Pi_{i = 1}^nS = S\times\cdots\times S~~\textrm{$n$ faktorjev}\,.$$
+
+\zgled
+Če je $S = \mathbb{R}$ množica realnih števil,
+dobimo za $n = 2$ množico točk v ravnini~($\mathbb{R}^2$), za
+$n = 3$ pa množico točk v prostoru ($\mathbb{R}^3$).\kz
+
+\bigskip
+
+%Dokažimo še enega od De Morganovih zakonov za poljubno družino množic ${\cal A} = \{A_\lambda~;~\lambda\in J\}$:
+%$$\overline{\cup_{\lambda\in J}A_\lambda} = {\cap_{\lambda\in J}\overline A_\lambda}$$
+%
+%$$x\in \overline{\cup_{\lambda\in J}A_\lambda}
+%\cee
+%x\not\in \cup_{\lambda\in J}A_\lambda
+%\cee
+%\neg(\exists \lambda)(\lambda \in J\inn x\in A_\lambda)
+%\cee$$
+%$$\cee(\forall \lambda)(\lambda \in J\sledi \neg(x\in A_\lambda))
+%\cee
+%(\forall \lambda)(\lambda \in J\sledi x\in \overline{A_\lambda})
+%\cee
+%x\in {\cap_{\lambda\in J}\overline A_\lambda}\,.$$
+%
+\bigskip
+\textbf{ Rešitev dveh domačih nalog:}
+
+Dokažimo, da za poljubne tri množice $A$, $B$, $C$ velja:
+$$(A\cap B)\cup C = A\cap (B\cup C) \cee C\subseteq A\,.$$
+
+\medskip
+$(\Rightarrow)$:
+Naj bo $(A\cap B)\cup C = A\cap (B\cup C)$.
+
+$C\subseteq (A\cap B)\cup C = A\cap (B\cup C)\subseteq A$. Uporabimo tranzitivnost inkluzije.
+
+\medskip
+$(\Leftarrow)$:
+Naj bo $C\subseteq A$. Tedaj je $A\cup C = A$.
+
+Torej je
+$(A\cap B)\cup C = (A\cup C)\cap (B\cup C) = A\cap (B\cup C)$.\kz
+
+\bigskip
+Dokažimo implikacijo
+$$A\subseteq C\inn B\subseteq C\sledi A\cup B \subseteq C\,:$$
+
+Dokaz s protislovjem:
+$$\neg(A\cup B\subseteq C)$$
+$$\cee$$
+$$(\exists x)(x\in A\cup B\inn x\not\in C)$$
+$$\cee$$
+$$(\exists x)((x\in A \ali x\in B)\inn x\not\in C)$$
+$$\cee$$
+$$(\exists x)((x\in A \inn x\not\in C) \ali (x\in B\inn x\not\in C))$$
+$$\cee$$
+$$(\exists x)((x\in A \inn x\not\in C) \ali (x\in B\inn x\not\in C))$$
+$$\cee$$
+$$(\exists x)(x\in A \inn x\not\in C) \ali (\exists x)(x\in B\inn x\not\in C)$$
+$$\cee$$
+$$\neg(\forall x)(x\in A\sledi x\in C)\ali\neg(\forall x)(x\in B\sledi x\in C)$$
+$$\cee$$
+$$\neg(A \subseteq C) \ali \neg(B\subseteq C)$$
+$$\cee$$
+$$\neg(A \subseteq C \inn B\subseteq C)\,.$$
+\qed
+
+Dokazali smo ne samo implikacijo, ampak ekvivalenco
+$$A\subseteq C\inn B\subseteq C\cee A\cup B \subseteq C\,.$$
+
+
+\subsection*{Kratka diskusija o aksiomih}
+
+Vsaka matematična teorija temelji na množici aksiomov --- osnovnih trditev, ki jih {\em privzamemo} za pravilne. Ti aksiomi opredeljujejo osnovne lastnosti, ki jim morajo zadoščati objekti obravnavane teorije (npr.~naravna števila, realna števila, grupe, vektorski prostori, topološki prostori, ...) Iz aksiomov pa potem s pomočjo logičnega sklepanja izpeljujemo nove resnice, ki jim pravimo trditve, posledice, izreki.
+
+V teoriji množic ni nič drugače! Obstaja več družin aksiomov, najbolj pa je uveljavljenih 7 aksiomov, imenovanih {\em aksiomi ZFC} (Zermelo--Fraenkel--(Axiom of) Choice).
+
+Aksiomi zagotavljajo obstoj množic in tvorjenje novih množic iz že obstoječih.
+%Razen aksioma izbire, ki je posebnega pomena, drugih aksiomov tu ne bomo podrobneje obravnavali.
+
+Da bi razumeli, zakaj potrebujemo aksiome, si poglejmo, zakaj množica vseh
+množic ne obstaja.
+
+\subsection*{Russellova antinomija}
+
+Ali obstaja {\em množica vseh množic?}
+
+Recimo, da obstaja. Naj bo $A$ množica vseh množic.
+
+Za vsako množico se lahko vprašamo, ali ima samo sebe za element. $\mathbb{N}$ nima same sebe za element! Množica vseh abstraktnih pojmov pa ima samo sebe za element.
+
+Naj bo $B\subseteq A$ tista podmnožica množice $A$, ki ima za elemente natanko tiste množice iz $A$, ki nimajo same sebe za element.
+
+Ali ima množica $B$ samo sebe za element?
+
+Če ja, potem nima same sebe za element!
+
+Kaj pa če $B$ nima same sebe za element? Potem pa po definiciji $B\in B$.
+Protislovje.
+
+{\em Množica vseh množic ne obstaja!}
+
+{\centerline\em Nič ne vsebuje vsega.} \textit{(Matematično) vesolje ne obstaja.}
+
+\medskip
+Torej pri oblikovanju množic ne smemo preveč zaupati svoji intuiciji. Potrebni so aksiomi, ki zagotavljajo obstoj nekaterih množic.
+ %(npr.~aksiom o paru, aksiom o uniji, aksiom o podmnožici, itd.).
+
+\subsection{Aksiomi teorije množic (po Endertonu)}
+
+\begin{enumerate}
+  \item Aksiom o ekstenzionalnosti (enakost množic)
+  $$\forall A\, \forall B\, (\forall x \,(x\in A \cee x\in B) \sledi A = B)$$
+
+  \item Aksiom o prazni množici:
+  \emph{ Obstaja prazna množica.}
+  $$\exists B\, \forall x\, (x\not \in B)$$
+
+  \item Aksiom o paru: \emph{ Obstajajo dvoelementne množice.}
+    $$\forall u\, \forall v\, \exists B\, \forall x\, (x\in B \cee x = u\textrm{ ali }x = v)$$
+
+  \item Aksiom o uniji: \emph{ Obstaja unija poljubne družine množic.}
+    $$\forall A\, \exists B\, \forall x\, (x\in B \cee (\exists b\in A) x\in b)$$
+
+  \item Aksiom o potenčni množici: \emph{ Obstaja potenčna množica vsake množice.}
+    $$\forall a\, \exists B\, \forall x (x\in B \cee x\subseteq a)$$
+
+  \item Aksiomska shema o podmnožicah: \emph{ Obstajajo raznovrstne podmnožice.}
+
+  Za vsako predikatno formulo $\varphi$ o množicah $t_1,\ldots, t_k$, ki ne vsebuje črke $B$, je naslednji izraz aksiom:
+$$\forall t_1\,\cdots\, \forall t_k\,\forall c\,\exists B \,\forall x \,(x\in B \cee x\in c \inn \varphi)$$
+
+\zgled
+(Za $k = 1$):
+
+$\forall a \,\forall c \,\exists B \, \forall x\, (x\in B \cee x\in c \inn x\in a)$
+
+To pomeni, da za vsaki dve množici $a$ in $c$ obstaja množica $B = a\cap c$, njun presek.
+
+\medskip
+Zgornja aksiomska shema omogoča opisovanje množic v obliki
+$$\{x\in A; P(x)\}\,.$$
+
+\zgled $\{x\in \mathbb{R}; x\ge 0\}$.
+
+  \item Aksiom o neskončnosti: \emph{ Obstaja neskončna množica.}
+$$\exists A\,(\emptyset \,\in A \inn (\forall a\in A)\, (a\cup \{a\}\in A))$$
+
+\item Aksiom izbire: \emph{ Vsaka relacija vsebuje funkcijo z isto domeno.}
+$$(\forall \textrm{ relacijo }R)(\exists \textrm{ funkcija }F)(F\subseteq R \inn {\cal D}(F) = {\cal D}(R))$$
+Ta aksiom bomo podrobno obravnavali v poglavju 2.5.
+
+%\item Aksiomska shema o zamenjavi: \emph{ Zaloga vrednosti vsake funkcije je množica.}
+
+%Ta aksiomska shema omogoča opisovanje množic v obliki
+%$$\{f(x); x\in A\}\,,$$
+%kjer je $f$ neka funkcija z domeno $A$.
+
+%\zgled Na ta način lahko zapišemo množico $\{x^2; x\in \mathbb{R}\}$. Ta je enaka množici $\{x\in \mathbb{R}; x\ge 0\}$.
+
+%Za vsako formulo $\varphi(x,y)$, ki ne vsebuje črke $B$,
+%je naslednji izraz aksiom:
+%$$\forall t_1\,\cdots \forall t_k\,\forall A\,[(\forall x\in A)\,\forall y_1\, \forall y_2\, (\varphi(x,y_1) \inn \varphi(x,y_2) \sledi y_1 = y_2)$$
+%$$\sledi \exists B\, \forall y\, [y\in B \cee (\exists x\in A)\,\varphi(x,y)]$$
+
+%\item Aksiom regularnosti: \emph{ Vsaka neprazna množica vsebuje element, ki je z njo disjunkten.}
+%$$(\forall A\neq \emptyset)\,(\exists m\in A)\,(m\cap A = \emptyset)$$
+
+%Ta aksiom med drugim zagotovi, da ne obstajata množici $A$ in $B$, za kateri bi veljalo $A\in B$ in $B\in A$.
+%(Kot poseben primer, za $A = B$, dobimo, da nobena množica ni element same sebe.)
+\end{enumerate}
+
+Nekatere aksiome oz.~aksiomske sheme, in sicer 2., 3.~in 6.~z zgornjega seznama, je moč izpeljati iz preostalih 7 aksiomov.
+
+
+\newpage
+\subsection*{Neformalni pogled na univerzum množic}
+
+Množice lahko obravnavamo  bodisi kot \textbf{ hereditarne množice} (induktivno definirane kot množice, katerih vsi elementi so
+spet hereditarne množice -- $\emptyset$ je hereditarna množica)
+ali pa imamo podano še neko množico \emph{ atomov}, ki niso množice, so pa lahko elementi množic.
+
+Za abstraktno, matematično obravnavo zadoščajo že hereditarne množice.
+Te tvorijo t.i.~\emph{ von Neumannovo hierarhijo množic}.
+
+Na dnu hierarhije je le prazna množica, $V_0 = \emptyset$.
+Če imamo dano množico $V_i$, pa je $V_{i+1} = {\cal P}(V_i)$.
+Na ta način dobimo $V_0, V_1, V_2, \ldots$
+
+To pa še ni vse.
+Napravimo unijo vseh the množic:
+$V_\omega = \cup_{\lambda \in \mathbb{N}}V_\lambda$.
+In postopek ponovimo:
+$V_{\omega+1} = {\cal P}(V_\omega)$ itd.
+Ponavljamo v nedogled:
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height=80mm]{hierarhija.eps}
+\caption{von Neumannova hierarhija hereditarnih množic}
+\end{center}
+\end{figure}
+
+Množice v hierarhiji postanejo zelo hitro nepredstavljivo velike.
+$V_0$ ima $1$ element, $V_1$ ima $2$ elementa, $V_2$ ima $4$ elemente, $V_3$ ima $2^4 = 16$ elementov,
+$V_4$ ima $2^{16} = 65536$ elementov, $V_5$ pa ima že $2^{65536}$ elementov, itd.
+$V_\omega$ je neskončna množica in vse nad njo prav tako.
+
+\textbf{ Pomen hiererhije:}
+Vsaka hereditarna  množica se pojavi (kot element) v eni od množic $V_\lambda$ v zgornji hierarhiji.
+
+Podobno hierarhijo lahko zgradimo za obravnavo množic z atomi. Edina razlika je v tem, da
+postavimo $V_0 = A$ (kjer je $A$ množica atomov)
+in naslednji element hierarhije tvorimo iz prejšnjega s pravilom $V_{i+1} = V_i\cup {\cal P}(V_i)$.
+
+\newpage
+\section{Relacije}
+
+%\textbf{ \color{red}Na vajah je bilo v redu. Delali smo naloge iz mnozic. Naredili smo tudi tri priemre,
+%ki so bili za domaco nalogo in sicer zadnjo lastnost pri uniji in predzadnjo lastnost pri preseku ter
+%razliki.}
+
+%\medskip
+Znotraj vsake matematične teorije ${\cal T}$ z univerzalno množico $S$
+lahko vsako smiselno lastnost $P(x)$ predstavimo z množico
+$$\{x~;~x\in S\inn P(x)\}\,.$$
+Tudi odnose ali {\em relacije} moremo predstaviti z množicami.
+
+\medskip
+Primeri dvomestnih (binarnih) relacij: $\in$, $\subseteq$, $=$, $\le$, $>$, vzporeden, skladen
+\begin{itemize}
+          \item Primer: 3 in 5 sta v relaciji ``manjši".
+\end{itemize}
+Trimestne relacije: vsota, razlika, produkt
+
+------
+
+``Družinske'' relacije: oče, sin, mati, sestra, mož, tašča, $\ldots$
+
+starši - trimestna relacija ($x,y,z$ so v relaciji natanko tedaj, ko sta $x$ in $y$ starša $z$)
+
+------
+
+Naj bo $R$ neka smiselna binarna relacija za neko matematično teorijo ${\cal T}$ z univerzalno množico $S$.
+
+$R$ bomo predstavili z množico natanko tistih urejenih parov množice $S$,
+katerih prva koordinata je v relaciji $R$ z drugo koordinato.
+
+$x$ je v relaciji $R$ z $y$: $xRy$ ali $R(x,y)$.
+$$R = \{(x,y)~;~x,y\in S\inn xRy\}$$
+ali krajše (če se razume, kaj je univerzalna množica $S$):
+$$R = \{(x,y)~;~xRy\}\,.$$
+
+\medskip
+Če je $R$ $n$-mestna relacija, pa uporabimo $n$-terice:
+$$R = \{(x_1,\ldots, x_n)~;~R(x_1,\ldots, x_n)\}$$
+
+------
+
+Dvomestna relacija je torej \textbf{ podmnožica kartezičnega produkta} $S\times S =: S^2$.
+
+$n$-mestna relacija pa je podmnožica $n$-kratnega kartezičnega produkta množice $S$ s samo seboj, $S^n$.
+
+
+\bigskip
+\zgled
+
+$S = \{1,2,3,4\}$,
+
+Dvomestna relacija ``manjši'', $<(x,y) \cee x<y$:
+
+$$< = \{(1,2),(1,3),(1,4), (2,3), (2,4), (3,4)\}\,.$$
+
+Trimestna relacija ``vsota'', $+(x,y,z) \cee x+y = z$:
+
+$$+ = \{(1,1,2),(1,2,3),(1,3,4), (2,1,3), (2,2,4), (3,1,4)\}\,.$$
+\kz
+
+\bigskip
+
+% 11. predavanje: 16.11.2011, 2 uri
+
+\zgled
+
+$S = \{1,2,3,4,5,6\}$,
+
+Dvomestna relacija $R$ ``je večkratnik'', $R(x,y) \cee x$ je večkratnik $y$, tj.,
+
+$(\exists k)(k$ je pozitivno naravno število in $x = k\cdot y$):
+$$R = \{(1,1),(2,1),(2,2),(3,1),(3,3),(4,1),(4,2),(4,4),(5,1),(5,5),(6,1),(6,2),(6,3),(6,6)\}\,.$$
+
+Trimestna relacija ``produkt'', $\cdot(x,y,z) \cee z = x\cdot y$:
+$$\cdot  = \{(1,1,1),(1,2,2),(1,3,3),(1,4,4),(1,5,5),(1,6,6),(2,1,2),$$$$(2,2,4),(2,3,6),(3,1,3),(3,2,6),(4,1,4),(5,1,5),(6,1,6)\}\,.$$
+
+
+Enomestna relacija ``praštevilo'', $P(x) \cee x$ je praštevilo:
+
+$P = \{2,3,5\}$.
+\kz
+
+\bigskip
+
+Ker smo relacije predstavili z množicami, lahko govorimo tudi o relacijah
+$R\cup T$, $R\cap T$, $R\brez T$ (če sta relaciji $R$ in $T$ obe $n$-mestni relaciji za isti $n$).
+
+\bigskip
+\zgled
+Če z $R_{\leq}$, $R_{<}$, $R_{=}$, $R_{\ge}$, $R_{>}$ in $R_{\neq}$
+zaporedoma označimo relacije ``manjši ali enak'', ``manjši'', ``enak'',
+``večji ali enak'', ``večji'' in ``neenak'' (npr.~na množici naravnih števil), potem velja:
+%$$(x\leq  y) = (x<y) \cup (x = y)$$
+%$$(x> y) = (x\ge y) \brez (x = y)$$
+%$$(x> y) = (x\ge y) \cap (x \neq y)$$
+$$R_\leq = R_< \cup R_=$$
+$$R_> = R_\ge \brez R_= = R_\ge \cap R_{\neq}$$
+\kz
+
+
+Osredotočimo se sedaj na \textbf{ binarne relacije} (te so posebnega pomena, kot bomo videli v poglavju o strukturah urejenosti).
+
+Naj bo $R$ binarna relacija v univerzalni množici $S$:
+$$R = \{(x,y)~;~xRy\}\,.$$
+
+Množico vseh prvih koordinat elementov iz $R$ imenujemo {\em domena relacije $R$.}
+
+Množico vseh drugih koordinat elementov iz $R$ pa imenujemo {\em zaloga vrednosti (kodomena) relacije $R$.}
+
+Domena: $${\cal D}R = \{x~;~(\exists y)(xRy)\}$$
+Zaloga vrednosti: $${\cal Z}R = \{y~;~(\exists x)(xRy)\}$$
+(v uporabi sta tudi oznaki ${\cal R} R$ in $\textrm{Im} R$)
+
+\medskip
+
+\zgled
+
+$R = \{(1,2), (2,3), (2,4)\}$.
+
+${\cal D}R = \{1,2\}$,
+
+${\cal Z}R = \{2,3,4\}$
+
+\kz
+
+ \zgled
+Naj bo $X$ poljubna množica in $S = X\cup {\cal P}(X)$. Relacija $R$ je podmnožica $S\times S$, definirana s predpisom
+$$xRy\cee x\in X\inn y\in {\cal P}(X) \inn x\in y\,.$$
+Tedaj je ${\cal D}R = X$ in ${\cal Z}R = {\cal P}(X)\brez \{\emptyset\}\,.$
+\kz
+
+\bigskip
+
+------
+
+\textbf{ Inverzna relacija:}
+$$R^{-1}= \{(y,x)~;~xRy\}$$
+Očitno je:
+\begin{itemize}
+  \item $yR^{-1}x \cee xRy\,.$
+  \item ${\cal D}R^{-1} = {\cal Z}R$ in ${\cal Z}R^{-1} = {\cal D}R$.
+    \item $(R^{-1})^{-1} = R$.
+\end{itemize}
+
+
+\bigskip
+\zgled
+
+ $R_\le^{-1}~~=~~R_\ge\,,$
+
+ $R_<^{-1}~~=~~R_>\,,$
+
+ $R_=^{-1}~~=~~R_=\,,$
+
+$R_{\neq}^{-1}~~=~~R_{\neq}\,.$\kz
+
+
+\subsection*{Kompozitum relacij}
+
+Dani sta binarni relaciji $R$ in $T$.
+
+$T\circ R$: kompozitum relacije $R$ z relacijo $T$
+
+$$x T\circ R y \cee (\exists u)(xRu\inn uTy)$$
+
+$$T\circ R = \{(x,y)~;~(\exists u)(xRu\inn uTy)\}$$
+
+Očitno velja: $T\circ R\subseteq ({\cal D}R)\times ({\cal Z}T)$.
+
+\bigskip
+\zgled
+
+$R = \{(1,3),(2,3)\}$, $T = \{(3,1), (2,1)\}$
+
+$T\circ R = \{(1,1), (2,1)\}$, $R\circ T = \{(3,3),(2,3)\}$.
+
+\medskip
+
+brat $\circ$ oče $\subseteq$ oče
+
+oče  $\circ$ brat $\subseteq$ stric
+
+(oče $\circ$ brat)$\cup$(mati $\circ$ brat) = stric
+
+sestra $\circ$ mati $\subseteq$  mati
+
+(žena $\circ$ mati) $\cup$ (mož $\circ$ mati) = tašča
+\kz
+
+\medskip
+Torej v splošnem $T\circ R\neq R\circ T$. Velja pa asociativnost.
+
+% konec predavanj - 8.11.2018
+
+\begin{trditev}
+Naj bodo $V, T, R$ binarne relacije v univerzalni množici $S$. Tedaj velja
+$$V\circ(T\circ R) = (V\circ T)\circ R\,.$$
+\end{trditev}
+
+\begin{proof}
+$$(x,y)\in V\circ(T\circ R)\cee x V\circ(T\circ R) y
+\cee$$
+$$(\exists u)(x(T\circ R)u\inn uVy)
+\cee (\exists u)(\exists v)(xRv\inn vTu\inn uVy)\cee $$
+$$(\exists v)(xRv\inn (\exists u)(vTu\inn uVy))
+\cee(\exists v)(xRv\inn v(V\circ T)y)\cee$$
+$$x ((V\circ T)\circ R)y \cee (x,y)\in (V\circ T)\circ R\,.$$
+\end{proof}
+
+Inverz kompozituma je enak kompozitumu inverzov v obratnem vrstnem redu:
+
+\begin{trditev}
+Naj bosta $T$ in $R$ binarni relaciji v univerzalni množici $S$. Tedaj velja
+$$(T\circ R)^{-1} = R^{-1}\circ T^{-1}\,.$$
+\end{trditev}
+
+\begin{proof}
+$$(x,y)\in (T\circ R)^{-1} \cee (y,x)\in T\circ R
+\cee$$
+$$(\exists u)(yRu\inn uTx)
+\cee (\exists u)(uR^{-1}y\inn xT^{-1}u)
+\cee$$
+$$(\exists u)(xT^{-1}u\inn uR^{-1}y)
+\cee x (R^{-1}\circ T^{-1}) y\cee (x,y)\in R^{-1}\circ T^{-1}\,.$$
+\end{proof}
+
+
+\bigskip
+\zgled
+
+Naj bosta $a,b\in\mathbb{R}$.
+
+Definirajmo relaciji
+
+$R = \{(x,y)~;~x+y = a\}$,
+
+$T = \{(x,y)~;~x+y = b\}$.
+
+Tedaj je
+
+$T\circ R = \{(x,y)~;~(\exists u)(x+u = a\inn u+y = b)\}=\{(x,y)~;~x-y = a-b\}$.
+
+$R\circ T = \{(x,y)~;~x-y = b-a\}$.
+
+$R^{-1}= R$, $T^{-1} = T$.
+
+Enakost v zgornji trditvi v tem primeru postane
+$(T\circ R)^{-1} = R \circ T\,.$
+\kz
+
+%\bigskip
+%Rešimo dve nalogi o množicah.
+%
+%\medskip
+%
+%1.~Pokazali smo, da velja ${\cal P}(A)\cup {\cal P}(B)\subseteq  {\cal P}(A\cup B)$.
+%
+%Dokaži, da velja
+%$${\cal P}(A)\cup {\cal P}(B)={\cal P}(A\cup B)$$
+%natanko tedaj, ko je $$(A\subseteq B) \ali (B\subseteq A)\,.$$.
+%
+%\bigskip
+%${\cal P}(A)\cup {\cal P}(B)={\cal P}(A\cup B)$
+%
+%$\cee$
+%
+%${\cal P}(A\cup B) \subseteq {\cal P}(A)\cup {\cal P}(B)$
+%
+%$\cee$
+%
+%$(\forall X)(X\in {\cal P}(A\cup B)\sledi X\in {\cal P}(A)\cup {\cal P}(B))$
+%
+%$\cee$
+%
+%$(\forall X)(X\subseteq A\cup B\sledi X\subseteq A \ali X\subseteq B)$
+%
+%$\cee$
+%
+%$(A\subseteq B) \ali (B\subseteq A)$
+%
+%\bigskip
+%Dokaz zadnje ekvivalence napravimo posebej:
+%
+%$(\Leftarrow)$:
+%Če je $(A\subseteq B) \ali (B\subseteq A)$, potem je
+%$A\cup B = B \ali A\cup B = A$ in v vsakem primeru velja
+%$(\forall X)(X\subseteq A\cup B\sledi X\subseteq A \ali X\subseteq B)$.
+%
+%\medskip
+%
+%$(\Rightarrow)$:
+%Recimo, da je
+%$(\forall X)(X\subseteq A\cup B\sledi X\subseteq A \ali X\subseteq B)$
+%in da ne velja
+%$(A\subseteq B) \ali (B\subseteq A)$.
+%
+%Torej je
+%$\neg((A\subseteq B) \ali (B\subseteq A))$
+%
+%$\sledi$
+%
+%$\neg(A\subseteq B) \inn \neg(B\subseteq A)$
+%
+%$\sledi$
+%
+%$(\exists a)(a\in A\brez B)\inn (\exists b)(b\in B\brez A)$.
+%
+%Tedaj pa za množico $X = \{a,b\}$ velja $X\subseteq A\cup B$, vendar ne velja $X\subseteq A$ niti $X\subseteq B$.
+%Protislovje.\hfill\qed
+%
+%\bigskip
+%2.~Dokažimo ekvivalenco
+%$$A\subseteq B\cee A\cap B = A\,.$$
+%
+%\medskip
+%$(\Leftarrow)$: $A=A\cap B\subseteq B$.
+%
+%\medskip
+%$(\Rightarrow)$:
+%Naj bo $A\subseteq B$.
+%
+%Pokazati moramo: $(A\cap B\subseteq A)\inn(A\subseteq A\cap B)$.
+%
+%$A\cap B\subseteq A$ vselej velja.
+%
+%Dokažimo relacijo $A\subseteq A\cap B$ s protislovjem.
+%
+%Recimo, da
+%$(\exists x)(x\in A\inn x\not\in A\cap B)$.
+%
+%$\sledi (\exists x)(x\in A\inn \neg(x\in A \inn x\in B))$
+%
+%$\sledi (\exists x)(x\in A\inn (x\not\in A \ali x\not \in B))$
+%
+%$\sledi (\exists x)((x\in A\inn x\not\in A) \ali (x\in A\inn x\not \in B))$
+%
+%$\sledi (\exists x)(x\in A\inn x\not \in B)$
+%
+%$\sledi \neg (\forall x)(x\in A\sledi x\in B)$
+%
+%To pa je protislovje s predpostavko $A\subseteq B$.
+
+% ŠE DVE NALOGI:
+% 1. definicija (a,b) je dobra
+% 2. kartezični produkt in razlika
+
+\subsection*{Univerzalna, ničelna in identična relacija}
+
+V vsaki množici $S$ imamo tri posebne relacije:
+
+$S\times S$ -- univerzalna relacija
+
+$\emptyset$ -- ničelna relacija
+
+$I = \{(x,x)~;~x\in S\}$ -- identična relacija (relacija identitete)
+
+\begin{trditev}
+Naj bo $R$ binarna relacija v univerzalni množici $S$.
+
+Tedaj velja $I\circ R = R\circ I = R$.
+\end{trditev}
+
+\begin{proof}
+$xI\circ Ry \cee (\exists u)(xRu \inn uIy) \cee xRy$.
+
+$xR\circ Iy \cee (\exists u)(xIu \inn uRy) \cee xRy$.
+\end{proof}
+
+\medskip
+Velja tudi:
+
+\begin{itemize}
+  \item $\emptyset \circ R = R\circ \emptyset = \emptyset$
+  \item $(S\times S)\circ R =
+({\cal D}R) \times S$ in $R\circ (S\times S) = S\times {\cal Z}R$.
+\end{itemize}
+
+Dokažimo enakost $R\circ (S\times S) = S\times {\cal Z}R$:
+
+$x(R\circ (S\times S))y \cee (\exists u)(x(S\times S)u \inn uRy)
+\cee (\exists u)(uRy) \cee y\in {\cal Z}R \cee x\in S\inn y\in {\cal Z}R  \cee x(S\times {\cal Z}R)y$.
+
+\bigskip
+
+\textbf{ Domača naloga}: Dokažite enakost
+$(S\times S)\circ R = ({\cal D}R) \times S$.
+
+%$x((S\times S)\circ R)y \cee (\exists u)(x R u \inn u(S\times S)y)
+%\cee (\exists u)(xRu) \cee x\in {\cal D}R \cee x\in {\cal D}R\inn y\in S  \cee x(({\cal D}R) \times S)y$.
+
+\subsection*{Posebne lastnosti binarnih relacij}
+
+Nekatere lastnosti binarnih relacij so še posebej pomembne:
+
+\bigskip
+
+$R \textrm{ je {\em refleksivna}} \cee (\forall x)(x\in S\sledi xRx)$
+
+%\begin{center}
+%\includegraphics[height=20mm]{refleksivna.eps}
+%\end{center}
+
+\textbf{ Zgled:} relacija $\le$ v realnih številih
+
+\bigskip
+
+$R \textrm{ je {\em irefleksivna}} \cee (\forall x)(x\in S\sledi \neg(xRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{irefleksivna.eps}
+%\end{center}
+
+\textbf{ Zgled:} relacija $<$ v realnih številih
+
+\bigskip
+
+$R \textrm{ je {\em simetrična}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi yRx)$
+
+%\begin{center}
+%\includegraphics[height=20mm]{simetricna.eps}
+%\end{center}
+%
+\textbf{ Zgled:} vzporednost premic
+
+
+\bigskip
+
+$R \textrm{ je {\em asimetrična}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi \neg(yRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{asimetricna.eps}
+%\end{center}
+
+\textbf{ Zgled:} relacija $<$ v realnih številih
+
+% 12. predavanje, 2 uri, 22. 11. 2011
+
+\bigskip
+$R \textrm{ je {\em antisimetrična}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\inn yRx\sledi x = y)$
+
+\textbf{ Zgled:}
+relacija $\le$ v realnih številih
+
+relacija $\subseteq$ v množicah
+
+\bigskip
+
+$R \textrm{ je {\em tranzitivna}} \cee (\forall x)(\forall y)(\forall z)(x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz\sledi xRz)$
+
+%\begin{center}
+%\includegraphics[height=20mm]{tranzitivna.eps}
+%\end{center}
+
+\textbf{ Zgled:} relacija $<$ v realnih številih
+
+relacija $\subset$ v množicah
+
+\bigskip
+
+$R \textrm{ je {\em intranzitivna}} \cee (\forall x)(\forall y)(\forall z)(x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz\sledi \neg(xRz))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{intranzitivna.eps}
+%\end{center}
+
+\textbf{ Zgled:}
+relacija $R$ v realnih številih, definirana s predpisom $xRy \cee x = y + 1$
+
+pravokotnost premic v ravnini
+
+\bigskip
+
+$R \textrm{ je {\em sovisna}} \cee (\forall x)(\forall y)(x\in S\inn y\in S
+\inn x\neq y\sledi (xRy)\ali (yRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{sovisna.eps}
+%\end{center}
+
+\textbf{ Zgled:}
+relacija $<$ v realnih  številih
+
+\bigskip
+
+$R \textrm{ je {\em strogo sovisna}} \cee (\forall x)(\forall y)(x\in S\inn y\in S
+\sledi (xRy)\ali (yRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{strogosovisna.eps}
+%\end{center}
+
+\textbf{ Zgled:}
+
+relacija $\le$ v realnih številih
+
+\bigskip
+\textbf{ Domača naloga:}
+Izberite si nekaj sorodstvenih relacij in za vsako od njih ugotovite, katere od zgornjih lastnosti imajo.
+
+\bigskip
+Nekatere od zgornjih lastnosti niso med seboj neodvisne:
+\begin{itemize}
+  \item $R$ je strogo sovisna $\sledi$ $R$ je sovisna.
+  \item $R$ je asimetrična $\sledi$ $R$ je irefleksivna.
+  \item $R$ je simetrična in tranzitivna $\sledi$ $R$ je refleksivna (če je ${\cal D}R = S$).
+\end{itemize}
+
+\subsection*{Ekvivalenčna relacija}
+
+$R$ je {\em ekvivalenčna} $\cee$ $R$ je refleksivna, simetrična in tranzitivna.
+
+\textbf{ Zgled:} relacija identitete
+
+\bigskip
+Ekvivalenčne relacije lahko karakteriziramo na naslednji način.
+
+\begin{trditev}
+$R$ je ekvivalenčna $\cee$ ${\cal D}R = S$ in $R^{-1}\circ R = R$.
+\end{trditev}
+
+\begin{proof}
+Pogoj je potreben:
+
+$xRx \sledi {\cal D}R = S$
+$$xR^{-1}\circ Ry \sledi (\exists z)(xRz \inn zR^{-1}y)
+\sledi (\exists z)(xRz \inn yRz)
+\sledi (\exists z)(xRz \inn zRy)
+\sledi xRy\,.$$
+$$xRy
+\sledi (xRy\inn yRy)
+\sledi (xRy\inn yR^{-1}y)
+\sledi xR^{-1}\circ Ry\,.$$
+Torej $R^{-1}\circ R = R$.
+
+Pogoj je pa tudi zadosten:
+
+Naj bo ${\cal D}R = S$ in $R^{-1}\circ R = R$.
+
+Refleksivnost: dokazujemo $(\forall x)(x\in S\sledi xRx)$.
+Naj bo $x\in S$. Ker je ${\cal D}R = S$,
+je $x\in {\cal D}R\sledi (\exists y)(y\in S\inn xRy)$.
+$$xRy
+\sledi xRy\inn yR^{-1}x
+\sledi x R^{-1}\circ R x
+\sledi xRx\,.$$
+
+Simetričnost: dokazujemo $(\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi yRx)\,.$
+
+Naj bo $x\in S\inn y\in S\inn xRy$.
+Tedaj je
+$$xRy \sledi (xRy\inn yRy)
+\sledi (yRy\inn yR^{-1}x)
+\sledi yR^{-1}\circ Rx
+\sledi yRx\,.$$
+
+Tranzitivnost: dokazujemo $(\forall x)(\forall y)(\forall z)(x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz\sledi xRz).$
+
+Naj bo $x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz$.
+Tedaj je
+$$xRy \inn yRz \sledi xRy\inn zRy
+\sledi xRy\inn yR^{-1}z
+\sledi xR^{-1}\circ Rz
+\sledi xRz\,.$$
+\end{proof}
+
+\medskip
+Ekvivalenčna relacija ima to lepo lastnost, da razdeli množico $S$, na kateri je definirana, na {\em same neprazne in paroma disjunktne množice, katerih unija
+je prav množica~$S$}.
+
+\medskip
+\textbf{ Ekvivalenčni razredi.}
+
+Naj bo $R$ ekvivalenčna relacija, definirana v množici $S$. Naj bo $x\in S$. {\em Ekvivalenčni razred elementa $x$ glede na ekvivalenčno relacijo $R$} je množica vseh elementov, ki so v relaciji z $x$:
+$$R[x] = \{y~;y\in S \inn yRx\}\,.$$
+
+Za ekvivalenčne razrede velja naslednje:
+\begin{itemize}
+  \item Ker je $R$ refleksivna relacija, velja $x\in R[x]$. Posledično je $R[x]\neq \emptyset$.
+  \item $y\in R[x]\sledi R[y]=R[x]$.
+
+  Res: Naj bo $y\in R[x]$.
+
+  $z\in R[y]\sledi zRy\inn yRx\sledi zRx\sledi z\in R[x]$.
+
+  $z\in R[x]\sledi zRx\inn yRx\sledi zRx\inn xRy \sledi zRy\sledi z\in R[y]$.
+  \item $y\not\in R[x]\sledi R[x]\cap R[y]=\emptyset$.
+
+  Res: $(\exists z)(z\in R[x]\cap R[y])\sledi (\exists z)(R[z] = R[x]\inn R[z] = R[y])\sledi
+  y\in R[y]=R[x]$. Protislovje z domnevo $y\not\in R[x]$.
+  \end{itemize}
+
+Sledi:
+\begin{enumerate}
+  \item Vsak element množice $S$ je v natanko enem ekvivalenčnem razredu. Namreč v tistem, v katerem so združeni vsi elementi množice $S$, ki so z njim v relaciji $R$.
+  \item Vsak ekvivalenčni razred je povsem določen s poljubnim elementom, ki mu pripada. Zato pravimo, da je poljuben element danega razreda {\em predstavnik} tega razreda.
+      \item Z ekvivalenčnimi razredi dane ekvivalenčne relacije $R$ je množica $S$
+      razdeljena na same neprazne in paroma tuje podmnožice, katerih unija je množica $S$.
+      \end{enumerate}
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[height=30mm]{ekvivalencna.eps}
+\end{center}
+\end{figure}
+
+Takim razdelitvam pravimo particije. {\em Particija množice $S$} = družina nepraznih in paroma disjunktnih množic, katerih unija je množica $S$.
+
+Vsaki ekvivalenčni relaciji torej ustreza neka particija množice $S$.
+Velja pa tudi obratno. Vsaka particija ${\cal A}$ množice $S$ določa natanko eno ekvivalenčno relacijo $R$, in sicer tako, da so množice v particiji ravno ekvivalenčni razredi glede na relacijo $R$:
+\begin{itemize}
+  \item Poljubna elementa $x$ in $y$ sta v relaciji $R$ natanko takrat, ko pripadata isti množici iz particije:
+      $$xRy\cee (\exists X)(X\in {\cal A}\inn x\in X\inn y\in X)\,.$$
+\end{itemize}
+Premislimo, da je tako definirana relacija ekvivalenčna:
+\begin{itemize}
+  \item refleksivna: $x\in S \sledi (\exists X)(X\in {\cal A}\inn x\in X)\sledi xRx\,.$
+  \item simetrična:
+  $xRy\sledi (\exists X)(X\in {\cal A}\inn x\in X\inn y\in X)
+  \sledi (\exists X)(X\in {\cal A}\inn y\in X\inn x\in X)\sledi yRx\,.$
+  \item tranzitivna:
+  $xRy \inn yRz\sledi (\exists X)(X\in {\cal A}\inn x\in X\inn y\in X)
+  \inn (\exists Y)(Y\in {\cal A}\inn y\in Y\inn z\in Y)$.
+
+  Torej je $y$ hkrati v množici $X$ in $Y$. Ker pa so množice paroma disjunktne, sledi
+  $X = Y$. Potem pa je element $z$ tudi v množici $X$. Sledi $xRz$.
+\end{itemize}
+
+\textbf{ V razmislek:} Utemelji, da particija ${\cal A}$ sovpada z množico ekvivalenčnih razredov relacije $R$.
+
+%
+%\textbf{ Ponovitev:}
+%
+%binarne relacije
+%
+%domena
+%
+%zaloga vrednosti
+
+%\medskip
+%Inverzna relacija. Kompozitum relacij.
+%
+%$x(T\circ R)y \cee (\exists u)(xRu\inn uTy)$.
+%
+%$(R\circ T)^{-1} = T^{-1}\circ R^{-1}$
+%
+%ničelna relacija, identična relacija,
+%univerzalna relacija
+%
+%\bigskip
+%
+%Rešitev domače  naloge:  $(S\times S)\circ R = ({\cal D}R) \times S$.
+%
+%\bigskip
+%Obravnavali smo ekvivalenčne relacije:
+%
+%Relacija je ekvivalečna, če je refleksivna, simetrična in tranzitivna.
+%
+\medskip
+
+
+% 14. predavanje, 2 uri, 29. 11. 2011
+
+Vsaki množici $S$, v kateri je definirana kakšna ekvivalenčna relacija $R$, moremo prirediti neko novo množico, katere elementi so ekvivalenčni razredi relacije $R$:
+
+{\em Faktorska množica množice $S$ glede na relacijo $R$}:
+$$S/R = \{R[x]~;~x\in S\}=\{X~;~(\exists x)(x\in S \inn X = R[x])\}$$
+\begin{itemize}
+  \item Faktorska množica predstavlja matematično formulacijo logičnega principa {\em abstrakcije}: S tem ko iz dane množice $S$ preidemo na faktorsko množico, abstrahiramo vse razlike med rečmi, ki pripadajo istemu ekvivalenčnemu razredu!
+\end{itemize}
+
+
+\bigskip
+\zgled
+
+Naj bo $S = \{1,2,3\}$ in $R = \{(1,1),(1,3),(2,2),(3,1),(3,3)\}$.
+
+Relacija $R$ je ekvivalenčna.
+
+$R[1] = R[3] = \{1,3\}$, $R[2] = \{2\}$.
+
+$S/R =  \{R[1], R[2],R[3]\} = \{R[1], R[2]\} = \{\{1,3\},\{2\}\}$.
+
+\v Ce definiramo particijo ${\cal A} = \{\{1,3\},\{2\}\}$ množice $S$, potem lahko definiramo relacijo $R'$ s predpisom
+$xR'y \cee (\exists X)(X\in {\cal A}\inn x\in X\inn y\in Y)$.
+Velja
+
+$R' = \{(1,1),(1,3),(3,1),(2,2),(3,3)\} = R$
+in $S/R' = \{\{1,3\},\{2\}\} = {\cal A}$.
+\kz
+
+
+\subsubsection*{Zgledi ekvivalenčnih relacij}
+
+\begin{enumerate}
+  \item \textbf{ Ulomki.}
+
+  V množici ulomkov $$a/b\,,$$
+  kjer sta $a$ in $b$ poljubni celi števili in je $b\neq 0$, je definicija enakosti dveh ulomkov
+  $$a/b = c/d \cee ad = bc$$
+  očitno ekvivalenčna relacija. Vsak ekvivalenčni razred glede na to relacijo druži vse med seboj enake ulomke in predstavlja tedaj ustrezno {\em racionalno število}. Prirejena faktorska množica je {\em množica racionalnih števil}.
+  \item \textbf{ Kongruence.}
+
+
+  V množici {\em celih števil} je relacija {\em kongruence po modulu $m$}, kjer je $m> 0$ poljubno pozitivno celo število, $$a\equiv b \textrm{ (mod $m$)}\cee m \textrm{ deli }a-b\,,$$
+  ekvivalenčna relacija.
+
+  Ekvivalenčni razredi so v tem primeru {\em razredi ostankov} po modulu $m$. V vsakem ekvivalenčnem razredu so vsa tista števila, ki dajo pri deljenju z $m$ isti ostanek.
+
+  Očitno je takih razredov natanko $m$. Te razrede imenujemo {\em cela števila po modulu $m$}. Faktorska množica je množica celih števil po modulu $m$.
+
+  \item \textbf{ Vzporednost premic.}
+
+V množici {\em vseh premic} je relacija ``vzporeden'' ekvivalenčna relacija. V vsakem ekvivalenčnem razredu so torej vse premice, ki so med seboj vzporedne, in predstavljajo potemtakem določeno {\em smer}. Faktorska množica je tukaj {\em množica vseh smeri}.
+\end{enumerate}
+
+\newpage\subsection{Funkcije}
+
+{\em Funkcija je osrednji pojem klasične in moderne matematike. Od 18.~stoletja naprej
+je pojem funkcije postajal vse bolj precizen in splošen. Definicijo funkcije, kot jo poznamo danes, sta uvedla Cauchy in Riemann:}
+
+\medskip
+%Znana je naslednja definicija:
+Za dani množici $A$ in $B$ je {\em funkcija iz $A$ v $B$} predpis, ki vsakemu elementu množice $A$ priredi natanko določen element množice $B$.
+Oznaka: $f:A\to B$.
+
+\medskip
+Da pa se izognemo dvomu, kaj je mišljeno z besedo ``predpis", funkcije lahko definiramo kot posebne vrste relacij.
+
+\medskip
+Binarna relacija $R$ je {\em enolična}, če velja:
+$$(x,y)\in R \inn (x,z)\in R\sledi y = z$$
+
+{\em Parcialna funkcija} je enolična binarna relacija. Parcialne funkcije navadno označujemo s črkami $f, g,h,\ldots$
+
+\emph{ Funkcija, ki preslika množico $A$ v množico $B$} (ali krašje: {\em funkcija iz $A$ v $B$}), je taka parcialna funkcija $f$, da
+velja
+$${\cal D}f= A \textrm{~~~in~~~} (x,y)\in f\sledi x\in A\inn y\in B\,.$$
+Oznaka: $f:A\to B$.
+
+Funkcijam pravimo tudi {\em preslikave, upodobitve, transformacije}.
+Množico vseh funkcij iz $A$ v $B$ označimo z $B^A$.
+
+\bigskip
+
+Pišemo
+$$y=f(x)\cee (x,y)\in f\,.$$
+$$f = \{(x,y)~;~x\in A\inn y = f(x)\in B\}\,.$$
+
+$x\in A$: neodvisna spremenljivka, original, argument
+
+$y (= f(x))$: odvisna spremenljivka, slika elementa $x$.
+
+\medskip
+
+V uporabi sta tudi oznaki
+
+$x\mapsto f(x)$~~``$x$ se preslika v $f(x)$",
+
+$A\overset{f}{\to} B$~~``$f$ preslika $A$ v $B$".
+
+\bigskip
+\textbf{ Zgledi funkcij:}
+\begin{itemize}
+  \item $A = \{1,2,3\}$, $B = \{2,4,6\}$
+
+  $f = \{(1,2),(2,4),(3,4)\}$
+
+  \item $A = \{$točke na površju planeta Zemlja$\}$, $B = \mathbb{R}$,
+
+$f(x) = $ temperatura v $^\circ C$ v kraju $x$ dne $1.~1.~2015$ ob 6:00 po lokalnem času
+
+  \item $A = \{$ljudje, živeči na Zemlji ob času $T\}$, $B = \mathbb{N}$,
+
+$f(x) = $ starost (v sekundah) osebe $x$ v času $T$.
+\end{itemize}
+
+\bigskip
+Množici $\{(x,y)~;~x\in A\inn y = f(x)\}$ včasih pravimo tudi {\em graf funkcije.}
+
+\bigskip
+\textbf{ Upodobitve funkcij.}
+V primeru, ko je $A\subseteq \mathbb{R}$ in $B = \mathbb{R}$, lahko graf funkcije upodobimo kot množico točk v ravnini.
+
+\textbf{ Zgled:} $f:\mathbb{R}\to \mathbb{R},~~~f(x) = x^2\,.$
+\begin{center}
+\includegraphics[height=50mm]{f.eps}
+\end{center}
+
+\medskip
+
+Na enak način lahko upodobimo tudi {\em relacije} na množici  $S =\mathbb{R}$:
+
+Naj bo $xRy \cee x^2+y^2 = 4$.
+Tedaj relacijo $R$ predstavlja krožnica z radijem $2$ in s središčem v koordinatnem izhodišču.
+
+\begin{center}
+\includegraphics[height=50mm]{x2+y2=4.eps}
+\end{center}
+
+\bigskip
+Naj bo $f:A\to B$. Domena funkcije $f$:
+$${\cal D}f = \{x~;~(\exists y)((x,y)\in f)\} = A$$
+Zaloga vrednosti funkcije $f$:
+$${\cal Z}f = \{y~;~y\in B\inn (\exists x)(x\in A\inn (x,y)\in f)\} \subseteq B\,.$$
+Množici $B$ pravimo \emph{ kodomena} funkcije $f$.
+
+\medskip
+\zgled
+Naj bo $f = \{(1,2),(2,4),(3,4)\}$, $A = \{1,2,3\}$, $B = \{2,4,6\}$.
+
+Tedaj je ${\cal D}f = \{1,2,3\}$, ${\cal Z}f = \{2,4\}$.\kz
+
+\bigskip
+Pri analizi ste obravnavali tudi realne funkcije, ki jih običajno podamo kar s predpisom $f(x)$, ne da bi navajali domeno in kodomeno.
+Za domeno v tem primeru vzamemo množico $\{x\in \mathbb{R}; f(x)\in \mathbb{R}\}$, ki ji
+pravimo \emph{ (naravno) definicijsko območje} funkcije $f$.
+
+\bigskip
+V splošnem je ${\cal Z}f \subseteq B$. Če je ${\cal Z}f  = B$, pravimo, da je  $f$ {\em surjektivna} funkcija.
+V tem primeru pravimo, da $f$ preslika množico $A$ {\em na} množico $B$.
+
+\bigskip
+\textbf{ Zgled:} $A = \{1,2,3\}$, $B = \{2,4,6\}$. $f= \{(1,2),(2,4),(3,4)\}$ ni surjektivna. $g:A\to B$, $g = \{(1,2),(2,6),(3,4)\}$, pa je.
+
+\bigskip
+Definicija funkcije dopušča, da ima več originalov isto $f$-sliko. V skrajnem primeru preslika $f$ vse elemente množice $A$ v isti element množice $B$. Tako funkcijo imenujemo {\em konstanta}.
+
+Drugo skrajnost (ko imata dva različna originala vselej različni sliki) pa opisuje
+naslednja definicija:
+
+$f$ je {\em injektivna} $\cee$ $(\forall y)(y\in {\cal Z}f\sledi (\exists!x)(x\in A \inn f(x) = y))$
+
+~~~~~~~~~~~~~~~$\cee$ $(\forall x)(\forall y)(f(x) = f(y) \sledi x = y)$
+
+\bigskip
+\textbf{ Zgled:} $f = \{(1,2),(2,4),(3,4)\}$ ni injektivna.
+$g = \{(1,2),(2,6),(3,4)\}$ pa je.
+
+\bigskip
+Naj bo $U\subseteq A$. Tedaj pišemo:
+$$f(U) = \{y~;~y\in B\inn (\exists x)(x\in U\inn f(x) = y)\}$$
+$f(U)$ -- slika podmnožice $U$ pri preslikavi $f$
+
+\bigskip
+\textbf{ Zgled:} $f = \{(1,2),(2,4),(3,4)\}$.
+$U = \{2,3\}$. $f(U) = \{f(2),f(3)\} = \{4\}$.
+
+\medskip
+Očitno je:
+\begin{itemize}
+  \item $f(\emptyset) = \emptyset$,~~~$f(A) = {\cal Z}f$.
+  \item $U\subseteq V\sledi f(U)\subseteq f(V)$.
+\end{itemize}
+
+Slike se takole obnašajo glede na unije in preseke:
+\begin{itemize}
+  \item $f(U\cup V) = f(U)\cup f(V)$,
+  \item $f(U\cap V) \subseteq f(U)\cap f(V)$.
+\end{itemize}
+
+\textbf{ Domača naloga:} Dokažite zgornji dve lastnosti.
+
+% 15. predavanje, 2 uri, 6. 12. 2011
+
+\subsection*{Inverzna relacija, praslike}
+
+\bigskip
+\textbf{ Inverzna relacija:}
+$$f^{-1} = \{(y,x)~;~f(x) = y\}\,.$$
+$f^{-1}$ ni nujno parcialna funkcija!
+
+\medskip
+\textbf{ Zgled:} $f = \{(1,2),(2,4),(3,4)\}$.
+$f^{-1} = \{(2,1),(4,2),(4,3)\}$ - ni parcialna funkcija.
+
+\medskip
+{\em Praslika} elementa $y$:
+$$f^{-1}(y) = \{x~;~x\in A\inn f(x) = y\}\,.$$
+
+Naj bo $E\subseteq B$. {\em Praslika podmnožice $E$} (pri preslikavi $f$):
+$$f^{-1}(E) = \{x~;~x\in A\inn f(x) \in E\}$$
+
+\medskip
+\textbf{ Zgled:} $f = \{(1,2),(2,4),(3,4)\}$.
+$f^{-1}(2) = \{1\}$, $f^{-1}(4) = \{2,3\}$, $f^{-1}(\{2,4\}) = \{1,2,3\}$
+\medskip
+
+Očitno:
+\begin{itemize}
+  \item $f^{-1}({\cal Z}f) = A$
+\end{itemize}
+
+\bigskip
+Velja še:
+\begin{itemize}
+  \item $E\subseteq F\sledi f^{-1}(E)\subseteq f^{-1}(F)$
+\end{itemize}
+
+\bigskip
+Praslike so v dobrih odnosih z unijami, preseki in razlikami:
+\begin{itemize}
+  \item $f^{-1}(E\cup F)= f^{-1}(E)\cup f^{-1}(F)$
+  \item $f^{-1}(E\cap F)= f^{-1}(E)\cap f^{-1}(F)$
+  \item $f^{-1}(E\brez F)= f^{-1}(E)\brez f^{-1}(F)$
+\end{itemize}
+
+\textbf{ Dokaz lastnosti $f^{-1}(E\cap F)= f^{-1}(E)\cap f^{-1}(F)$:}
+$$x\in f^{-1}(E\cap F)\cee
+f(x)\in E\cap F\cee
+f(x)\in E \inn f(x)\in F\cee$$ $$\cee x\in f^{-1}(E) \inn x\in f^{-1}(F)
+\cee x\in f^{-1}(E)\cap f^{-1}(F)$$
+\qed
+
+\textbf{ Domača naloga:} Dokažite še drugi dve lastnosti.
+
+\bigskip
+Podobno se lahko prepričamo, da velja:
+\begin{itemize}
+  \item za vsak $U\subseteq A$ je $$U\subseteq f^{-1}(f(U))$$
+  \item za vsak $E\subseteq B$ je $$f(f^{-1}(E))\subseteq E$$
+\end{itemize}
+
+\bigskip
+
+------------------------------------------------------------------------------------------------------------
+%konec predavanj, 21.11.2018
+
+\bigskip
+
+Naj bo $f:A\to B$. Kdaj je inverzna relacija $f^{-1}$ (parcialna) funkcija?
+
+\medskip
+$f^{-1}$ je funkcija iz ${\cal Z}f$ v $A$ $\cee$ $f$ je injektivna.
+
+(Res: da bo $f^{-1}$ parcialna funkcija, ne smeta obstajati dva različna urejena para v $f^{-1}$, ki bi imela isto prvo koordinato $\cee$ ne smeta obstajati dva različna urejena para v $f$, ki bi imela isto drugo koordinato, tj.~$f$ je injektivna.)
+
+
+
+Če je torej $f^{-1}$ funkcija, potem za vsak element $y\in {\cal Z}f$  obstaja natanko določen $x\in {\cal D}f$, da velja
+$f^{-1}(y) = x$. Velja zveza
+$$f^{-1}(y) = x\cee f(x) = y\,.$$
+
+Torej: $$f^{-1}(f(x)) = x$$
+in
+$$f(f^{-1}(y)) = y\,.$$
+
+Posebno zanimiv primer nastane, ko je funkcija $f$ ne samo injektivna, ampak tudi surjektivna. V tem primeru rečemo, da je funkcija $f$ {\em bijektivna}.
+
+Če je $f$ bijektivna, je ${\cal Z}f = B$ in $f^{-1}$ je funkcija, ki preslika $B$ v $A$.
+
+%\bigskip
+
+%------------------------------------------------------------------------------------------------------------
+%
+%\bigskip
+
+\subsection*{Kompozitum funkcij}
+
+Naj bosta $f$ in $g$ parcialni funkciji. Tedaj velja
+$$g\circ f = \{(x,z);(\exists y)((x,y)\in f\inn (y,z)\in g)\}$$
+$$= \{(x,z);(\exists y)(f(x) = y \inn g(y) = z)\}\,.$$
+
+Torej, če je ${\cal Z}f\cap {\cal D}g = \emptyset$, potem je $g\circ f = \emptyset\,.$ Ta primer ni posebej zanimiv, zato po navadi zahtevamo: ${\cal Z}f\subseteq {\cal D}g$, torej obstajajo take množice $A$, $B$, $C$, da velja $$A\overset{f}{\to} B\overset{g}{\to} C\,.$$ Zdaj pa velja:
+$$g\circ f = \{(x,z)~;~z = g(f(x))\}$$
+Relacija $g\circ f$ je prav tako funkcija (ki preslika $A$ v $C$): $(g\circ f)(x) = g(f(x))$.
+
+\bigskip
+\textbf{ Zgled:} $f = \{(1,2),(2,4),(3,4)\}$, $g = \{(2,3),(4,5)\}$
+(Opazimo, da je ${\cal D}g = {\cal Z}f$.)
+$g\circ f = \{(1,3),(2,5), (3,5)\}$
+
+\bigskip
+Tako kot za kompozitume binarnih relacij tudi za kompozitume funkcij velja
+
+\medskip
+\textbf{ Asociativnost:}
+
+Če je
+$$A\overset{f}{\to} B\overset{g}{\to} C\overset{h}{\to} D\,,$$
+potem je
+$$h\circ (g\circ f) = (h\circ g)\circ f\,.$$
+
+\subsection*{Zožitve in razširitve}
+Kdaj sta dve parcialni funkciji $f$ in $g$ enaki?
+
+Po definiciji enakosti množic le tedaj, kadar imata za elemente iste urejene pare. To pa je res natanko tedaj, ko velja dvoje:
+\begin{itemize}
+  \item ${\cal D}f = {\cal D}g$
+  \item za vsak element $x$ te skupne domene velja $f(x) = g(x)$.
+\end{itemize}
+
+Poseben način, kako moremo spremeniti funkcijo:
+
+\medskip
+\textbf{ Zožitev:}
+Dana je funkcija $f:A\to B$ in podmnožica domene $U\subseteq A$.
+
+{\em Zožitev} ali {\em restrikcija} funkcije $f$ na množico $U$
+je funkcija $g$, ki ima za svojo domeno množico $U$ in za vse $x\in U$ velja
+$g(x) = f(x)$. Oznaka:
+$$g = f|_{U}$$
+
+\bigskip
+\textbf{ Zgled:} $f = \{(1,2),(2,4),(3,4)\}$, $A = \{1,2,3\}$, $U =  \{1,2\}$.
+$f|_U = \{(1,2),(2,4)\}$
+
+\bigskip
+Če je funkcija $g$ zožitev funkcije $f$, pravimo, da je funkcija $f$ {\em razširitev} funkcije $g$.
+
+%konec predavanj 22.11
+\subsection*{Kanonična dekompozicija funkcije}
+
+Dana je funkcija $f:A{\to} B$.
+Vpeljimo na množici $A$ naslednjo relacijo $R$:
+$$xRy \cee f(x) = f(y)\,.$$
+
+Očitno je $R$ ekvivalenčna relacija:
+\begin{itemize}
+  \item za vsak $x\in A$ je $xRx$,
+  \item $xRy \sledi f(x) = f(y) \sledi f(y) = f(x) \sledi yRx$,
+  \item $xRy \inn yRz \sledi f(x) = f(y) \inn f(y) = f(z) \sledi f(x) = f(z) \sledi xRz$.
+\end{itemize}
+Zdaj pa napravimo faktorsko množico $A/R$ (množico vseh ekvivalenčnih razredov).
+
+Preslikajmo najprej množico $A$ {\em na} množico  $A/R$:
+$$p:A{\to} A/R$$
+$$p(a) = R[a]$$
+Preslikava $p$ je očitno surjektivna. Imenujemo jo {\em naravna preslikava}.
+
+Zdaj pa preslikajmo še množico $A/R$ v množico $B$ s takšno preslikavo $g$, da bo
+funkcija $f$ kompozitum funkcij $p$ in $g$, $f = g\circ p$:
+$$g:A/R{\to} B$$
+$$g(u) = f(x)\,,$$
+kjer je $x$ poljuben predstavnik razreda $u$ (torej $x\in u$).
+
+\begin{itemize}
+  \item Preslikava $g$ je dobro definirana (vrednost $g(u)$ je neodvisna od izbire predstavnika razreda $u$):
+$$x\in u\inn y\in u \sledi xRy \sledi f(x) = f(y)\,.$$
+  \item Preslikava $g$ je injektivna:
+$$g(u) = g(v) \inn g(u) = f(x) \inn g(v) = f(y) \sledi f(x) = f(y) \sledi xRy \sledi  u = v\,.$$
+  \item Po definicijah funkcij $g$ in $p$ je $f = g\circ p$:
+
+Naj bo $x\in A$.
+$$(g\circ p)(x) = g(p(x)) = g(R[x]) = f(x)\,.$$
+\end{itemize}
+
+Preslikavo $f$ lahko razstavimo takole:
+\begin{center}
+\includegraphics[height=20mm]{dekompozicija.eps}
+\end{center}
+
+%%Izpeljali smo naslednjo dekompozicijo funkcije $f:A{\to} B$:
+%%\begin{center}
+%%\includegraphics[height=20mm]{dekompozicija.eps}
+%%\end{center}
+%%
+%%Pri tem je:
+%%\begin{itemize}
+%%  \item  $p:A{\to} A/R$ surjektivna preslikava, definirana s predpisom
+%%$p(a) = R[a]$.
+%%  \item Relacija $R$ je definirana na množici $A$ kot
+%%$xRy \cee f(x) = f(y)\,.$
+%%  \item $g:A/R{\to} B$ je injektivna preslikava, definirana s predpisom $g(u) = f(x)\,,$ kjer je $x\in u$.
+%%\item $f = g\circ p$.
+%%\end{itemize}
+%%
+To dekompozicijo lahko še malce izpopolnimo, tako da vpeljemo preslikavo $h$, ki
+je podana z istim predpisom kot $g$, le da slika v množico ${\cal Z}f$. Preslikava $h$ je potem bijektivna:
+$$h:A/R{\to} {\cal Z}f$$
+$$h(u) = g(u)\,.$$
+Množico ${\cal Z}f$ pa nazadnje preslikamo v množico $B$ z {\em identično preslikavo} $i$, ki pribije vsak element:
+$$i:{\cal Z}f{\to}B$$
+$$i(y) = y\,.$$
+
+Očitno je, da za vse $x\in A$ velja
+$$i(h(p(x))) = h(p(x)) = g(p(x)) = f(x)\,.$$
+Torej je
+$$f = i\circ h\circ p\,.$$
+Tako dobimo {\em kanonično dekompozicijo} funkcije $f$:
+\begin{center}
+\includegraphics[height=20mm]{dekompozicija2.eps}
+\end{center}
+
+\textbf{ Zgled:}
+$A = \{1,2,3\}, B = \{2,4,6\}$,
+$f = \{(1,2),(2,4),(3,4)\}$
+
+(tj., $f(1) = 2$, $f(2)= f(3) = 4$)
+
+Ekvivalenčna relacija: $R = \{(1,1),(2,2),(3,3),(2,3),(3,2)\}$
+
+Faktorska množica: $A/R = \{\{1\},\{2,3\}\}$
+
+${\cal Z} f = \{2,4\}$
+
+Naravna preslikava $p$: $p(1) = \{1\}$, $p(2) = p(3) = \{2,3\}$.
+
+Preslikava $g: \{\{1\},\{2,3\}\}\to \{2,4,6\}$:
+
+$g(\{1\}) = f(1) = 2$, $g(\{2,3\}) = f(2) = f(3) = 4$.
+
+Preslikava $h: \{\{1\},\{2,3\}\}\to \{2,4\}$:
+$h(\{1\}) = g(\{1\}) = 2$, $h(\{2,3\}) = g(\{2,3\}) = 4$.
+
+Identična preslikava $i:\{2,4\}\to\{2,4,6\}$: $i(2) = 2$, $i(4) = 4$.
+
+\begin{center}
+\includegraphics[height=20mm]{dekompozicija3.eps}
+\end{center}
+
+\newpage
+\subsection{Strukture urejenosti}
+
+{\em Poleg ekvivalenčnih relacij in funkcij so v matematiki posebno pomembne tudi relacije, ki ustvarjajo med elementi dane množice \underline{red} ali \underline{urejenost}. Red je lahko bolj ali manj strog, zato imamo opravka z različnimi strukturami urejenosti. Kot bomo videli, te strukture urejenosti tvorijo hierarhijo in so tudi same po svoje urejene.}
+
+
+\bigskip
+Začnimo pri najsplošnejših strukturah.
+
+\bigskip
+
+Dana je univerzalna množica $S$ in relacija $R$ na $S$.
+
+Najsplošnejšo strukturo dobimo, če zahtevamo le tranzitivnost.
+To ni posebej zanimiva struktura: ničelna relacija, identična relacija in univerzalna relacija so vse tranzitivne!
+
+\bigskip
+$R$ {\em navidezno ureja} $S$ $\cee$ $R$ je tranzitivna in refleksivna.
+
+Beseda ``navidezno"~se nanaša na našo intuitivno predstavo o urejenosti, saj je že univerzalna relacija $S\times S$ navidezna urejenost, pa čeprav ničesar ne ureja!
+
+\medskip
+$R$ {\em delno ureja} $S$ $\cee$ $R$ je tranzitivna, refleksivna in antisimetrična.
+
+\medskip
+Naj $R$ delno ureja $S$.
+
+$xRy$: ``$x$ je vsebovan v $y$"~ali
+
+``$x$ je manjši ali enak $y$"~ali
+
+``$y$ vsebuje $x$"~ali
+
+``$y$ je večji ali enak $x$".
+
+\medskip
+\textbf{ Zgled za relacijo delne urejenosti:} relacija inkluzije ``$\subseteq$", definirana na poljubni družini podmnožic dane univerzalne množice ${\cal U}$.
+
+Lahko se zgodi, da množici  $A$ in $B$ nista primerljivi glede na relacijo inkluzije!
+
+To velja tudi v splošnem. Od tod tudi ime ``delna urejenost".
+
+\medskip
+\textbf{ Zgled:} Relacija deljivosti na množici pozitivnih naravnih števil.
+
+Tudi to je delna urejenost. Lahko se zgodi, da dve števili nista primerljivi glede na to relacijo (npr.~5 in 7).
+
+\bigskip
+Tudi relacija ``$\le$"~na množici realnih števil izpolnjuje vse pogoje za delno urejenost.
+
+Velja pa še več: ta relacija je tudi strogo sovisna, saj za vsaki dve realni števili $x$ in $y$ velja $x\le y$ ali $y\le x$.
+
+
+\bigskip
+
+$R$ {\em popolno} ali {\em linearno ureja} $S$ $\cee$ $R$ je tranzitivna, refleksivna,
+antisimetrična in strogo sovisna.
+
+\bigskip
+Toda: $R$ je strogo sovisna $\sledi R$ je refleksivna!
+
+(če v pogoju $(\forall x)(\forall y)(xRy \ali yRx)$ vzamemo $y = x$, dobimo
+$(\forall x)(xRx)$).
+
+Torej:
+
+$R$ {popolno (linearno) ureja} $S$ $\cee$ $R$ je tranzitivna, antisimetrična in strogo sovisna.
+
+\bigskip
+
+------------------------------------------------------------------------------
+
+% 16. predavanje, 2 uri, 7. 12. 2011
+
+\bigskip
+
+\newpage
+Relaciji stroge inkluzije ``$\subset$"~in stroge neenakosti ``$<$":
+\begin{itemize}
+  \item obe sta tranzitivni, a irefleksivni
+  \item obe sta asimetrični
+  \item relacija stroge inkluzije določa le {\em delno} urejenost (obstajajo namreč pari neprimerljivih mnnožic)
+  \item relacija stroge neenakosti pa določa popoln red: je {\em sovisna}, poljubni dve {\em različni} realni števili sta med seboj primerljivi glede na $<$.
+\end{itemize}
+
+Vsaka asimetrična relacija je tudi irefleksivna. Torej lahko definiramo
+
+$R$ {\em strogo delno ureja} $S$ $\cee$ $R$ je tranzitivna in asimetrična.
+
+\bigskip
+
+Analogno definiramo:
+
+\medskip
+$R$ {\em strogo linearno ureja} $S$ $\cee$ $R$ je tranzitivna, asimetrična in sovisna.
+
+\bigskip
+
+Naj $R$ strogo delno ureja $S$.
+
+$xRy$: ``$x$ je pod  $y$"~ali
+
+``$x$ je manjši od $y$"~ali
+
+``$y$ je nad $x$"~ali
+
+``$y$ je večji od  $x$".
+
+
+\medskip
+To terminologijo uporabljamo tudi za primer, ko je $xRy$, kjer je relacija $R$ delna urejenost in je $x\neq y$.
+
+------------------------------------------------------------------------------
+
+\bigskip
+
+Oglejmo si še eno relacijo urejenosti: \textbf{ šibka urejenost}.
+
+Njen model je na primer relacija ``vsaj tako velik kot"~v množici vseh ljudi.
+
+Je tranzitivna, strogo sovisna (torej tudi refleksivna).
+
+Ni pa antisimetrična!
+
+Če je $x$ ``vsaj tako velik kot"~$y$ in $y$ ``vsaj tako velik kot"~$x$,
+potem smemo sklepati le, da sta $x$ in $y$ enako velika, nikakor pa ni nujno, da je $x = y$.
+
+$R$ {\em šibko ureja} $S$ $\cee$ $R$ je tranzitivna in strogo sovisna.
+
+\bigskip
+
+------------------------------------------------------------------------------
+\bigskip
+
+Doslej smo našteli $7$ različnih struktur urejenosti.
+Definirajmo v množici, ki ima za elemente teh $7$ struktur, relacijo ``je poseben primer".
+
+$x$ je poseben primer $y$, če ima vsaka relacija $R_x$, ki določa strukturo $x$, tudi vse lastnosti strukture $y$.
+
+\begin{itemize}
+  \item Primer:
+
+  Linearna urejenost je poseben primer delne urejenosti.
+
+Stroga linearna urejenost je poseben primer stroge delne urejenosti.
+\end{itemize}
+
+Relacija ``je poseben primer"~je tranzitivna, refleksivna in antisimetrična, torej določa delno urejenost med temi strukturami.
+
+\newpage
+Delno urejenost pa moremo prikazati s t.i.~{\em Hassejevim diagramom:}
+
+\begin{center}
+\includegraphics[height=50mm]{strukture.eps}
+\end{center}
+
+Hassejev diagram
+
+$R$ - relacija, ki delno ali strogo delno ureja $S$
+
+$xRy\cee $ od $x$ do $y$ lahko pridem od spodaj navzgor po črtah v diagramu
+
+\bigskip
+------------------------------------------------------------------------------
+
+\bigskip
+
+\zgled $A = \{1,2,3\}$, $S = {\cal P}(A)$, $R$: stroga inkluzija
+
+\vbox{
+\begin{center}
+\includegraphics[height=40mm]{Hasse.eps}
+\end{center}\kz}
+
+\bigskip
+
+------------------------------------------------------------------------------
+\bigskip
+
+\textbf{ Primer:} Hassejev diagram množice s $6$ elementi,
+ki je linearno ali strogo linearno urejena
+
+\begin{center}
+\includegraphics[height=40mm]{Hasse1.eps}
+\end{center}
+
+\subsection*{Mreža}
+
+Struktura {\em mreže} je delna urejenost s posebej lepimi lastnostmi. Da bi jo definirali, potrebujemo nekaj definicij.
+
+\bigskip
+
+Množica $S$ naj bo delno urejena z relacijo $R$ in naj bo $U\subseteq S$.
+
+Če obstaja tak $a\in S$, da za vsak $x\in U$ velja $aRx$, potem je
+$a$ {\em $R$-spodnja meja} za $U$.
+
+\bigskip
+Če obstaja tak $b\in S$, da je $xRb$ za vsak $x\in U$, potem je
+$b$ {\em $R$-zgornja meja} za $U$.
+
+\bigskip
+Če ima $U$ kakšno $R$-spodnjo mejo, potem je $U$ {\em $R$-navzdol omejena}.
+
+\bigskip
+Če ima $U$ kakšno $R$-zgornjo mejo, potem je $U$ {\em $R$-navzgor omejena}.
+
+\bigskip
+Če ima $U$ kakšno $R$-zgornjo mejo in kakšno $R$-spodnjo mejo,
+potem je $U$  {\em $R$-omejena}.
+
+\bigskip
+$a\in S$ je {\em $R$-največja spodnja meja ($R$-infimum)} podmnožice $U$
+$\cee$ $a$ je $R$-spodnja meja in za vsako $R$-spodnjo mejo $x$ za $U$ velja $xRa$.
+
+Oznaka: $a = R$-$\inf U$.
+
+\bigskip
+$b\in S$ je {\em $R$-najmanjša zgornja meja ($R$-supremum)} podmnožice $U$
+$\cee$ $b$ je $R$-zgornja  meja in za vsako $R$-zgornjo mejo $x$ za $U$ velja $bRx$.
+
+Oznaka: $b = R$-$\sup U$.
+
+\bigskip
+
+\zgled
+Vzemimo množico $S = {\cal P}(\{1,2,3\})\setminus\{\emptyset\}$, delno urejeno glede na relacijo inkluzije, $R = \subseteq$.
+
+Za podmnožice $U_1 = \{\{1,2\},\{1,3\}\}$, $U_2 = \{\{1,2\},\{1,3\},\{2,3\}\}$ in $U_3 = \{\{2\},\{3\}\}$
+in elemente $a = \{1\}$, $b = \{1,2,3\}$ in $c = \{2,3\}$ velja:
+\begin{itemize}
+  \item Množica $U_1$ ima eno samo spodnjo mejo, $a$, in eno samo zgornjo mejo, $b$. Posledično je
+  $\subseteq$-$\inf U_1 = a$ in $\subseteq$-$\sup U_1 = b$.
+  \item Množici $U_2$ in $U_3$ nimata nobene spodnje meje, torej nista navzdol omejeni (in posledično nimata infimuma).
+   \item Množica $U_2$ ima eno samo zgornjo mejo, $b$, zato je $\subseteq$-$\sup U_2 = b$.
+   \item Množica $U_3$ ima dve zgornji meji, $b$ in $c$, in $\subseteq$-$\sup U_3 = c$.
+\end{itemize}
+
+\vbox{
+\begin{center}
+\includegraphics[height=40mm]{Hasse-inf-sup.eps}
+\end{center}
+\kz}
+
+\bigskip
+
+Zaradi antisimetričnosti ima vsak $U\subseteq S$ kvečjemu en $R$-$\sup$
+in kvečjemu en $R$-$\inf$.
+
+Lahko ju pa nima (tudi če je omejena)!
+
+\bigskip
+\zgled
+
+$S = \mathbb{Q}$, $R = \le$
+
+$$U = \{x~;~x\in \mathbb{Q}\inn 0\le x \inn x^2\le 2\}$$
+
+Množica $U$ je navzdol in navzgor omejena!
+
+$\inf U = 0$, $\sup U$ pa ne obstaja!
+
+\medskip
+$$V = \{x~;~x\in \mathbb{Q}\inn 0\le x \inn 2\le x^2\le 5\}$$
+
+Množica $V$ je omejena, ne obstajata pa niti $\inf V$ niti $\sup V$.\kz
+
+\begin{definicija}
+Množica $S$ ima strukturo {\em mreže} glede na relacijo $R$ $\cee$
+$R$ delno ureja $S$ in vsaka {\em dvoelementna} podmnožica $X\subseteq S$
+ima tako $R$-supremum kot $R$-infimum.
+\end{definicija}
+
+\bigskip
+
+Opomba: Strukturo mreže je moč definirati tudi povsem algebraično.
+
+\bigskip
+
+\textbf{ Zgledi mrež:}
+\begin{enumerate}
+  \item $A$ - množica
+
+  ${\cal P}(A)$ -- potenčna množica
+
+  ${\cal P}(A)$ je mreža glede na $R = \subseteq$:
+  \begin{itemize}
+    \item delna urejenost $\checkmark$
+     \item $E,F\subseteq A$, $E\neq F$:
+
+     $\inf\{E,F\} = E\cap F$
+
+     $\sup\{E,F\} = E\cup F$
+  \end{itemize}
+  \item Naj $R$ linearno ureja $S$.
+\begin{itemize}
+    \item delna urejenost $\checkmark$
+
+    \item
+   $a, b\in S, a\neq b\sledi aRb$ ali $bRa$
+
+$aRb\sledi R\textrm{-}\inf\{a,b\} = a,~R\textrm{-}\sup\{a,b\} = b$.
+
+$bRa\sledi R\textrm{-}\inf\{a,b\} = b,~R\textrm{-}\sup\{a,b\} = a$.
+\end{itemize}
+
+  \item $S = \mathbb{N}\backslash \{0\}$, $R = |$ (relacija deljivosti).
+  \begin{itemize}
+    \item delna urejenost $\checkmark$
+    \item $x,y\in \mathbb{N}\setminus\{0\}$, $x\neq y$
+
+    $\inf\{x,y\} = $ največji skupni delitelj $x$ in $y$
+
+    $\sup\{x,y\} = $ najmanjši skupni večkratnik $x$ in $y$
+  \end{itemize}
+\end{enumerate}
+
+\bigskip
+\newpage
+Še nekaj zgledov s Hassejevimi diagrami:
+\begin{center}
+\includegraphics[height=40mm]{Hasse4.eps}
+\end{center}
+
+------------------------------------------------
+
+\bigskip
+
+V mreži ima tudi vsaka \underline{končna} neprazna podmnožica množice $S$ infimum in supremum!
+
+\begin{trditev}
+Naj ima $S$ strukturo mreže glede na $R$. Tedaj za vsake tri elemente $a_1,a_2,a_3\in S$ velja
+$$R\textrm{-}\inf\{a_1,a_2,a_3\} = R\textrm{-}\inf\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}\,.$$
+\end{trditev}
+
+\begin{proof}
+Naj bo $a = R\textrm{-}\inf\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}$.
+
+\emph{ $a$ je spodnja meja množice $\{a_1,a_2,a_3\}$:}
+
+  $aRa_3$, saj je $a$ spodnja meja množice $\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}$.
+
+  Podobno je
+  $aR(R\textrm{-}\inf\{a_1,a_2\})$, ker pa je $(R\textrm{-}\inf\{a_1,a_2\})Ra_1$ in je $R$ tranzitivna, je $aRa_1$. Podobno je tudi $aRa_2$.
+
+
+\emph{ $a$ je največja spodnja meja množice $\{a_1,a_2,a_3\}$:}
+
+Naj bo $x$ poljubna spodnja meja množice $\{a_1,a_2,a_3\}$. Torej je $xRa_1$, $xRa_2$ in $xRa_3$.
+
+$xRa_1, xRa_2\sledi xR(R\textrm{-}\inf\{a_1,a_2\})$.
+
+$xR(R\textrm{-}\inf\{a_1,a_2\}) \inn xRa_3\sledi xRa$.
+\end{proof}
+
+Podobno za supremum. Postopek lahko ponavljamo in
+pokažemo obstoj infimuma in supremuma poljubne končne neprazne množice.
+
+\medskip
+%\textbf{ V razmislek:} Kako bi dokazali obstoj $R$-$\inf\{a_1,\ldots, a_n\}$?
+%
+%\medskip
+
+\begin{posledica}
+Če je $S$ mreža glede na $R$, ima vsaka \underline{končna} neprazna množica $R\textrm{-}\inf$
+in $R\textrm{-}\sup$.
+\end{posledica}
+
+Obstoj infimuma in supremuma pa moremo zahtevati tudi za \emph{ vse} neprazne podmnožice (ne le za končne):
+
+\begin{definicija}
+Množica $S$ ima strukturo {\em polne mreže} glede na relacijo $R$ $\cee$
+$R$ delno ureja množico $S$ in \underline{vsaka} neprazna podmnožica $X$ množice $S$ ima $R$-inf in $R$-sup.
+\end{definicija}
+
+Očitno je vsaka polna mreža tudi mreža glede na isto relacijo $R$. Vsaka končna mreža pa je tudi polna mreža.
+
+\bigskip
+\zgled
+
+$A$ -- poljubna množica
+
+${\cal P}(A)$ je polna mreža za $\subseteq$:
+
+Če je ${\cal A}$ neprazna družina podmnožic množice $A$, potem je
+$$(\subseteq)\textrm{-}\inf {\cal A} = \cap {\cal A}$$
+in
+$$(\subseteq)\textrm{-}\sup {\cal A} = \cup {\cal A}\,.$$\kz
+
+\bigskip
+
+Množica realnih števil $\mathbb{R}$ ni polna mreža glede na $\le$: cela množica $\mathbb{R}$ namreč ni omejena! (nima ne supremuma ne infimuma)
+
+Množico realnih števil lahko dopolnemo do polne mreže, tako da ji dodamo elementa $\infty$ in $-\infty$, s pravilom $x\le \infty$ za vse $x\in \mathbb R$ in $-\infty\le x$ za vse $x\in \mathbb R$.
+
+------------------------------
+
+Hassejev diagram $9$ struktur urejenosti, ki smo jih spoznali:
+
+\begin{center}
+\includegraphics[height=70mm]{strukture3.eps}
+\end{center}
+
+$x$ je pod $y$ $\cee$ $x$ je poseben primer $y$.
+
+%next:dobra urejenost
+
+
+\appendix
+\cleardoublepage\part*{Dodatek}
+\chapter{Dodatna poglavja iz teorije množic}
+
+
+\section{Aksiomi teorije množic (po Edertonu)}
+
+\begin{enumerate}
+  \item Aksiom ekstenzionalnosti (enakost množic)
+  $$\forall A\, \forall B\, [\forall x \,(x\in A \cee x\in B) \sledi A = B]$$
+  
+  \item Aksiom o prazni množici
+  $$\exists B\, \forall x\, (x\not \in B)$$
+
+  \item Aksiom o paru
+    $$\forall u\, \forall v\, \exists B\, \forall x\, [x\in B \cee x = u\textrm{ ali }x = v]$$
+
+  \item Aksiom o uniji
+    $$\forall A\, \exists B\, \forall x\, [x\in B \cee (\exists b\in B) x\in b]$$
+
+  \item Aksiom o potenčni množici  
+    $$\forall a\, \exists B\, \forall x [x\in B \cee x\subseteq a]$$
+
+  \item Aksiomi o podmnožicah
+   
+  Za vsako formulo $\varphi$ o množicah, ki ne vsebuje črke $B$, 
+  je naslednji izraz aksiom:  
+$$\forall t_1\,\cdots \forall t_k\,\forall c\,\exists B \,\forall x \,[x\in B \cee x\in c \inn \varphi]$$
+
+  \item Aksiom neskončnosti
+$$\exists A\,[\emptyset \,\in A \inn (\forall a\in A)\, a^+\in A]$$
+(Pri tem je $a^+ = a\cup \{a\}$.)
+
+\item Aksiom izbire
+$$(\forall \textrm{ relacijo }R)(\exists \textrm{ funkcija }F)(F\subseteq R \inn {\cal D}(F) = {\cal D}(R))$$
+
+\item Aksiomi o zamenjavi 
+
+Za vsako formulo $\varphi(x,y)$, ki ne vsebuje črke $B$, 
+je naslednji izraz aksiom:
+$$\forall t_1\,\cdots \forall t_k\,\forall A\,[(\forall x\in A)\,\forall y_1\, \forall y_2\, (\varphi(x,y_1) \inn \varphi(x,y_2) \sledi y_1 = y_2)$$
+$$\sledi \exists B\, \forall y\, [y\in B \cee (\exists x\in A)\,\varphi(x,y)]$$
+
+\item Aksiom regularnosti
+$$(\forall A\neq \emptyset)\,(\exists m\in A)\,(m\cap A = \emptyset)$$
+\end{enumerate}
+
+\section*{Aksiomi teorije množic (po Dugundjiju)}
+
+\begin{enumerate}
+  \item Aksiom individualnosti: $(x\in A) \inn (x = y) \sledi y\in A$
+   
+  \item Aksiom o formaciji razredov = Aksiom o podmnožicah po Endertonu
+  
+  \item Aksiom o prazni množici
+
+\item Aksiom o paru
+
+  \item Aksiom o uniji
+  
+  \item Aksiom o potenčni množici
+
+  \item Aksiom o zamenjavi: slika vsake preslikave je množica.
+
+  \item Aksiomi (``Sifting''): Presek vsake množice z razredom je množica.
+
+\item Aksiom regularnosti
+
+  \item Aksiom neskončnosti
+
+\item Aksiom izbire
+\end{enumerate}
+
+
+
 \end{document}
 
