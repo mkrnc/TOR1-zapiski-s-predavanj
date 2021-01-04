@@ -89,7 +89,7 @@ Gradivo je osnovano na nekaterih starejših izročkih od mojih predhodnih predav
 \tableofcontents
 
 
-\section{Matematična logika}
+\chapter{Matematična logika}
 
 \iftoggle{long}{\komentar{Skrajšano: OD TU}\\}
 
@@ -111,7 +111,7 @@ Prispevek logike k znanju je v odkrivanju novih izjav, ki so logične posledice 
 
 O razvoju logike in teorije množic si lahko preberete v Prijateljevi knjigi (Osnove matematične logike, 1.~poglavje, 2.~podpoglavje).
 
-\subsection{Osnovne povezave in pravilnostne tabele}
+\section{Osnovne povezave in pravilnostne tabele}
 
 \textbf{ \underline{Negacija:}} Ne $A$; ni res, da $A$
 
@@ -589,7 +589,7 @@ pri vsakem izmed $2^n$ določil {\em vnaprej predpisano logično vrednost?}
 
 Da bi rešili to nalogo, si najprej poglejmo t.i.~{\em logične ekvivalence}.
 
-\subsection{Logične ekvivalence}
+\section{Logične ekvivalence}
 
 Naj bosta $B$ in $C$ izjavi, sestavljeni iz izjav $A_1,\ldots, A_n$.
 \iftoggle{long}{
@@ -662,7 +662,7 @@ Vzemimo izjavo ``Če je kakšna reč lepa, potem je minljiva."
 
 % 2. predavanje (2018) - konec
 
-\subsection{Izbrani obliki izjav}
+\section{Izbrani obliki izjav}
 
 Od zadnjič dolgujemo še rešitev naslednje naloge: iz danih izjav $A_1,\ldots, A_n$ konstruiraj izjavo,
 ki bo imela pri vsakem izmed $2^n$ določil vnaprej predpisano vrednost.
@@ -773,7 +773,7 @@ Obrnemo se k enemu od vojščakov in ga povprašamo: ``Ali je res, da vodi prvi 
 \\}
 
 
-\subsection{Preklopna vezja}
+\section{Preklopna vezja}
 
 Logične izjave lahko modeliramo s t.i.~preklopnimi vezji.
 
@@ -982,7 +982,7 @@ $$(A\sledi B) \ali (\neg B\sledi C) \ali (A \cee C)\,.$$
 
 
 
-\subsection{Logične implikacije}
+\section{Logične implikacije}
 
 {\em Logična implikacija} je tavtologija, pri kateri je glavna povezava implikacija.
 
@@ -1144,7 +1144,7 @@ Sklep: Koper je mesto.
 
 \newpage 
 
-\subsection{Načini dokazovanja}
+\section{Načini dokazovanja}
 
 Logične implikacije uporabljamo pri dokazovanju novih trditev iz aksiomov in že dokazanih trditev.
 Poglejmo si nekaj načinov dokazovanja.
@@ -1557,7 +1557,7 @@ imenujemo pravila sklepanja.
 \end{tabular}
 
 {
-\subsection{Izjave s predikati in kvantifikatorji}
+\section{Izjave s predikati in kvantifikatorji}
 }
 
 Kvantifikatorji povedo, za koliko objektov neke vrste velja neka izjava.
@@ -2091,9 +2091,9 @@ Iz $(i)$ in $(ii)$ izpeljemo, da je izjava $(\exists! x)A(x)$ pravilna.\qed
 %Iz (1), (5) in (6) potem sledi Š$(d) = 1$. Protislovje. Izjava je tavtologija  in sklepanje je pravilno.
 %
 \newpage
-\section{Teorija množic}
+\chapter{Teorija množic}
 
-\subsection{Množice}
+\section{Množice}
 
 \iftoggle{long}{\komentar{Večinoma skrajšano: OD TU}\\}
 
@@ -2261,7 +2261,7 @@ Pozor: škatla, ki vsebuje klobuk, ni ista reč kot klobuk. Tako tudi množica
 $\{a\}$ ni ista reč kot $a$. Za vsako reč $a$ pa velja $a\in \{a\}$.
 
 
-\subsection*{Podmnožice}
+\subsection{Podmnožice}
 Dani sta množici $A$ in $B$.
 
 Pravimo, da je $A$ {\em podmnožica} množice $B$ natanko takrat, ko je vsak element množice $A$ tudi element množice $B$.
@@ -2376,7 +2376,7 @@ Ali je $\{1\}$ element množice $X$?
 Ali je $\{1\}$ podmnožica množice $X$?
 
 \bigskip
-\subsection*{Prazna množica}
+\subsection{Prazna množica}
 Množico, ki nima nobenega elementa, označimo s simbolom $\emptyset$ --- {\em prazna množica}.
 
 $$X = \emptyset \cee (\forall x)(x\not\in X)$$
@@ -2387,7 +2387,7 @@ $$(\forall X) (\emptyset \subseteq X)$$
 \textbf{ Domača naloga:} Dokažite, da velja:
 $$X = \emptyset\cee (\forall Y)(X\subseteq Y)\,.$$
 
-\subsection*{Unija}
+\subsection{Unija}
 
 Dani sta množici $A$ in $B$. {\em Unija} teh dveh množic je množica $A\cup B$, ki ima za elemente natanko tiste reči, ki so elementi množice $A$ ali množice $B$:
 $$A\cup B = \{x; x\in A \ali x\in B\}\,.$$
@@ -2491,7 +2491,7 @@ $$\neg(A\subseteq B)$$
 \textbf{ Domača naloga:} Dokažite preostale lastnosti.
 \bigskip
 
-\subsection*{Presek}
+\subsection{Presek}
 Dani sta množici $A$ in $B$. {\em Presek} teh dveh množic je množica $A\cap B$, ki ima za elemente natanko tiste reči, ki so elementi množice $A$ in množice $B$:
 $$A\cap B = \{x; x\in A \inn x\in B\}\,.$$
 
@@ -2621,7 +2621,7 @@ Pisano brez indeksov: $\cup \{A\} = \cap \{A\} = A$.
 Podobno velja tudi $\cup \{\emptyset\} = \cap \{\emptyset\} = \emptyset$ in $\cup \emptyset = \emptyset$.
 
 
-\subsection*{Razlika množic}
+\subsection{Razlika množic}
 
 Dani sta množici $A$ in $B$.
 
@@ -2746,21 +2746,21 @@ $$(A\cup B)\cap C = A\cup (B\cap C) \cee A\subseteq C$$
 \kz
 
 %\newpage
-%\subsection*{Vennovi diagrami}
+\subsection{Vennovi diagrami}
 
-%Vse odnose in operacije med podmnožicami dane univerzalne množice lahko nazorno prikažemo s t.i.~{\em Vennovimi diagrami}.
+Vse odnose in operacije med podmnožicami dane univerzalne množice lahko nazorno prikažemo s t.i.~{\em Vennovimi diagrami}.
 
-%\begin{figure}[ht]
-%\begin{center}
-%\includegraphics[width=111mm]{Venn.eps}
-%\end{center}
-%\end{figure}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=111mm]{Venn.eps}
+\end{center}
+\end{figure}
 
-%\medskip
-%Seveda pa tako ``slikanje'' nima nobene zveze z dokazovanjem.
+\medskip
+Seveda pa tako ``slikanje'' nima nobene zveze z dokazovanjem.
 
 %\newpage
-\subsection*{Potenčna množica}
+\subsection{Potenčna množica}
 
 {\em Potenčna množica} dane množice $A$ je družina množic, ki ima za svoje elemente natanko podmnožice množice $A$:
 $${\cal P}(A) = \{X; X\subseteq A\}$$
@@ -2809,7 +2809,7 @@ $\cee X\subseteq A \cap B\cee X\in \P(A\cap B)$
 \textbf{ V razmislek:} Zakaj v drugi lastnosti ne velja enakost?
 
 
-\subsection*{Urejeni par}
+\subsection{Urejeni par}
 
 Vzemimo dve reči $a$ in $b$.
 %$a\neq b$.
@@ -2836,7 +2836,7 @@ Dokažite, da velja $\{\{a\},\{a,b\}\} = \{\{u\},\{u,v\}\}\cee a = u \inn b = v\
 
 
 
-\subsection*{Kartezični produkt}
+\subsection{Kartezični produkt}
 
 Pojem kartezičnega produkta ste spoznali že pri Analizi I.
 
@@ -2941,7 +2941,7 @@ Dokazali smo ne samo implikacijo, ampak ekvivalenco
 $$A\subseteq C\inn B\subseteq C\cee A\cup B \subseteq C\,.$$
 
 
-\subsection*{Kratka diskusija o aksiomih}
+\section{O aksiomih}
 
 Vsaka matematična teorija temelji na množici aksiomov --- osnovnih trditev, ki jih {\em privzamemo} za pravilne. Ti aksiomi opredeljujejo osnovne lastnosti, ki jim morajo zadoščati objekti obravnavane teorije (npr.~naravna števila, realna števila, grupe, vektorski prostori, topološki prostori, ...) Iz aksiomov pa potem s pomočjo logičnega sklepanja izpeljujemo nove resnice, ki jim pravimo trditve, posledice, izreki.
 
@@ -2953,7 +2953,7 @@ Aksiomi zagotavljajo obstoj množic in tvorjenje novih množic iz že obstoječi
 Da bi razumeli, zakaj potrebujemo aksiome, si poglejmo, zakaj množica vseh
 množic ne obstaja.
 
-\subsection*{Russellova antinomija}
+\subsection{Russellova antinomija}
 
 Ali obstaja {\em množica vseh množic?}
 
@@ -3045,48 +3045,8 @@ Ta aksiom bomo podrobno obravnavali v poglavju 2.5.
 Nekatere aksiome oz.~aksiomske sheme, in sicer 2., 3.~in 6.~z zgornjega seznama, je moč izpeljati iz preostalih 7 aksiomov.
 
 
-\newpage
-\subsection*{Neformalni pogled na univerzum množic}
 
-Množice lahko obravnavamo  bodisi kot \textbf{ hereditarne množice} (induktivno definirane kot množice, katerih vsi elementi so
-spet hereditarne množice -- $\emptyset$ je hereditarna množica)
-ali pa imamo podano še neko množico \emph{ atomov}, ki niso množice, so pa lahko elementi množic.
-
-Za abstraktno, matematično obravnavo zadoščajo že hereditarne množice.
-Te tvorijo t.i.~\emph{ von Neumannovo hierarhijo množic}.
-
-Na dnu hierarhije je le prazna množica, $V_0 = \emptyset$.
-Če imamo dano množico $V_i$, pa je $V_{i+1} = {\cal P}(V_i)$.
-Na ta način dobimo $V_0, V_1, V_2, \ldots$
-
-To pa še ni vse.
-Napravimo unijo vseh the množic:
-$V_\omega = \cup_{\lambda \in \mathbb{N}}V_\lambda$.
-In postopek ponovimo:
-$V_{\omega+1} = {\cal P}(V_\omega)$ itd.
-Ponavljamo v nedogled:
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[height=80mm]{hierarhija.eps}
-\caption{von Neumannova hierarhija hereditarnih množic}
-\end{center}
-\end{figure}
-
-Množice v hierarhiji postanejo zelo hitro nepredstavljivo velike.
-$V_0$ ima $1$ element, $V_1$ ima $2$ elementa, $V_2$ ima $4$ elemente, $V_3$ ima $2^4 = 16$ elementov,
-$V_4$ ima $2^{16} = 65536$ elementov, $V_5$ pa ima že $2^{65536}$ elementov, itd.
-$V_\omega$ je neskončna množica in vse nad njo prav tako.
-
-\textbf{ Pomen hiererhije:}
-Vsaka hereditarna  množica se pojavi (kot element) v eni od množic $V_\lambda$ v zgornji hierarhiji.
-
-Podobno hierarhijo lahko zgradimo za obravnavo množic z atomi. Edina razlika je v tem, da
-postavimo $V_0 = A$ (kjer je $A$ množica atomov)
-in naslednji element hierarhije tvorimo iz prejšnjega s pravilom $V_{i+1} = V_i\cup {\cal P}(V_i)$.
-
-\newpage
-\section{Relacije}
+\chapter{Relacije}
 
 %\textbf{ \color{red}Na vajah je bilo v redu. Delali smo naloge iz mnozic. Naredili smo tudi tri priemre,
 %ki so bili za domaco nalogo in sicer zadnjo lastnost pri uniji in predzadnjo lastnost pri preseku ter
@@ -3111,7 +3071,7 @@ Trimestne relacije: vsota, razlika, produkt
 
 starši - trimestna relacija ($x,y,z$ so v relaciji natanko tedaj, ko sta $x$ in $y$ starša $z$)
 
-------
+\section{Splošno o relacijah}
 
 Naj bo $R$ neka smiselna binarna relacija za neko matematično teorijo ${\cal T}$ z univerzalno množico $S$.
 
@@ -3219,11 +3179,8 @@ $$xRy\cee x\in X\inn y\in {\cal P}(X) \inn x\in y\,.$$
 Tedaj je ${\cal D}R = X$ in ${\cal Z}R = {\cal P}(X)\brez \{\emptyset\}\,.$
 \kz
 
-\bigskip
 
-------
-
-\textbf{ Inverzna relacija:}
+\subsection{ Inverzna relacija}
 $$R^{-1}= \{(y,x)~;~xRy\}$$
 Očitno je:
 \begin{itemize}
@@ -3245,7 +3202,7 @@ Očitno je:
 $R_{\neq}^{-1}~~=~~R_{\neq}\,.$\kz
 
 
-\subsection*{Kompozitum relacij}
+\subsection{Kompozitum relacij}
 
 Dani sta binarni relaciji $R$ in $T$.
 
@@ -3434,7 +3391,7 @@ $(T\circ R)^{-1} = R \circ T\,.$
 % 1. definicija (a,b) je dobra
 % 2. kartezični produkt in razlika
 
-\subsection*{Univerzalna, ničelna in identična relacija}
+\subsection{Univerzalna, ničelna in identična relacija}
 
 V vsaki množici $S$ imamo tri posebne relacije:
 
@@ -3478,7 +3435,7 @@ $(S\times S)\circ R = ({\cal D}R) \times S$.
 %$x((S\times S)\circ R)y \cee (\exists u)(x R u \inn u(S\times S)y)
 %\cee (\exists u)(xRu) \cee x\in {\cal D}R \cee x\in {\cal D}R\inn y\in S  \cee x(({\cal D}R) \times S)y$.
 
-\subsection*{Posebne lastnosti binarnih relacij}
+\section{Posebne lastnosti binarnih relacij}
 
 Nekatere lastnosti binarnih relacij so še posebej pomembne:
 
@@ -3595,7 +3552,7 @@ Nekatere od zgornjih lastnosti niso med seboj neodvisne:
   \item $R$ je simetrična in tranzitivna $\sledi$ $R$ je refleksivna (če je ${\cal D}R = S$).
 \end{itemize}
 
-\subsection*{Ekvivalenčna relacija}
+\section{Ekvivalenčna relacija}
 
 $R$ je {\em ekvivalenčna} $\cee$ $R$ je refleksivna, simetrična in tranzitivna.
 
@@ -3803,7 +3760,7 @@ in $S/R' = \{\{1,3\},\{2\}\} = {\cal A}$.
 V množici {\em vseh premic} je relacija ``vzporeden'' ekvivalenčna relacija. V vsakem ekvivalenčnem razredu so torej vse premice, ki so med seboj vzporedne, in predstavljajo potemtakem določeno {\em smer}. Faktorska množica je tukaj {\em množica vseh smeri}.
 \end{enumerate}
 
-\newpage\subsection{Funkcije}
+\section{Funkcije}
 
 {\em Funkcija je osrednji pojem klasične in moderne matematike. Od 18.~stoletja naprej
 je pojem funkcije postajal vse bolj precizen in splošen. Definicijo funkcije, kot jo poznamo danes, sta uvedla Cauchy in Riemann:}
@@ -3952,7 +3909,7 @@ Slike se takole obnašajo glede na unije in preseke:
 
 % 15. predavanje, 2 uri, 6. 12. 2011
 
-\subsection*{Inverzna relacija, praslike}
+\section{Inverzna relacija, praslike}
 
 \bigskip
 \textbf{ Inverzna relacija:}
@@ -4044,7 +4001,7 @@ Posebno zanimiv primer nastane, ko je funkcija $f$ ne samo injektivna, ampak tud
 %
 %\bigskip
 
-\subsection*{Kompozitum funkcij}
+\section{Kompozitum funkcij}
 
 Naj bosta $f$ in $g$ parcialni funkciji. Tedaj velja
 $$g\circ f = \{(x,z);(\exists y)((x,y)\in f\inn (y,z)\in g)\}$$
@@ -4070,7 +4027,7 @@ $$A\overset{f}{\to} B\overset{g}{\to} C\overset{h}{\to} D\,,$$
 potem je
 $$h\circ (g\circ f) = (h\circ g)\circ f\,.$$
 
-\subsection*{Zožitve in razširitve}
+\subsection{Zožitve in razširitve}
 Kdaj sta dve parcialni funkciji $f$ in $g$ enaki?
 
 Po definiciji enakosti množic le tedaj, kadar imata za elemente iste urejene pare. To pa je res natanko tedaj, ko velja dvoje:
@@ -4098,7 +4055,7 @@ $f|_U = \{(1,2),(2,4)\}$
 Če je funkcija $g$ zožitev funkcije $f$, pravimo, da je funkcija $f$ {\em razširitev} funkcije $g$.
 
 %konec predavanj 22.11
-\subsection*{Kanonična dekompozicija funkcije}
+\section{Kanonična dekompozicija funkcije}
 
 Dana je funkcija $f:A{\to} B$.
 Vpeljimo na množici $A$ naslednjo relacijo $R$:
@@ -4384,7 +4341,7 @@ ki je linearno ali strogo linearno urejena
 \includegraphics[height=40mm]{Hasse1.eps}
 \end{center}
 
-\subsection*{Mreža}
+\section*{Mreža}
 
 Struktura {\em mreže} je delna urejenost s posebej lepimi lastnostmi. Da bi jo definirali, potrebujemo nekaj definicij.
 
@@ -4598,7 +4555,7 @@ Množico realnih števil lahko dopolnemo do polne mreže, tako da ji dodamo elem
 Hassejev diagram $9$ struktur urejenosti, ki smo jih spoznali:
 
 \begin{center}
-\includegraphics[height=70mm]{strukture3.eps}
+\includegraphics[height=50mm]{strukture3.eps}
 \end{center}
 
 $x$ je pod $y$ $\cee$ $x$ je poseben primer $y$.
@@ -4653,7 +4610,7 @@ $$\sledi \exists B\, \forall y\, [y\in B \cee (\exists x\in A)\,\varphi(x,y)]$$
 $$(\forall A\neq \emptyset)\,(\exists m\in A)\,(m\cap A = \emptyset)$$
 \end{enumerate}
 
-\section*{Aksiomi teorije množic (po Dugundjiju)}
+\section{Aksiomi teorije množic (po Dugundjiju)}
 
 \begin{enumerate}
   \item Aksiom individualnosti: $(x\in A) \inn (x = y) \sledi y\in A$
@@ -4679,6 +4636,47 @@ $$(\forall A\neq \emptyset)\,(\exists m\in A)\,(m\cap A = \emptyset)$$
 \item Aksiom izbire
 \end{enumerate}
 
+
+\section{Neformalni pogled na univerzum množic}
+
+Množice lahko obravnavamo  bodisi kot \textbf{ hereditarne množice} (induktivno definirane kot množice, katerih vsi elementi so
+spet hereditarne množice -- $\emptyset$ je hereditarna množica)
+ali pa imamo podano še neko množico \emph{ atomov}, ki niso množice, so pa lahko elementi množic.
+
+Za abstraktno, matematično obravnavo zadoščajo že hereditarne množice.
+Te tvorijo t.i.~\emph{ von Neumannovo hierarhijo množic}.
+
+Na dnu hierarhije je le prazna množica, $V_0 = \emptyset$.
+Če imamo dano množico $V_i$, pa je $V_{i+1} = {\cal P}(V_i)$.
+Na ta način dobimo $V_0, V_1, V_2, \ldots$
+
+To pa še ni vse.
+Napravimo unijo vseh the množic:
+$V_\omega = \cup_{\lambda \in \mathbb{N}}V_\lambda$.
+In postopek ponovimo:
+$V_{\omega+1} = {\cal P}(V_\omega)$ itd.
+Ponavljamo v nedogled:
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height=80mm]{hierarhija.eps}
+\caption{von Neumannova hierarhija hereditarnih množic}
+\end{center}
+\end{figure}
+
+Množice v hierarhiji postanejo zelo hitro nepredstavljivo velike.
+$V_0$ ima $1$ element, $V_1$ ima $2$ elementa, $V_2$ ima $4$ elemente, $V_3$ ima $2^4 = 16$ elementov,
+$V_4$ ima $2^{16} = 65536$ elementov, $V_5$ pa ima že $2^{65536}$ elementov, itd.
+$V_\omega$ je neskončna množica in vse nad njo prav tako.
+
+\textbf{ Pomen hiererhije:}
+Vsaka hereditarna  množica se pojavi (kot element) v eni od množic $V_\lambda$ v zgornji hierarhiji.
+
+Podobno hierarhijo lahko zgradimo za obravnavo množic z atomi. Edina razlika je v tem, da
+postavimo $V_0 = A$ (kjer je $A$ množica atomov)
+in naslednji element hierarhije tvorimo iz prejšnjega s pravilom $V_{i+1} = V_i\cup {\cal P}(V_i)$.
+
+\newpage
 
 
 \end{document}
