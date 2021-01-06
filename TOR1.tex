@@ -3,8 +3,9 @@
     \WarningFilter{titlesec}{Non standard sectioning command detected}
 \documentclass[11pt,paper=b5,footinclude,headinclude]{scrbook} % KOMA-Script book
 \usepackage[T1]{fontenc}
-\usepackage[style=arsclassica, parts=false, eulermath=true, palatino=true, eulerchapternumbers=true]{classicthesis}
+\usepackage[style=arsclassica, parts=false, eulermath=false, palatino=true, eulerchapternumbers=true]{classicthesis}
 
+\usepackage{xspace}
 \usepackage{etoolbox}
 \providetoggle{long}
 %\settoggle{long}{true}
@@ -42,10 +43,18 @@
 %\textwidth=17cm\textheight=22cm\parindent=15pt\parskip=5pt
 %\oddsidemargin=-5mm  \headheight=0pt \pagestyle{plain}
 
+%spremenljivke
+\newcommand{\myTitle}{Teoretične osnove računalništva\xspace}
+\newcommand{\mySubtitle}{Diskretne strukture za računalničarje \xspace} 				%dodaj podnaslov if needed
+\newcommand{\myName}{UP FAMNIT \xspace}
+\newcommand{\myPublisher}{XXX}
+\newcommand{\myMonth}{Pomlad}
+\newcommand{\myYear}{2021}
+\newcommand{\verzija}{Verzija 0.1 }
+\newcommand{\shortAuthors}{M. Krnc, M. Milanič, R. Požar, N. Prijatelj, P. Škraba}
+\newcommand{\myAuthors}{XXx }
+\newcommand{\myISBN}{978-961-XXX-XXX-X }
 
-%\theoremstyle{remark}
-%\newtheorem*{remark}{Remark}
-%\theoremstyle{definition} %theorem
 
 \newtheorem*{trditev}{Trditev}
 \newtheorem*{izrek}{Izrek}
@@ -53,17 +62,17 @@
 \newtheorem*{lema}{Lema}
 \newtheorem*{posledica}{Posledica}
 \newtheorem*{definicija}{Definicija}
+\newtheorem*{zg}{Zgled}
 
 
 \begin{document}
+\input{Titlepage}
 
-\title{Teoretične osnove računalništva I}
-
-
-\date{FAMNIT, Jesen 2020}
-\author{Diskretne strukture za računalničarje\\}
-\maketitle
-
+%\title{\myTitle}
+%\date{FAMNIT, \myMonth \myYear}
+%\author{\mySubtitle\\}
+%\maketitle
+\input{cip}
 \section*{Predgovor}
 Pred tabo so zapiski iz predavanj za predmet TOR1, ki se predava študentom prvega letnika na FAMNIT, Univerza na Primorskem.
 Vse od leta 2017 ko sem začel s predavanjem tega predmeta se je vsebina spreminjala, tako da kar se da ustreza potrebnemu predznanju kot ga študent računalništva potrebuje.
@@ -71,7 +80,7 @@ Od leta 2020 naprej sem se odločil tale TeX projekt odpreti kot repozitorij jav
 
 Dokument je zamišljen kot dopolnjevanje predavanj, in se ga ne sme jemati kot samostojno gradivo za pripravo na izpit. 
 Morebitna vprašanja in najdene napake, lepo prosim, sporočite na 
-\url{matjaz.krnc@upr.si}, oz. istvarite t.i. "Issue" na našem javnem repozitorijy
+\url{matjaz.krnc@upr.si}, oz. istvarite t.i. "issue"\xspace na našem javnem repozitoriju
 \begin{center}
     \url{https://github.com/mkrnc/TCS1-course-notes.git}.    
 \end{center}
@@ -85,6 +94,8 @@ Gradivo je osnovano na nekaterih starejših izročkih od mojih predhodnih predav
 \end{center}
 
 %Among most notable student contributors are:
+
+\input{kolofon}
 
 \tableofcontents
 
@@ -170,7 +181,11 @@ $A$ - antecedens, zadostni pogoj
 
 $B$ - konsekvens
 
-\zgled: {\em Če Andrej naredi maturo, potem mu kupim kolo.}
+\zgled
+
+Če Andrej naredi maturo, potem mu kupim kolo.
+
+
 
 \medskip
 \textbf{ \underline{Ekvivalenca:}} $A$ če in samo če $B$
@@ -1227,7 +1242,6 @@ Posledično $A \sledi  B$.\hspace{-2cm}\qed
 
 \medskip
 \zgled
-
 \emph{ Število $\sqrt 2$ ni racionalno.}
 
 \medskip \noindent\textbf{ Dokaz.} Predpostavimo, da je $\sqrt 2$ racionalno število. Tedaj ga lahko zapišemo kot $\sqrt 2 = p/q$, kjer sta $p$ in $q$ tuji si naravni števili.
@@ -2030,6 +2044,160 @@ Torej, $y = z$.
 Iz $(i)$ in $(ii)$ izpeljemo, da je izjava $(\exists! x)A(x)$ pravilna.\qed
 }}
 \end{center}
+\section{Pregled najpomembnejših pojmov in nekaj nalog}
+
+Ključni pojmi:
+\begin{itemize}
+  \item Negacija, konjunkcija, disjunkcija, implikacija, ekvivalenca.
+  \item Pravilnostne tabele.
+  \item Tavtologija, protislovje.
+  \item Izbrani obliki izjav.
+  \item Logične ekvivalence. Logične implikacije. Logične posledice.
+\end{itemize}
+
+\begin{problem}[Naloga o vitezih in oprodah]
+A, B, C, D, E
+\begin{itemize}
+  \item A: ``D je oproda in C je oproda."
+  \item B: ``Če sta A in D oprodi, potem je C oproda."
+  \item C: ``Če je B oproda, potem je A vitez."
+  \item D: ``Če je E oproda, potem sta C in B oprodi."
+\end{itemize}
+\end{problem}
+
+\medskip
+\textbf{Rešitev:}
+
+Naj bo $A$ izjava: ``A je vitez", itd.
+Iščemo tisto edino določilo $d$, za katerega je izjava $$A_1\inn B_1\inn C_1\inn D_1$$
+pravilna, kjer je:
+
+$A_1: A\cee (\neg D \inn \neg C)$
+
+$B_1: B\cee (\neg A \inn \neg D\sledi \neg C)$
+
+$C_1: C\cee (\neg B \sledi A)$
+
+$D_1: D\cee (\neg E \sledi \neg C \inn \neg B)$
+
+
+Ker bi pravilnostna tabela vsebovala 32 vrstic, rešimo nalogo
+raje z analizo primerov.
+
+\textbf{1.~primer: $A(d) = 1$.}
+Zaradi $A_1$ je potem $D(d) = 0$ in $C(d) = 0$.
+
+V izjavo $C_1$ vstavimo $A(d) = 1$ in $C(d) = 0$, dobimo:
+$\neg(\neg B\sledi 1)$,
+
+$\neg(B\ali 1)$,
+
+$\neg 1$, to pa je nepravilna izjava.
+
+Torej 1.~primer ni mogoč.
+%
+% torej $B(d) = 1$.
+%
+%V izjavo $B_1$ vstavimo $A(d) = 1$, $B(d) = 1$, $C(d) = 0$ in $D(d) = 0$, dobimo:
+%$1\cee (0\inn 1\sledi 1)$, kar je pravilna izjava.
+%
+%V izjavo $D_1$ vstavimo znane vrednosti, dobimo:
+%$\neg(\neg E \sledi 1 \inn 0)$
+%
+%$\neg(\neg E \sledi 0)$
+%
+%Sledi $\neg E(d) = 1$, torej $E(d) = 0$.
+%
+
+\textbf{2.~primer: $A(d) = 0$.}
+
+Zaradi $A_1$ je bodisi $C(d) = 1$ ali pa $D(d) = 1$.
+
+\textbf{2.1.: $C(d) = 1$}.
+
+Zaradi $C_1$ je $\neg B \sledi 0$, torej je $\neg B = 0$ in posledično $B(d) = 1$.
+
+V izjavo $B_1$ vstavimo $A(d) = 0$, $B(d) = 1$, $C(d) = 1$, dobimo:
+
+$1 \inn \neg D\sledi 0$
+
+$\neg D\sledi 0$
+
+Sledi $\neg D = 0$ oz.~$D(d) = 1$.
+
+Vstavimo v izjavo $D_1$ znane vrednosti:
+
+$(\neg E \sledi 0 \inn 0)$
+
+Sledi $E(d) = 1$.
+
+\bigskip
+
+\textbf{2.2.: $C(d) = 0$ in $D(d) = 1$}.
+
+Iz izjave $B_1$ dobimo $B(d) = 1$.
+
+Izjava $C_1$ pa je sedaj nepravilna:
+$0 \cee (0\sledi 1)$.\qed
+
+Torej so $B$, $C$, $D$ in $E$ vitezi, $A$ pa je oproda.
+
+
+\bigskip
+\begin{problem}[Sklepanje]
+Ali je naslednje sklepanje pravilno?
+
+Mislim, torej sem. Mislim, torej sklepam. Sklep: Sem, torej sklepam.
+\end{problem}
+
+\textbf{Rešitev:}
+
+$A_1$: Mislim.
+
+$A_2$: Sem.
+
+$A_3$: Sklepam.
+
+Zanima nas pravilnost implikacije
+
+$$(A_1\sledi A_2)\inn(A_1\sledi A_3)\sledi(A_2\sledi A_3)$$
+
+Pri določilu $A_1(d) = 0$, $A_2(d) = 1$, $A_3(d) = 0$ je ta implikacija nepravilna!
+(Ne mislim, sem, ne sklepam.)
+Torej je sklepanje napačno.
+
+\bigskip
+
+\begin{problem}[Sklepanje]
+Ali je naslednje sklepanje pravilno?
+
+Dojenčki se obnašajo nelogično. Kdor je sposoben ukrotiti krokodila, je spoštovanja vreden.
+Kdor se obnaša nelogično, ni spoštovanja vreden. Sklep: Dojenčki niso sposobni ukrotiti krokodila.
+\end{problem}
+
+\textbf{Rešitev:}
+
+$A_1$: Sem dojenček.
+
+$A_2$: Obnašam se nelogično.
+
+$A_3$: Sposoben sem ukrotiti krokodila.
+
+$A_4$: Vreden sem spoštovanja.
+
+$(A_1\sledi A_2)\inn (A_3\sledi A_4) \inn (A_2\sledi \neg A_4)\sledi (A_1\sledi \neg A_3)$
+
+Pa recimo, da je sklep napačen. Tedaj obstaja določilo $d$, da velja
+\begin{enumerate}[(1)]
+  \item $(A_1(d)\sledi \neg A_3(d)) = 0$
+  \item $(A_1(d)\sledi A_2(d)) = 1$
+  \item $(A_3(d)\sledi A_4(d)) = 1$
+  \item $(A_2(d)\sledi \neg A_4(d)) = 1$
+\end{enumerate}
+Torej je, zaradi (1), $A_1(d) = 1$ in $A_3(d) = 1$. Zaradi (2) je $A_2(d) = 1$.
+Zaradi (4) je $A_4(d) = 0$. To pa je protislovje s (3).
+
+Torej je sklepanje pravilno.\qed
 
 % 8. in 9. predavanje, 4 ure (Istvan), 7. in 8. 11. 2012
 
@@ -3044,6 +3212,78 @@ Ta aksiom bomo podrobno obravnavali v poglavju 2.5.
 
 Nekatere aksiome oz.~aksiomske sheme, in sicer 2., 3.~in 6.~z zgornjega seznama, je moč izpeljati iz preostalih 7 aksiomov.
 
+\section{Pregled najpomembnejših pojmov in nekaj nalog}
+
+Ključni pojmi:
+\begin{itemize}
+  \item Relacija pripadnosti. Enakost množic.
+  \item Presek in unija družine množic. Distributivnost. Razlika dveh množic, komplement.
+  \item Podmnožica, relacija inkluzije. Prava podmnožica. Prazna množica.
+  \item Russellova antinomija.
+  \item De Morganova zakona, princip dualnosti.
+  \item Potenčna množica. Kartezični produkt.
+\end{itemize}
+
+\begin{problem}[Enakost množic]
+Katere naslednjih množic so med seboj enake?
+$$\{r,s,t\}, \{t,r,s,t\}, \{s,s,r,r,t\}, \{t,s,r\}$$
+\end{problem}
+
+Odgovor: Vse.
+
+\bigskip
+\begin{problem}
+Ali obstajajo take množice $A, B, C$, da velja $B\neq C$ in $A\cap B = A\cap C$?
+\end{problem}
+
+Odgovor: Da: lahko vzamemo npr.~$A = \emptyset$ in poljubni različni množici $B\neq C$
+(potem bo namreč $A\cap B = A\cap C = \emptyset$).
+
+Ali pa: $A = \{1,2\}, B = \{2,3\}, C = \{2,4\}$.
+
+
+\begin{problem}
+Dana je množica $A$. Poišči vse množice $B$, za katere velja
+$A\backslash B = B\backslash A$.
+\end{problem}
+
+\textbf{Rešitev:}
+
+\textbf{1.~ način}:
+
+Očitno je
+$(A\backslash B) \cap (B\backslash A)=\emptyset$.
+Ob upoštevanju predpostavke $A\backslash B = B\backslash A$
+zveza
+$(A\backslash B) \cap (B\backslash A)=\emptyset$
+postane
+$A\backslash B =\emptyset$
+in $B\backslash A =\emptyset$, kar pomeni
+$A\subseteq B$ in $B\subseteq A$. Torej je $B = A$.\qed
+
+\textbf{2.~ način}:
+
+$A\backslash B = B\backslash A \sledi(A\cap B)\cup (A\backslash B) = (B\cap A)\cup (B\backslash A) \sledi A = B$.\qed
+
+\begin{problem}
+Drži ali ne drži?
+
+Za poljubne množice $A$, $B$ in $C$ velja:
+$$A\cup (B\times C) = (A\cup B)\times (A\cup C)\,.$$
+\end{problem}
+
+Ne drži. Že zato, ker množica na levi strani ni nujno kartezični produkt dveh množic.
+
+Zgled: $A = \{1\}, B = C = \emptyset$.
+
+\medskip
+\textbf{Domača naloga:}
+Poišči neprazne množice $A$, $B$ in $C$, za katere velja
+$A\cup (B\times C) = (A\cup B)\times (A\cup C)\,.$ Pri tem si lahko pomagaš z ekvivalenco
+$A\cup (B\times C) = (A\cup B)\times (A\cup C)\cee A\subseteq B\cap C\cap (B\times C)$.
+
+Poišči še neprazne množice $A$, $B$ in $C$, za katere velja
+$A\cap (B\times C) = (A\cap B)\times (A\cap C)\,.$
 
 
 \chapter{Relacije}
@@ -3909,7 +4149,7 @@ Slike se takole obnašajo glede na unije in preseke:
 
 % 15. predavanje, 2 uri, 6. 12. 2011
 
-\section{Inverzna relacija, praslike}
+\subsection{Inverzna relacija, praslike}
 
 \bigskip
 \textbf{ Inverzna relacija:}
@@ -4001,7 +4241,7 @@ Posebno zanimiv primer nastane, ko je funkcija $f$ ne samo injektivna, ampak tud
 %
 %\bigskip
 
-\section{Kompozitum funkcij}
+\subsection{Kompozitum funkcij}
 
 Naj bosta $f$ in $g$ parcialni funkciji. Tedaj velja
 $$g\circ f = \{(x,z);(\exists y)((x,y)\in f\inn (y,z)\in g)\}$$
@@ -4055,7 +4295,7 @@ $f|_U = \{(1,2),(2,4)\}$
 Če je funkcija $g$ zožitev funkcije $f$, pravimo, da je funkcija $f$ {\em razširitev} funkcije $g$.
 
 %konec predavanj 22.11
-\section{Kanonična dekompozicija funkcije}
+\subsection{Kanonična dekompozicija funkcije}
 
 Dana je funkcija $f:A{\to} B$.
 Vpeljimo na množici $A$ naslednjo relacijo $R$:
@@ -4156,7 +4396,7 @@ Identična preslikava $i:\{2,4\}\to\{2,4,6\}$: $i(2) = 2$, $i(4) = 4$.
 \end{center}
 
 \newpage
-\subsection{Strukture urejenosti}
+\section{Strukture urejenosti}
 
 {\em Poleg ekvivalenčnih relacij in funkcij so v matematiki posebno pomembne tudi relacije, ki ustvarjajo med elementi dane množice \underline{red} ali \underline{urejenost}. Red je lahko bolj ali manj strog, zato imamo opravka z različnimi strukturami urejenosti. Kot bomo videli, te strukture urejenosti tvorijo hierarhijo in so tudi same po svoje urejene.}
 
@@ -4341,7 +4581,7 @@ ki je linearno ali strogo linearno urejena
 \includegraphics[height=40mm]{Hasse1.eps}
 \end{center}
 
-\section*{Mreža}
+\subsection{Mreža}
 
 Struktura {\em mreže} je delna urejenost s posebej lepimi lastnostmi. Da bi jo definirali, potrebujemo nekaj definicij.
 
@@ -4550,17 +4790,1815 @@ Množica realnih števil $\mathbb{R}$ ni polna mreža glede na $\le$: cela množ
 
 Množico realnih števil lahko dopolnemo do polne mreže, tako da ji dodamo elementa $\infty$ in $-\infty$, s pravilom $x\le \infty$ za vse $x\in \mathbb R$ in $-\infty\le x$ za vse $x\in \mathbb R$.
 
-------------------------------
+Slika \ref{fig:hasse9} prikazuje Hassejev diagram $9$ struktur urejenosti, ki smo jih spoznali. 
 
-Hassejev diagram $9$ struktur urejenosti, ki smo jih spoznali:
-
+\begin{figure}
+    \centering
+    \includegraphics[height=50mm]{strukture3.eps}
+    \caption{Hassejev diagram $9$ struktur urejenosti, ki smo jih spoznali. Relacijo interpretiramo kot: $xRy\cee$ $x$ je poseben primer $y$.}
+    \label{fig:hasse9}
+\end{figure}
 \begin{center}
-\includegraphics[height=50mm]{strukture3.eps}
+
 \end{center}
 
-$x$ je pod $y$ $\cee$ $x$ je poseben primer $y$.
+
 
 %next:dobra urejenost
+
+
+\subsection{Dobra urejenost}
+
+Prav tako kakor množica realnih števil $\mathbb{R}$ je tudi množica naravnih števil $\mathbb{N}$
+ z relacijo "$<$"~strogo linearno urejena.
+Ima pa še dodatno lastnost:
+
+{\em V vsaki neprazni podmnožici naravnih števil obstaja najmanjši element!}
+
+Primer:
+\begin{itemize}
+  \item V množici vseh naravnih števil je tak element kar element 0.
+  \item V množici vseh praštevil je najmanjši element število 2.
+\end{itemize}
+Množica realnih števil pa take lastnosti nima!
+\begin{itemize}
+  \item množica $\mathbb{R}$ nima najmanjšega elementa
+  \item množica $\{x~;~x\in \mathbb{R} \inn x> 0\}$ tudi ne
+\end{itemize}
+
+\bigskip
+Lastnosti, da ima vsaka neprazna množica najmanjši element, pravimo {\em dobra urejenost}.
+
+\bigskip
+$R$ -- relacija na množici $S$ (običajno delna ali stroga delna urejenost)
+\begin{itemize}
+  \item $a\in S$ je {\em minimalen element} množice $S$ glede na relacijo $R$ (ali {\em $R$-minimalen element} množice $S$) $\cee$ $(\forall y)(y\in S\inn y\neq a\sledi \neg (yRa))$
+  \item $b\in S$ je {\em prvi element} množice $S$ glede na relacijo $R$ (ali {\em $R$-prvi element} množice $S$) $\cee$ $(\forall y)(y\in S\inn y\neq b\sledi bRy)$
+\end{itemize}
+
+\bigskip
+Spomnimo se terminologije:
+
+$xRy$ in $x\neq y$: ``$x$ je pod $y$''
+
+\medskip
+\emph{Noben element množice $S$ ni pod minimalnim elementom.}
+
+\emph{Prvi element je pod vsakim drugim elementom.}
+
+\begin{itemize}
+  \item Vsak element, ki ni primerljiv z nobenim drugim, je minimalen.
+\end{itemize}
+
+\bigskip
+\textbf{Zgled -- prvi in minimalni elementi}
+
+Delni urejenosti $R$ in $T$ sta podani z naslednjima Hassejevima diagramoma:
+
+\begin{center}
+\includegraphics[height=60mm]{Hasse2.eps}
+\end{center}
+
+\medskip
+
+\begin{trditev}
+Naj bo $R$ antisimetrična. Potem je vsak $R$-prvi element tudi $R$-minimalen.
+\end{trditev}
+
+\begin{proof}
+S protislovjem. Recimo, da obstaja nek  $R$-prvi element $b$, ki ni
+$R$-minimalen.
+
+$b$ ni $R$-minimalen:
+
+$\neg(\forall y)(y\in S\inn y\neq b\sledi \neg (yRb))$
+
+$\sledi(\exists y)(y\in S\inn y\neq b\inn yRb)$
+
+Ker je $b$ $R$-prvi, velja $bRy$. Ker pa je $R$ antisimetrična, iz $bRy\inn yRb$ sledi $y = b$. To pa je protislovje z dejstvom
+$y \neq b$.
+\end{proof}
+
+\newpage
+
+\begin{trditev}
+Naj bo $R$ sovisna. Potem je vsak $R$-minimalen element tudi $R$-prvi.
+\end{trditev}
+
+\begin{proof}
+$x$ je $R$-minimalen za $S$ $\sledi (\forall y)(y\in S\inn y\neq x\sledi \neg (yRx))$
+
+Sovisnost: $y\neq x\inn \neg (yRx)\sledi xRy$
+
+Posledično:
+$(\forall y)(y\in S\inn y\neq x\sledi xRy)$
+
+Torej je $x$ $R$-prvi element.
+\end{proof}
+
+
+\begin{definicija}
+$R \textrm{ {\em dobro ureja }} S \cee R \textrm{ je sovisna, irefleksivna in }$
+
+~~~~~$(\forall X)(X\subseteq S\inn X\neq\emptyset\sledi X \textrm{ ima $R$-minimalen element})$
+\end{definicija}
+
+\begin{trditev}
+$R$ dobro ureja $S$ $\sledi$ $R$ strogo linearno ureja $S$.
+\end{trditev}
+
+\begin{proof}
+Pokazati je treba, da je $R$ tranzitivna, asimetrična in sovisna.
+
+Sovisnost sledi iz definicije dobre urejenosti.
+
+Asimetričnost: Recimo, da velja $xRy$ in $yRx$. Ker je $R$ irefleksivna, je $y\neq x$.
+Potem pa množica $\{x,y\}$ nima $R$-minimalnega elementa:
+\begin{itemize}
+  \item $xRy\sledi y$ ni $R$-minimalen
+  \item $yRx\sledi x$ ni $R$-minimalen
+\end{itemize}
+$R$ je torej asimetrična.
+
+Tranzitivnost dokažemo podobno: Recimo, da velja
+$$xRy\inn yRz\inn \neg(xRz)\,.$$
+Ker je $R$ irefleksivna, sledi $x\neq y$ in $y\neq z$.
+Če je $x = z$, potem velja $xRy\inn yRx$, kar je v protislovju z asimetričnostjo (ki smo jo že dokazali).
+Torej $x\neq z$.
+Množica $\{x,y,z\}$ ima $R$-minimalen element, vendar:
+\begin{itemize}
+  \item ta element ni $y$, saj velja $xRy \inn x\neq y$,
+  \item ta element ni $z$, saj velja $yRz \inn y\neq z$.
+\end{itemize}
+Sledi: $R$-minimalen element množice $\{x,y,z\}$ je $x$.
+Ker $z\neq x$, iz sovisnosti in $\neg(xRz)$ sledi $zRx$.
+To pa je protislovje z dejstvom, da je $x$ minimalen element.
+$R$ je torej tranzitivna.
+\end{proof}
+
+Iz zgornjih trditev sledi:
+
+\begin{posledica}
+Naj $R$ dobro ureja $S$. Potem za vse $x\in S$ velja:
+$$x \textrm{ je } R\textrm{-prvi } \cee x \textrm{ je } R\textrm{-minimalen}\,.$$
+\end{posledica}
+
+Velja tudi enoličnost:
+
+\begin{trditev}
+Naj relacija $R$ dobro ureja neprazno množico $X$. Potem v množici $X$ eksistira {\em en sam} $R$-prvi (ali $R$-minimalen) element.
+\end{trditev}
+
+\begin{proof}
+Recimo, da obstajata dva različna $R$-prva elementa $x$ in $y$.
+Potem velja $xRy$ (ker je $x$ $R$-prvi in $x\neq y$) in podobno $yRx$.
+To pa je protislovje z asimetričnostjo!
+\end{proof}
+
+\bigskip
+Glede na zgornje trditve lahko dobro urejenost definiramo tudi s pomočjo $R$-prvih elementov:
+
+\begin{posledica}
+$R$ dobro ureja $S$ natanko takrat, ko je $R$ sovisna, asimetrična in velja:
+
+$(\forall X)(X\subseteq S\inn X\neq\emptyset\sledi X$ ima $R$-prvi element).
+\end{posledica}
+
+
+Pojem dobre urejenosti je pomemben zato, ker posploši urejenost $<$ na množici naravnih števil. Tudi princip popolne indukcije se da posplošiti na dobro urejene množice (to je t.i.~{\em transfinitna indukcija}).
+
+%\bigskip
+%Z relacijo dobre urejenosti sta povezana tudi dva pojma, dobro znana v primeru relacije $<$ na množici naravnih števil.
+
+% 18. predavanje, 2 uri (vljučno s kvizom), 14. 12. 2011
+
+\subsection*{Neposredni naslednik. Zadnji element.}
+
+V naravnih številih, urejenih glede na relacijo ``$<$", ima vsako število svojega (enolično določenega) neposrednega naslednika. Kaj pa karakterizira neposrednega naslednika $y$ danega števila $x$?
+\begin{itemize}
+  \item $x<y$
+  \item za vsako drugo naravno število $z$, za katerega je tudi $x<z$, mora veljati hkrati $y<z$.
+\end{itemize}
+
+\medskip
+Naj relacija $R$ dobro ureja množico $S$. Element $y$ je {\em neposredni naslednik} elementa $x$ $\cee$ $xRy$ in $(\forall z)(z\in S\inn z\neq y\inn xRz\sledi yRz)$.
+
+\bigskip
+Vsaka končna neprazna podmnožica naravnih števil ima poleg prvega tudi {\em zadnji element}.
+To je pač tisto število te množice, imenujmo ga $x$, s katerim je vsako drugo število $y$ v relaciji $y<x$.
+
+\medskip
+Definicijo posplošimo:
+
+Naj $R$ dobro ureja $S$ in naj bo $X\subseteq S$. Element $x\in X$ je {\em $R$-zadnji element} množice $X$ $\cee$ $(\forall y)(y\in X\inn y\neq x\sledi yRx)$.
+
+\bigskip
+
+%konec predavanj 13.12. (kviz 4)
+\begin{trditev}
+Naj $R$ dobro ureja $S$ in naj bo $x\in S$. Če $x$ ni $R$-zadnji element množice $S$, potem ima $x$ natanko enega neposrednega naslednika.
+\end{trditev}
+
+\begin{proof}
+Oglejmo si množico
+$$X = \{z~;z\in S\inn xRz\}\,.$$
+
+Ker $x$ ni $R$-zadnji, je množica $X$ neprazna.
+
+Množica $X$ ima zato natanko en $R$-prvi element $y$.
+
+Dokažimo, da je $y$ neposredni naslednik $x$:
+\begin{itemize}
+  \item Ker je $y\in X$, je $xRy$.
+  \item Če pa je $z\in S$ tak element, da je $xRz$ in $z\neq y$, potem je
+$yRz$ (ker je $z\in X$ in je $y$ $R$-prvi element množice $X$).
+\end{itemize}
+
+$y$ je tudi edini neposredni naslednik elementa $x$:
+
+Recimo, da obstaja $z\neq y$, ki je neposredni naslednik elementa $x$.
+Ker je $xRz$, je $z\in X$.
+
+Ker je $y$ $R$-prvi element množice $X$, $z\in X\inn z\neq y$,
+je tudi $yRz$.
+
+To pa je protislovje z definicijo neposrednega naslednika $x$.
+\end{proof}
+
+Definiciji neposrednega naslednika in $R$-zadnjega elementa lahko vpeljemo tudi za splošne delno urejene in strogo delno urejene množice. Vendar analog zgornje trditve v splošnem ne drži:
+
+\begin{center}
+\includegraphics[height=40mm]{Hasse3.eps}
+\end{center}
+
+Tudi v strogo linearno urejenih množicah se lahko zgodi, da nek element nima nobenega neposrednega naslednika.
+V množici realnih števil $\mathbb{R}$ število $0$ (kot tudi katerokoli drugo realno število) nima nobenega neposrednega naslednika glede na relacijo ``$<$'' (čim je $0<y$, za število $z = y/2$ velja $z\neq y$, $0<z$, vendar pa $\neg(y<z)$).
+Podobno velja tudi za relacijo ``$<$'' na množici racionalnih števil $\mathbb{Q}$.
+% in za relacijo ``$\le$'' na $\mathbb{R}$ ali $\mathbb{Q}$.
+
+\medskip
+Pojem neposrednega predhodnika definiramo podobno kot pojem neposrednega naslednika.
+Vendar pa analogna trditev za dobro urejenost $R$, ki pravi, da ima vsak element $x$, ki ni $R$-prvi, natanko enega neposrednega predhodnika, ne drži!
+
+\bigskip
+\zgled
+Naj bo $S = \mathbb{N}\cup\{\infty\}$. Za $R$ pa vzemimo običajno urejenost $<$ na $\mathbb{N}$, razširjeno s pravilom $n<\infty$ za vse $n\in \mathbb{N}$. Tedaj $R$ dobro ureja $S$. Vendar pa element $\infty$ nima nobenega neposrednega predhodnika.\kz
+
+
+Zaključimo poglavje o strukturah urejenosti s Hassejevim diagramom $10$ struktur urejenosti, ki smo jih spoznali.
+Ob vsaki strukturi je naveden zgled modela strukture.
+
+\begin{center}
+\includegraphics[width=\linewidth]{strukture2.eps}
+~~\\
+$x$ je pod $y$ $\cee$ $x$ je poseben primer $y$
+\end{center}
+
+\section{Pregled najpomembnejših pojmov in nekaj nalog}
+
+
+\subsection{(Binarne) relacije}
+
+Ključni pojmi:
+\begin{itemize}
+  \item Binarne relacije:
+  $R = \{(x,y) ; xRy \}\subseteq S\times S$.
+  \item Unija, presek, razlika relacij.
+  \item Domena binarne relacije, zaloga vrednosti binarne relacije.
+  \item Inverzna relacija. Kompozitum relacij.
+\item Refleksivnost, irefleksivnost, simetričnost, asimetričnost, antisimetričnost, tranzitivnost, intranzitivnost,
+sovisnost, stroga sovisnost.
+\item Ekvivalenčna relacija. Faktorska množica $S/R$.
+\end{itemize}
+
+\begin{problem}
+V množico $A = \{a, b, c, d, e, f \}$ vpeljemo relaciji
+$R = \{(a, c), (a, d), (d, e), (e, a)\}$ in
+$S = \{(a, c), (a, f), (d, c), (f, d)\}$ .
+
+(a) Ali je relacija $(R\circ R)\cap S$ irefleksivna?
+
+(b) Ali je relacija $S\circ R$ sovisna?
+
+(c) Ali je relacija $S\cup (S\circ S)$ tranzitivna?
+
+(d) Ali je relacija $S^{-1}\cup R$ simetrična?
+\end{problem}
+
+\textbf{Rešitev:}
+
+(a)
+$R\circ R = \{(a,e), (d,a), (e,c), (e,d)\}$.
+
+Sledi
+$(R\circ R)\cap S = \emptyset$. To pa je irefleksivna relacija.
+
+(b) $S\circ R = \{(a,c), (e,c), (e,f)\}$
+
+Ta relacija ni sovisna, saj $(a,b)\not\in S\circ R$
+$(b,a)\not\in S\circ R$.
+
+(c)
+$S\circ S = \{(a,d), (f,c)\}$.
+
+$S\cup (S\circ S)= \{(a, c), (a,d), (a, f), (d, c), (f, d), (f,c)\}$ .
+
+Ta relacija je tranzitivna, saj velja $x(S\cup (S\circ S))y\inn
+y(S\cup (S\circ S))z\sledi x(S\cup (S\circ S))y$.
+
+(d)
+$S^{-1} = \{(c, a), (f, a), (c, d), (d, f)\}$ .
+
+$S^{-1}\cup R = \{(c, a), (f, a), (c, d), (d, f),
+(a, c), (a, d), (d, e), (e, a)\}$ .
+
+Relacija ni simetrična, saj je $(f,a)\in S^{-1}\cup R$ in $(a,f)\not\in S^{-1}\cup R$.
+\qed
+
+
+\subsection{Funkcije}
+
+Ključni pojmi:
+\begin{itemize}
+  \item funkcija = enolična binarna relacija:
+  $$(\forall x)(\forall y)(\forall z)(xRy\inn xRz\sledi y = z)\,.$$
+  \item Surjektivnost. Injektivnost. Slika podmnožice $U$ pri preslikavi $f$.
+%  \item Osnovne lastnosti slik.
+  \item Inverzna relacija funkcije. Praslike.
+  \item Kompozitum funkcij.
+  \item Zožitve in razširitve.
+  \item Kanonična dekompozicija funkcije.
+\end{itemize}
+
+\begin{problem}
+Naj bo $A = \{1,2,3,4\}$, $B = \{x,y,z\}$, $C = \{a,b\}$.
+
+Dani sta funkciji $f:A\to B$ in $g:B\to C$.
+$$f = \{(1,x),(2,y),(3,y),(4,x)\}$$
+
+$$g = \{(x,a),(y,b),(z,b)\}$$
+
+(a) Ali je $f$ injektivna?
+
+(b) Ali je $f$ surjektivna?
+
+(c) Ali je $g$ injektivna?
+
+(d) Ali je $g$ surjektivna?
+
+(e) Ali je $g\circ f$ surjektivna?
+
+(f) Zapiši množici $f^{-1}(\{x,z\})$ in $g(\{x,z\})$.
+
+%(g) Zapiši kanonično dekompozicijo funkcije $f$.
+\end{problem}
+
+\textbf{Rešitev:}
+
+(a) Ne, saj je $f(1) = f(4)$.
+
+(b) Ne, saj $z\not\in{\cal Z} f$.
+
+(c) Ne, saj je $g(y) = g(z)$.
+
+(d) Da.
+
+(e) $g\circ f = \{(1,a), (2,b), (3,b), (4,a)\}$. Da, $g\circ f$ je surjektivna.
+
+(f) $f^{-1}(\{x,z\}) = \{1,4\}$, $g(\{x,z\}) = \{a,b\}$.
+%
+%(g) $f = i\circ h\circ p$, kjer je:
+%\begin{itemize}
+%  \item $p:\{1,2,3,4\}\to \{1,2,3,4\}/R = \{\{1,4\},\{2,3\}\}$.
+%
+%$p(1) = p(4) = \{1,4\}$, $p(2) = p(3) = \{2,3\}$.
+%  \item $h:\{\{1,4\},\{2,3\}\}\to \{x,y\}$
+%
+%$h(\{1,4\}) = x$, $h(\{2,3\}) = y$.
+%  \item $i:\{x,y\}\to \{x,y,z\}$
+%
+%$i(x) = x$, $i(y) = y$.
+%\end{itemize}
+
+\subsection{Strukture urejenosti}
+Ključni pojmi:
+\begin{itemize}
+\item Tranzitivnost, navidezna urejenost, šibka urejenost, delna urejenost,
+linearna urejenost, stroga delna urejenost, stroga linearna urejenost.
+\item Dobra urejenost. Mreža. Polna mreža.
+\item Hassejev diagram.
+\item $R$-prvi element. $R$-minimalni element. Neposredni naslednik. Zadnji element.
+\item $R$-spodnja meja, $R$-zgornja meja, $R$-navzdol omejena množica, $R$-navzgor omejena
+množica, $R$-omejena množica, $R$-infimum (največja spodnja meja),
+$R$-supremum (najmanjša zgornja meja).
+\end{itemize}
+
+\begin{problem}
+Množica $S=\{1,\ldots,5\}$ je strogo delno urejena z naslednjo relacijo $R$:
+\begin{center}
+\includegraphics[width=30mm]{hasse5.eps}
+\end{center}
+
+(a) Zapišite vse urejene pare, ki tvorijo relacijo $R$.
+
+(b) Poiščite vse minimalne in maksimalne elemente.
+
+(c) Ali ima množica $S$ prvi element? Ali ima množica $S$ zadnji element?
+
+(d) Ali je množica $S$ dobro urejena?
+\end{problem}
+
+\textbf{Rešitev:}
+
+(a) $R = \{(5,2),(5,1),(4,2),(4,1),(5,3),(4,1),(2,1),(3,1)\}$.
+
+(b) Noben element ni pod elementoma 4 in 5, torej sta 4 in 5 minimalna elementa.
+Maksimalen element pa je samo eden: 1.
+
+(c) Množica $S$ nima prvega elementa. Elementa 4 in 5 sta sicer minimalna, vendar nobeden
+od njiju ni pod drugim. Množica $S$ pa ima zadnji element: to je element 1, saj so vsi drugi elementi
+pod njim.
+
+(d) Ne, saj ni sovisna: Elementa 2 in 3 nista primerljiva: $(2,3)\not\in R$, $(3,2)\not\in R$.\qed
+
+\bigskip
+\textbf{Opomba:} \emph{Naj relacija $R$ strogo delno ureja množico $S$.
+Tedaj je $x\in S$ minimalni element natanko tedaj, ko $x\not\in {\cal Z}R$.}
+
+\emph{(${\cal Z}R$ = zaloga vrednosti relacije $R$ = množica vseh drugih koordinat).}
+
+\emph{$x\in S$ pa je maksimalen element natanko tedaj, ko $x\not\in {\cal D}R$.}
+
+\emph{(${\cal D}R$ = domena relacije $R$ = množica vseh prvih koordinat).}
+
+\chapter{Velikost množic}
+{\em Kdaj imata dve končni množici enako mnogo elementov?
+
+Odstranimo iz vsake množice po en element in postopek ponavljamo. Množici
+imata enako mnogo elementov natanko tedaj, kadar se pri tem postopku sočasno ``izčrpata".
+Na ta način smo poiskali bijektivno preslikavo med množicama.}
+\section{Ekvipolentne množice}
+
+Množica $A$ je {\em ekvipolentna} množici $B$ natanko takrat, ko obstaja vsaj ena bijektivna preslikava
+množice $A$ na množico $B$.
+
+Oznaka: $$A\sim B\,.$$
+
+Pravimo tudi, da imata množici $A$ in $B$ isto moč.
+
+\bigskip
+
+\zgled
+
+$2\mathbb{N} = \{0,2,4,\ldots\}$,~~~~~$\mathbb{N} = \{0,1,2,\ldots\}$
+
+$f: 2\mathbb{N} \to \mathbb{N}$, $f(2n) = 2n$, ni bijektivna preslikava.
+
+$g: 2\mathbb{N} \to \mathbb{N}$, $g(2n) = n$, pa je! Torej sta množici ekvipolentni.\kz
+
+\bigskip
+
+\zgled
+
+Dana je množica $X$. Naj bo $\{0,1\}^X$ množica vseh funkcij oblike $f: X\to \{0,1\}$.
+Potem je $\{0,1\}^X\sim {\cal P}(X)$.
+
+Res:
+Oglejmo si preslikavo
+$F:\{0,1\}^X\to {\cal P}(X)$, definirano s predpisom
+$$F(f) = f^{-1}(1) = \{x\in X\,:\,f(x) = 1\}$$
+za vse $f\in \{0,1\}^X$.
+Preslikava $F$ je bijektivna preslikava množice $\{0,1\}^X$ na množico ${\cal P}(X)$:
+\begin{itemize}
+  \item injektivnost:
+
+Pokazali bomo $(\forall f,g\in \{0,1\}^X)(f\neq g\sledi F(f)\neq F(g))$.
+
+Vzemimo različni funkciji $f$ in $g$ iz $\{0,1\}^X$. Ker velja ${\cal D}f = {\cal D}g = X$, funkciji pa sta različni,
+obstaja tak $x\in X$, da velja $f(x) \neq g(x)$.
+
+Če je $f(x) = 1$, potem je $g(x) = 0$ in je $x\in f^{-1}(1) \setminus g^{-1}(1) = F(f)\brez F(g)$, torej $F(f)\neq F(g)$.
+
+Če pa je $f(x) = 0$, potem je $g(x) = 1$ in je $x\in g^{-1}(1) \setminus f^{-1}(1) = F(g)\brez F(f)$, torej spet $F(f)\neq F(g)$.
+
+V vsakem primeru je torej $F(f) \neq F(g)$.
+
+  \item surjektivnost:
+
+  Naj bo $A\in {\cal P}(X)$. Tedaj je očitno $F(\chi_A) = A$, kjer je ${\chi_A}:X\to \{0,1\}$, \textbf{karakteristična funkcija}
+  množice $A$, definirana s predpisom
+  $$\chi_A(x) = \left\{
+  \begin{array}{ll}
+              1, & \hbox{če je $x\in A$;} \\
+              0, & \hbox{če je $x\not\in A$.}
+            \end{array}
+          \right.$$
+\end{itemize}\kz
+%Naj bo $A$ poljubna podmnožica množice $X$. Oglejmo si preslikavo
+%$f:{\cal P}(X)\to \{0,1\}^X$, definirano s predpisom
+%$$f(A) = \chi_A\,,$$
+%kjer je $\chi_A:X\to \{0,1\}$ karakteristična funkcija množice $A$:
+%$$\chi_A(x) = \left\{
+%            \begin{array}{ll}
+%              1, & \hbox{če je $x\in A$;} \\
+%              0, & \hbox{če je $x\not\in A$.}
+%            \end{array}
+%          \right.$$
+%Preslikava $f$ je bijektivna preslikava množice ${\cal P}(X)$ na množico $\{0,1\}^X$:
+%\begin{itemize}
+%  \item injektivnost:
+%
+%Pokazali bomo $A\neq B\sledi f(A)\neq f(B)$.
+%
+% Če sta $A$ in $B$ različni podmnožici množice $X$, potem obstaja $x\in (A\brez B)\cup(B\brez A)$.
+%
+%Če je $x\in A\brez B$, potem je $\chi_A(x) = 1\neq 0 = \chi_B(x)$.
+%
+%Če pa je $x\in B\brez A$, potem je $\chi_A(x) = 0\neq 1 = \chi_B(x)$.
+%
+%V vsakem primeru je torej $f(A)\neq f(B)$.
+%
+%  \item surjektivnost:
+%
+%  Naj bo $\chi\in \{0,1\}^X$. Definirajmo $A = \{x~;~x\in X$ in $\chi(x) = 1\}$.
+%
+%Tedaj je očitno $A\in {\cal P}(X)$ in $\chi = \chi_A = f(A)$.
+%\end{itemize}
+
+\subsection*{Lastnosti ekvipolentne relacije}
+\begin{itemize}
+  \item $A\sim A$ {\em (refleksivnost)}
+
+  (identiteta $i:A\to A$ je bijektivna)
+  \item $A\sim B\sledi B\sim A$ {\em (simetričnost)}
+
+  (inverz bijektivne preslikave je bijektivna preslikava!
+
+   Če je $f:A\overset{bij.}{\to}B$, potem je
+  $f^{-1}:B\overset{bij.}{\to}A$)
+
+  \item $A\sim B$ in $B\sim C\sledi A\sim C$ {\em (tranzitivnost)}
+
+  (Kompozitum bijektivnih preslikav je bijektivna preslikava!
+
+  Če je $f:A\overset{bij.}{\to}B$ in $g:B\overset{bij.}{\to}C$, potem je
+  $g\circ f:A\overset{bij.}{\to}C$)
+\end{itemize}
+
+Relacija ekvipolence $\sim$ je torej {\em ekvivalenčna relacija}!
+
+\bigskip
+
+\framebox{$A\sim B$ in $C\sim D$ in $A\cap C = \emptyset$ in $B\cap D = \emptyset$
+$\sledi$ $A\cup C\sim B\cup D$}
+
+\begin{proof}
+Naj bo $f:A\overset{bij.}{\to}B$ in $g:C\overset{bij.}{\to}D$.
+
+Definirajmo $h:A\cup C\to B\cup D$ s predpisom
+$$h(x) = \left\{
+          \begin{array}{ll}
+            f(x), & \hbox{če je $x\in A$;} \\
+            g(x), & \hbox{če je $x\in C$.}
+          \end{array}
+        \right.$$
+Preslikava $h$ je bijektivna preslikava množice $A\cup C$ na množico $B\cup D$,
+vsak element iz množice $B\cup D$ je namreč slika natanko enega elementa iz množice $A\cup C$.
+\end{proof}
+
+%\bigskip
+%$-----------------$
+\bigskip
+% 22. predavanje, 2 uri, 4. 1. 2012, 5. kviz 20'
+
+\framebox{$A\sim B$ in $C\sim D$
+$\sledi$ $A\times C\sim B\times D$}
+
+\begin{proof} Naj bo $f:A\overset{bij.}{\to}B$ in $g:C\overset{bij.}{\to}D$.
+
+Definirajmo $h:A\times C\to B \times D$ s predpisom
+$$h(x,y) = (f(x),g(y))\,.$$
+
+Preslikava $h$ je bijektivna preslikava množice $A\times C$ na množico $B\times D$:
+\begin{itemize}
+  \item injektivnost:
+
+  $h(x,y) = h(x',y')\sledi
+  (f(x),g(y)) = (f(x'),g(y')) \sledi f(x) = f(x')$ in $g(y) = g(y')$
+
+  $\sledi x = x'$ in $y = y' \sledi (x,y) = (x',y')$
+  \item surjektivnost:
+
+  Naj bo $(b,d)\in B\times D$. Ker sta $f$ in $g$ surjektivni, obstajata taka elementa $a\in A$
+  in $c\in C$, da velja $f(a) = b$ in $g(c) = d$. Torej je $(b,d) = (f(a),g(c)) = h(a,c)$.
+\end{itemize}
+\end{proof}
+
+%\bigskip
+%$-----------------$
+\bigskip
+
+\newpage
+\framebox{$A\times B\sim B\times A$}
+
+
+\begin{proof} Definirajmo  $f:A\times B\to B\times A$ s predpisom
+$$f(x,y) = (y,x)\,.$$
+
+Preslikava $f$ je bijektivna:
+\begin{itemize}
+  \item injektivnost:
+
+  $f(x,y) = f(x',y') \sledi (y,x) = (y',x') \sledi y = y'$ in $x = x'$ $\sledi (x,y) = (x',y')$.
+
+  \item surjektivnost: $(b,a)\in B\times A$ je slika elementa $(a,b)$.
+\end{itemize}
+\end{proof}
+
+Brez dokaza navedimo še nekaj lastnosti:
+\begin{enumerate}
+  \item $(A\times B)\times C\sim A\times (B\times C)$.
+  \item $A\times \{a\}\sim A$.
+  \item Poljubnima dvema množicama $X$ in $Y$ lahko vedno priredimo dve {\em disjunktni} množici
+  $U$ in $V$, tako da velja $X\sim U$ in $Y\sim V$.
+
+  Res: $U = X\times\{\emptyset\}$, $V = Y\times\{\{\emptyset\}\}$.
+  \item Spomnimo se, da s simbolom $A^B$ označujemo množico vseh funkcij iz množice $B$ v množico $A$.
+
+  $A\sim C$ in $B\sim D$ $\sledi$ $A^B\sim C^D$.
+%  \item $(A\times B)^C\sim A^C\times B^C$.
+%  \item $(A^B)^C\sim A^{B\times C}$.
+\end{enumerate}
+
+\textbf{Domača naloga:} Dokažite lastnosti 1. in 2.
+
+\textbf{V razmislek:} Kako bi dokazali 4.~lastnost?
+
+%začetek predavanj, 7.1.2019
+
+\section{Primerljivost množic}
+Ali bi lahko nad množicami definirali relacije, podobne relacijam
+$\le , <, \ge, >$? Ali je možno množice smiselno primerjati med seboj
+glede na množino njihovih elementov?
+
+\bigskip
+Naj bosta $A$ in $B$ poljubni množici. V poštev pridejo naslednje štiri logične možnosti:
+\begin{enumerate}[(1)]
+  \item Množica $A$ ima vsaj eno podmnožico $A_1$, ki je ekvipolentna množici $B$, množica $B$
+  pa nima nobene podmnožice, ki bi bila ekvipolentna množici $A$.
+  \item Množica $B$ ima vsaj eno podmnožico $B_1$, ki je ekvipolentna množici $A$,
+  množica $A$  pa nima nobene podmnožice, ki bi bila ekvipolentna množici $B$.
+  \item Množica $A$ ima vsaj eno podmnožico $A_1$, ki je ekvipolentna množici $B$,
+  množica $B$
+  pa ima vsaj eno podmnožico $B_1$, ki je ekvipolentna množici $A$.
+  \item Množica $A$ nima nobene podmnožice, ki bi bila ekvipolentna množici $B$,
+  množica $B$ pa nima nobene podmnožice, ki bi bila ekvipolentna množici $A$.
+\end{enumerate}
+
+(1): Pravimo, da ima množica $A$ {\em večjo moč} kot množica $B$.
+
+(2): Množica $B$ ima {\em večjo moč} kot množica $A$.
+
+(1): $A>B$,~~~~~(2): $B>A$
+
+\bigskip
+Neposredno iz definicije sledi, da je relacija $>$
+irefleksivna, asimetrična in tranzitivna (je torej stroga delna urejenost)!
+\begin{itemize}
+  \item $A\ngtr A$
+  \item $A>B\sledi B\ngtr A$
+  \item $A>B$ in $B>C\sledi A> C$
+\end{itemize}
+
+Če je $B>A$, potem zapišemo tudi $A<B$ in pravimo, da ima množica
+$A$ {\em manjšo moč} kot množica $B$.
+$$A<B\cee B>A\,.$$
+
+\bigskip
+Primer (3) obravnava naslednji izrek.
+
+\framebox{\vbox{Schr\"oder-Bernsteinov izrek:$$(3)\sledi A\sim B\,.$$}}
+
+(Dokaz kasneje.)
+
+Komentar: Očitno velja $A\sim B\sledi (3)$.  (Lahko vzamemo kar $A_1 = A$, $B_1 = B$.)
+Schr\"oder-Bernsteinov izrek pa trdi, da velja implikacija tudi v drugo smer.
+
+\bigskip
+Najbolj ``problematičen"~pa je primer (4):
+
+(4): ``$A$ in $B$ nista primerljivi niti glede na relacijo ekvipolence $\sim$
+niti glede na relacijo ``ima večjo moč kot"~$>$"
+
+Brž ko sprejmemo aksiom izbire, pa ta možnost dejansko nikoli ne nastopi!
+
+Aksiom izbire $\sledi$ Od poljubnih dveh množic $A$ in $B$ je vsaj ena izmed njiju ekvipolentna neki podmnožici druge.
+
+(Brez dokaza. Za dokaz glej
+ A.A. Fraenkel: Abstract Set Theory, North-Holland Publishing Company,
+Amsterdam 1953, str.~319--321.)
+
+\bigskip
+\textbf{Zakon trihotomije:}
+
+{\em Poljubni dve množici $A$ in $B$ sta primerljivi glede na njuno moč.
+Velja natanko ena izmed možnosti
+$$A>B,~~B>A~~\textrm{ ali }A\sim B\,.$$}
+
+\medskip
+Velja:
+
+\medskip
+Aksiom izbire $\cee$ zakon trihotomije.
+
+%\bigskip
+%Opomba: videli smo, da je relacija $>$ stroga delna urejenost.
+
+\begin{izrek}[Schr\"oder-Bernsteinov izrek]
+Dani sta množici $A$ in $B$. Naj ima množica $A$ vsaj eno podmnožico $A_1$, ki je ekvipolentna množici $B$, množica $B$ pa vsaj eno podmnožico $B_1$, ki je ekvipolentna množici $A$.
+Potem je $$A\sim B\,.$$
+\end{izrek}
+
+Schr\"oder-Bernsteinov izrek lahko ekvivalentno formuliramo na naslednji način, z obstojem injektivnih in bijektivnih preslikav med množicama.
+
+\begin{izrek}
+Dani sta množici $A$ in $B$.
+Če obstajata injektivni preslikavi $f:A\to B$ in $g:B\to A$, potem obstaja tudi bijektivna preslikava $h:A \to B$.
+\end{izrek}
+
+\begin{proof}
+Obstaja množica $A_1\subseteq A$, da velja $A_1\sim B$.
+
+Obstaja množica $B_1\subseteq B$, da velja $B_1\sim A$.
+
+Naj bosta $f:A\to B_1$ in $g:B\to A_1$ bijekciji.
+
+Poiskali bomo taki podmnožici $A_0\subseteq A$ in $B_0\subseteq B$, da bo
+$f|_{A_0}:A_0\to B_0$ bijekcija in $g|_{B\brez B_0}:B\brez B_0\to A\brez A_0$ bijekcija.
+
+Potem bo sledilo:
+$$A = A_0\cup (A\brez A_0)\sim B_0\cup (B\brez B_0)= B\,,$$
+saj je $A_0\cap (A\brez A_0) = \emptyset$ in
+ $B_0\cap (B\brez B_0) = \emptyset$.
+
+ \medskip
+Priredimo najprej vsaki podmnožici $X$ množice $A$ neko podmnožico $X'$
+množice $A$, in sicer takole:
+
+%Naj bo $X\subseteq A$. Slika $Y = f(X)$ je prava podmnožica množice $B_1$, torej velja
+%$$f(X) = Y\subseteq B_1\subseteq B\,.$$
+%Množica $B\brez Y$ je zato neprazna podmnožica mmnožice $B$.
+%
+%Funkcija $g$ preslika množico $B\brez Y$ na neko neprazno podmnožico $X^*$
+%množice $A_1$, torej na neko pravo neprazno podmnožico množice $A$,
+%$$\emptyset\neq g(B\brez Y) = X^*\subseteq A_1\subseteq A\,.$$
+%Komplement te množice je torej neprazen, označimo ga z $X'$:
+%$$\emptyset\neq A\brez X^*\subseteq A\,.$$
+%$$X' = A\brez X^*\,.$$
+%Povzemimo:
+$$X' = A\brez g(B\brez f(X))\,.$$
+
+%Preverimo, da je $X'$ res prava podmnožica množice $A$:
+%$$X'\subseteq A\cee g(B\brez f(X))\neq \emptyset \cee
+%B\brez f(X)\neq \emptyset \cee f(X)\subseteq B\,,$$
+%to pa drži, saj je $f(X)\subseteq B_1\subseteq B$.
+%
+\medskip
+Velja:
+$$X_1\subseteq X_2\sledi X_1'\subseteq X_2'\,.$$
+Res:
+
+$X_1\subseteq X_2
+\sledi
+Y_1 = f(X_1)\subseteq f(X_2) = Y_2\sledi$
+
+$\sledi B\brez Y_2\subseteq B\brez Y_1\sledi g(B\brez Y_2)\subseteq g(B\brez Y_1)\sledi$
+
+$\sledi X_1' = A\brez g(B\brez Y_2)\subseteq A\brez g(B\brez Y_1)= X_2'$.
+
+$---$
+
+Podmnožica $Z\subseteq A$ je {\em izbrana podmnožica}, če je
+$$Z\subseteq Z'\,.$$
+$\emptyset$ je izbrana podmnožica množice $A$!
+
+Naj bo $A_0$ {\em unija vseh izbranih podmnožic množice} $A$!
+
+Če je $Z$ izbrana podmnožica, potem velja $Z\subseteq A_0\sledi Z'\subseteq A_0'\sledi$
+$$Z\subseteq Z'\subseteq A_0'\,.$$
+Torej je tudi $A_0$ zajeta v $A_0'$:
+$$A_0\subseteq A_0'$$
+$A_0$ je torej izbrana podmnožica!
+
+$A_0\subseteq A_0' \sledi A_0'\subseteq (A_0')'\sledi
+A_0'$ je izbrana podmnožica $\sledi A_0'\subseteq A_0$.
+
+Dobimo torej $$A_0 = A_0'\,.$$
+
+S tem pa smo prišli do iskane množice $A_0$, ki jo funkcija $f$ preslika bijektivno na množico
+$B_0$:
+$$B_0 = f(A_0)\subseteq B\,.$$
+Funkcija $g$ pa preslika množico $B\brez B_0$ bijektivno na množico $A\brez A_0$:
+$$g(B\brez B_0) = g(B\brez f(A_0)) = A\brez A_0\,,$$
+saj je $A_0 = A\brez g(B\brez f(A_0))$.
+\end{proof}
+
+% 23. predavanje, 2 uri, 10. 1. 2012
+%\subsection*{Ponovitev:}
+%
+%Obravnavali smo relacijo ekvipolence med množicami in primerljivost množic.
+%\begin{itemize}
+%  \item $A\sim B\cee \exists \textrm{ bijektivna preslikava } f:A\to B$
+%  \item $\sim$ je ekvivalenčna relacija!
+%  \item $\mathbb{N}\sim 2\mathbb{N}$, ${\cal P}(X)\sim \{0,1\}^X$ (potenčna množica $\sim$ množici karakterističnih funkcij)
+%  \item $A\sim B$ in $C\sim D$ in $A\cap C=\emptyset$ in $B\cap D=\emptyset$ $\sledi$
+%      $A\cup C\sim B\cup D$
+%  \item Brez dokaza smo povedali:
+%
+%  $(A \times B) \times C \sim A \times (B \times C)$
+%
+%  (preslikava $((a,b),c)\mapsto (a,(b,c))$ je bijektivna)
+%
+%  $A\times \{a\}\sim A$
+%
+%  (preslikava $(x,a)\mapsto x$ je bijektivna)
+%
+%  \item Relacija $>$, ``$A$ ima večjo moč kot $B$", je stroga delna urejenost. Definicija:
+%  $$A>B\cee (\exists A_1) ((A_1\subseteq A)\inn A_1\sim B) \inn \neg(\exists B_1)((B_1\subseteq B)\inn B_1\sim A)$$
+%  \item V poštev pridejo štiri logične možnosti:
+%  \begin{enumerate}[(1)]
+%    \item $A>B$
+%    \item $B>A$ ($\cee A< B$)
+%    \item $(\exists A_1) ((A_1\subseteq A)\inn A_1\sim B) \inn (\exists B_1)((B_1\subseteq B)\inn B_1\sim A)$
+%    \item $\neg(\exists A_1) ((A_1\subseteq A)\inn A_1\sim B) \inn \neg(\exists B_1)((B_1\subseteq B)\inn B_1\sim A)$
+%  \end{enumerate}
+%  \item Schr\"oder-Bernsteinov izrek: $(3) \sledi A\sim B$
+%  \item Zakon trihotomije:
+%  {\em Za vsaki dve množici $A$ in $B$ velja natanko ena od možnosti $A<B, A>B$ in $A\sim B$.}
+%  \item Zakon trihotomije je ekvivalenten aksiomu izbire.
+%  \end{itemize}
+
+Relacija $>$ je stroga delna urejenost.
+
+\textbf{V razmislek:}
+Privzemimo zakon trihotomije.
+\begin{itemize}
+    \item Naj bo $\gtrsim$ relacija na množicah, definirana s predpisom $A\gtrsim B\cee (A>B$ ali $A\sim B$).
+     Ali je ta relacija strogo sovisna? Ali je delna urejenost?
+
+%     je refleksivna in tranzitivna, ni pa delna urejenost, ker ni antisimetrična. Če privzamemo zakon trihotomije, je relacija $\gtrsim$ šibka urejenost (tranzitivna in strogo sovisna). Relacija $\ge$, definirana s predpisom $A\ge B\cee (A>B$ ali $A= B$), pa je delna urejenost.
+    \item Naj bo $\ge$ relacija na množicah, definirana s predpisom $A\ge B\cee (A>B$ ali $A= B$).
+     Ali je ta relacija strogo sovisna? Ali je delna urejenost?
+\end{itemize}
+
+\chapter{Končne in neskončne množice}
+
+Za definicijo (nes)končnih množic je več možnosti. Če privzamemo aksiom izbire, so vse te možnosti med seboj ekvivalentne.
+
+\begin{description}
+  \item[(S pomočjo naravnih števil.)] Dana množica $S$ je končna tedaj in le tedaj, ko obstaja tako naravno število $n$, da ima ta množica natanko $n$ elementov. Če množica ni končna, je neskončna.
+
+      Slabosti:
+
+      -- Definicija sloni na pojmu naravnega števila.
+
+      -- Za nekatere množice lahko prav gotovo trdimo, da so končne, pa čeprav ne poznamo natančnega števila njihovih elementov. Npr.: množica vseh knjig, natisnjenih na Zemlji do leta $2015$, je prav gotovo končna.
+
+  \item[(Peirce in Dedekind.)] Dana množica $S$ je neskončna tedaj in le tedaj, če ima vsaj
+  eno pravo podmnožico, ki ji je ekvipolentna. Če množica ni neskončna, je končna.
+
+  \medskip
+  To definicijo lepo ponazarja t.i.~{\em Hilbertov Veliki hotel:
+
+  V hotelu z neskončno mnogo sobami (oštevilčenimi zaporedoma z $1,2,3,\ldots$) je v vsaki sobi nek gost. V hotel pride še nekaj gostov. Ali jih lahko razporedimo v sobe?}
+
+  Oglejmo si dva primera:
+\begin{itemize}
+  \item {Pride končno mnogo gostov.} Recimo, da jih pride 10.
+
+  Gosta v sobi $j$ premaknemo v sobo $j+10$ za vse $j = 1,2,3,\ldots$
+
+  Novih 10 gostov pa razporedimo v sobe $1,2,\ldots, 10$, ki so medtem postale proste.
+
+  \item {Pride neskončno mnogo gostov $g_1, g_2, g_3,\ldots$}
+
+  Gosta v sobi $j$ premaknemo v sobo $2j$ za vse $j = 1,2,3,\ldots$
+
+  Nove goste pa razporedimo na naslednji način:
+
+  $g_1\mapsto 1$
+
+  $g_2\mapsto 3$
+
+  $g_3\mapsto 5$
+
+  $\ldots$
+
+  $g_j\mapsto 2j-1$
+\end{itemize}
+
+
+  Pri prerazporejanju ``starih"~gostov smo uporabili dejstvi, da je
+
+  $\{1,2,3,\ldots\}\sim\{1,2,3,\ldots\}\brez\{1,\ldots,10\}$ in
+
+  $\{1,2,3,\ldots\}\sim\{2,4,6,\ldots\}$.
+
+  Pri razporejanju neskončno mnogo novih gostov pa še dejstvo, da je
+  $\{1,2,3,\ldots\}\sim \{1,3,5,\ldots\}$.
+  \item[(Tarski.)] Minimalni element: $a$ je minimalen element v $S$ glede na relacijo $R$, če za noben drug element $y$ te množice ne velja $yRa$.
+
+      Če je $S$ poljubna množica, potem je vsaka družina njenih podmnožic z relacijo inkluzije $\subseteq$ delno urejena. Glede na to relacijo pa ta družina lahko ali ima ali pa nima minimalnega elementa. Minimalni element je v tem primeru taka podmnožica, ki nima nobene druge podmnožice iz te družine za svojo podmnožico!
+
+      \textbf{Zgled:} $A = \{1,2,3\}$.
+
+      Družina ${\cal D}_1 = \{\{1\}, \{1,2\}, \{1,2,3\}\}$ ima en minimalen element: množico $\{1\}$.
+
+      Družina ${\cal D}_2 = \{\{1\}, \{2\}, \{1,2\}, \{2,3\}\}$ ima dva minimalna elementa: množico $\{1\}$ in množico $\{2\}$.
+
+      Vsaka neprazna družina podmnožic množice $A$ ima vsaj en minimalen element glede na relacijo $\subseteq$.
+
+      \textbf{Zgled:} $\mathbb{N}^+ = \{1,2,3,\ldots\}$.
+
+      Za $k\ge 1$ naj bo $$\mathbb{N}_k = \mathbb{N}^+\setminus\{1,2,\ldots, k\}= \{k+1,k+2,\ldots\}\,.$$
+
+      Oglejmo si neprazno družino podmnožic
+      $${\cal D} = \{\mathbb{N}_1,\mathbb{N}_2, \mathbb{N}_3,\ldots\}\,.$$
+
+      Opazimo, da za vse $k\ge 1$ velja $\mathbb{N}_{k+1}\subseteq \mathbb{N}_k$. Torej ${\cal D}$ nima minimalnega elementa glede na $\subseteq$.
+
+      \medskip
+      \textbf{Definicija Tarskega:}
+      Dana množica $S$ je končna tedaj in le tedaj, kadar ima vsaka neprazna družina podmnožic množice $S$ vsaj en minimalen element glede na relacijo inkluzije ``$\subseteq$". Če množica ni končna, je neskončna.
+\end{description}
+
+\section{Končne množice}
+\textbf{Primer:}
+\begin{itemize}
+  \item Množica $\{a,b\}$ je končna.
+  \item Prazna množica $\emptyset$ je končna.
+\end{itemize}
+
+Očitno:
+Če je $A$ končna množica in je $B\subseteq A$, potem je tudi $B$ končna
+množica.
+
+\begin{posledica}
+Če je $A$ končna množica in $B$ poljubna množica, potem sta
+$A\cap B$ in $A\brez B$ končni množici.
+\end{posledica}
+
+\begin{lema}
+Če sta $A$ in $B$ končni množici, potem je tudi njuna unija $A\cup B$ končna množica.
+\end{lema}
+
+Brez dokaza. Iz zgornje leme sledi:
+
+\begin{izrek}
+Če je $A$ končna množica, potem je tudi $A\cup \{x\}$ končna množica.
+\end{izrek}
+
+\begin{izrek}
+Vsaka neprazna družina podmnožic kakšne končne množice ima vsaj en maksimalen element glede na relacijo inkluzije $\subseteq$.
+\end{izrek}
+
+\begin{proof}
+S protislovjem. Recimo, da obstajata končna množica $A$ in taka neprazna
+družina ${\cal D}$ podmnožic množice $A$, ki nima nobenega maksimalnega elementa glede na relacijo inkluzije $\subseteq$.
+
+Oglejmo si družino $${\cal F} = \{Z~;~(Z = A\brez X)\inn X\in {\cal D}\}\,.$$
+%vseh relativnih komplementov množic v družini ${\cal D}$.
+
+Ta družina očitno nima nobenega minimalnega elementa:
+\begin{itemize}
+\item Če bi bil $Z\in {\cal F}$ minimalen element družine  ${\cal F}$, potem bi bil
+$X = A\brez Z$ maksimalen element družine  ${\cal D}$.
+\end{itemize}
+To pa je v protislovju s hipotezo, da je množica $A$ končna.
+\end{proof}
+
+% 24. predavanje, 2 uri, 11. 1. 2012
+
+\begin{izrek}[Princip indukcije]\label{izrek:indukcija}
+Naj bo $A$ končna množica in naj bo $P$ lastnost, ki je smiselna za podmnožice množice $A$.
+
+Če velja $P(\emptyset)$ in če za vsak $x\in A$ in za vsak $X\subseteq A$ velja
+$$P(X)\sledi P(X\cup \{x\})\,,$$
+potem
+$$P(A)\,.$$
+\end{izrek}
+
+\begin{proof}
+Naj bo
+$${\cal D} = \{X~;~X\subseteq A \inn P(X)\}\,.$$
+Ta družina podmnožic je neprazna, saj je $\emptyset\in {\cal D}$.
+Torej ima ${\cal D}$ vsaj en maksimalen element, označimo ga z $M$!
+
+Če $M\neq A$, potem obstaja nek element $x\in A\brez M$. Ker pa je
+$P(M)$, po predpostavki sledi $P(M\cup \{x\})$ in torej $M\cup \{x\}\in{\cal D}$.
+Ker je $M\subset M\cup \{x\}$, je to v nasprotju s predpostavko, da je $M$ maksimalen.
+
+Torej mora veljati $M = A\sledi A\in {\cal D}\sledi P(A)$.
+\end{proof}
+
+\begin{posledica}
+Naj bo $A$ končna množica in ${\cal F}$ poljubna družina množic.
+Če velja $\emptyset\in {\cal F}$ in če za vsak $X\subseteq A$ in za vsak $x\in A$ velja sklep
+$$X\in {\cal F}\sledi X\cup \{x\}\in {\cal F}\,,$$
+potem je $A\in {\cal F}$.
+\end{posledica}
+
+\begin{proof}
+Uporabimo zgornji izrek za lastnost $P(X) = ``X\in {\cal F}"$.
+\end{proof}
+
+\textbf{Zgled:}
+
+Naj bo $A$ končna množica, $f$ pa funkcija, ki množico $A$ {\em surjektivno} preslika na neko množico $B$. Potem je tudi $B$ končna množica.
+
+\medskip
+Res:  naj bo  ${\cal F} =\{X~;~X\subseteq A \inn f(X)$ končna$\}$.
+
+$\emptyset\in {\cal F}$ $\checkmark$
+
+$X\in {\cal F}, x\in A\sledi f(X)$ končna $\sledi
+f(X\cup \{x\}) = f(X) \cup \{f(x)\}$ končna!
+
+Torej je $A\in {\cal F}$ in zato $f(A) = B$ končna množica. $\checkmark$\qed
+
+\bigskip
+\textbf{Poseben primer:} $f$ je bijektivna:
+
+\begin{itemize}
+\item $A$ končna in $A\sim B$ $\sledi$ $B$ končna.
+\end{itemize}
+
+Posledično:
+\begin{itemize}
+\item $A$ neskončna in $A\sim B$ $\sledi$ $B$ neskončna.
+\end{itemize}
+
+\bigskip
+
+Brez dokaza navedimo še nekaj zanimivih lastnosti končnih množic:
+\begin{itemize}
+  \item $A$ končna $\sledi$ ${\cal P}(A)$ končna
+  \item ${\cal D}$ končna družina končnih množic $\sledi$ $\cup {\cal D}$ končna.
+  \item $A$ končna, $B$ neskončna $\sledi$ $A<B$
+  \item $A$ končna, $B$ končna $\sledi A\times B$ končna
+\end{itemize}
+
+\section{Neskončne množice}
+
+Množica naravnih števil $\mathbb{N}$ je neskončna, saj je $\mathbb{N}\sim 2\mathbb{N}$.
+
+$\mathbb{N}$  -- model množice, ki ustreza {\em Peanovim aksiomom}:
+\begin{enumerate}[1.)]
+  \item V množici $\mathbb{N}$ obstaja nek element, ki ga označimo z 0.
+  \item Če $x\in \mathbb{N}$, potem obstaja natanko en element $x'\in \mathbb{N}$, ki ga imenujemo {\em neposredni naslednik} elementa $x$.
+  \item Ne obstaja tak $x\in \mathbb{N}$, za katerega bi veljalo $x' = 0$.
+  \item $x' = y' \sledi x = y$.
+  \item Če je $M\subseteq \mathbb{N}$ taka podmnožica, da velja (i) $0\in M$ in (ii) $(x\in M\sledi x'\in M)$, potem je $M = \mathbb{N}$.
+\end{enumerate}
+
+\textbf{Primer:}
+
+Množica
+$$N = \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\},
+\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\},\ldots \}\,.$$
+je {\em Peanova množica} (množica, ki ustreza vsem petim Peanovim aksiomom)!
+
+\begin{enumerate}
+  \item $0 = \emptyset$
+  \item $A\in N\sledi A' = A\cup \{A\}$.
+  \item $A\in N$, $A' = A\cup \{A\}= \emptyset$ -- nesmisel!
+  \item $A\cup \{A\} = B\cup \{B\}$ $\sledi$ $A = B$
+
+  Če bi veljalo $A\neq B$, bi imeli $A\in B$ in $B\in A$, kar pa ni možno zaradi {\em aksioma regularnosti: Vsaka neprazna množica $A$ ima vsaj en tak element $x$, da $A$ in $x$ nimata nobenega skupnega elementa.}
+
+  Res: če je $A\neq B$, potem je $A\in B\cap \{A,B\}$ in $B\in A\cap \{A,B\}$.
+  Po aksiomu regularnosti pa mora biti
+  $A\cap \{A,B\}= \emptyset$ ali  $B\cap \{A,B\}= \emptyset$.
+
+  \item Po konstrukciji: naj bo $N'\subseteq N$ taka podmnožica, da velja
+  $0\in N'$ in $(A\in N'\sledi A\cup \{A'\}\in N')$. Potem je  $N' = N$.
+\end{enumerate}
+
+\bigskip
+Na Peanovi množici
+ $$\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}, \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}, \ldots\}\,.$$
+lahko definiramo strukturo stroge linearne urejenosti! Postavimo
+$A<B$ natanko tedaj, ko je množica $A$ hkrati element in podmnožica množice $B$.
+\begin{itemize}
+  \item Zgled:
+
+  $\{\emptyset\} < \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$,
+
+      saj je $\{\emptyset\} \in \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$,
+
+      pa tudi $\{\emptyset\} \subseteq  \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$.
+\end{itemize}
+
+\bigskip
+
+Vsaka množica, ki je ekvipolentna množici naravnih števil, je {\em števno neskončna}.
+
+Če je $A$ števno neskončna množica, potem obstaja neka bijektivna preslikava $f:\mathbb{N}\to A$.
+Torej lahko množico $A$ zapišemo kot
+$$A = \{f(0), f(1), f(2),\ldots\}\,.$$
+%\medskip
+%Definicija števno neskončnih množic: množica
+%$S$ je {\em števno neskončna}, če je ekvipolentna množici naravnih števil.
+%Lahko zapišemo
+%$$S = \{f(0), f(1), f(2),\ldots\}\,,$$
+%kjer je $f:\mathbb{N}\to S$ bijekcija.
+
+\begin{izrek}
+Vsaka neskončna množica ima vsaj eno števno neskončno podmnožico.
+\end{izrek}
+
+\begin{proof}
+Naj bo $S$ neskončna množica in naj bo $S'\subset S$ prava podmnožica, ekvipolentna množici $S$.
+
+Naj bo $f:S\to S'$ bijekcija.
+
+Po predpostavki je $S\brez S'\neq \emptyset$. Izberimo nek $a_0\in S\brez S'$.
+
+$a_1 = f(a_0)\in S'\subset S$
+
+$a_2 = f(a_1)\in S'\subset S$
+
+$a_3 = f(a_2)\in S'\subset S$
+
+itd.
+
+$----------------$
+
+Na ta način dobimo množico
+$$A = \{a_0,a_1,a_2,\ldots\}\,.$$
+Pokažimo, da so vsi elementi $a_0,a_1,a_2,\ldots$ med seboj različni.
+
+Pa recimo, da niso. Naj bo $j$ prvi indeks, da je $a_i = a_j$ za nek $i<j$.
+
+$a_0\in S\brez S'$ in $a_k\in S'$ za $k\ge 1$ $\sledi$ $i\neq 0$.
+
+$a_i = f(a_{i-1})$, $a_j = f(a_{j-1})$
+
+Ker je $a_i = a_j$ in je $f$ injektivna $\sledi$ $a_{i-1} = a_{j-1}$, to pa je protislovje z definicijo indeksa $j$.
+
+Preslikava
+$$g:A\to \mathbb{N}$$
+$$g(a_i) = i$$
+je torej bijekcija.
+
+Sledi $A\sim \mathbb{N}$.
+\end{proof}
+
+\subsection{Lastnosti števno neskončnih množic}
+
+{\em Kako iz danih števno neskončnih množic ``pridelamo''~nove števno neskončne množice?}
+
+\begin{enumerate}[(1.)]
+\item Če je $A$ končna množica, $B$ števno neskončna množica in $A\cap B = \emptyset$, potem je njuna unija $A\cup B$ števno neskončna.
+
+$A = \{a_1,\ldots, a_k\}$, $B = \{b_0,b_1,\ldots, b_i, \ldots\}$
+
+$A\cup B = \{a_1,\ldots, a_k, b_0,b_1,\ldots, b_i, \ldots\}$
+
+$f:A\cup B \to B$
+
+$f(a_1) = b_0$
+
+$f(a_2) = b_1$
+
+$\ldots$
+
+$f(a_k) = b_{k-1}$
+
+$f(b_0) = b_k$
+
+$f(b_1) = b_{k+1}$
+
+$\ldots$
+
+Ta funkcija je očitno bijekcija!
+
+Torej je množica $A\cup B$ števno neskončna.
+
+\item Če sta $A$ in $B$ števno neskončni množici z $A\cap B = \emptyset$, potem je njuna unija $A\cup B$ števno neskončna množica.
+
+$A\cup B = \{a_0,b_0,a_1,b_1,\ldots\}$
+
+$f:A\cup B\to A$
+
+$f(a_0) = a_0$
+
+$f(b_0) = a_1$
+
+$f(a_1) = a_2$
+
+$f(b_1) = a_3$
+
+$\ldots$
+
+$f$ je bijekcija!
+
+Torej je množica $A\cup B$ števno neskončna.
+
+\item (nadaljevanje (2.))
+
+Če množici $A$ in $B$ nista disjunktni, pa zapišemo unijo $A\cup B$ kot unijo dveh
+disjunktnih množic: $A\cup B=A\cup (B\brez A)$. Če je množica $B\brez A$ končna, uporabimo zgornji
+premislek, če pa je neskončna, potem je števno neskončna.
+V vsakem primeru je unija $A\cup B$ števno neskončna množica.
+
+\medskip
+\textbf{V razmislek:} Pokažite veljavnost naslednje trditve:
+
+{\em Vsaka neskončna podmnožica števno neskončne množice je števno neskončna.}
+
+% 25. predavanje, 2 uri, 17. 1. 2012
+
+%\subsection*{Ponovitev:}
+%
+%\begin{itemize}
+%  \item Ekvivalentne definicije končnih oz. neskončnih množic:
+%\begin{enumerate}
+%  \item Definicija s pomočjo naravnih števil.
+%
+%  $S$ je končna $\cee (\exists n\in \mathbb{N}$)($S$ ima natanko $n$ elementov)
+%  \item Peirce-Dedekind:
+%
+% $S$ je neskončna $\cee$ $S$ ima vsaj eno pravo podmnožico, ki ji je ekvipolentna.
+%  \item Tarski:
+%
+%$S$ je končna $\cee$ vsaka neprazna družina podmnožic množice $S$ ima vsaj en minimalen element glede na relacijo stroge inkluzije.
+%\end{enumerate}
+%\item Lastnosti končnih množic:
+%
+%- Vsaka podmnožica končne množice je končna.
+%
+%- Končna unija končnih množic je končna.
+%
+%- Če končni množici dodamo en element, dobimo končno množico.
+%
+%- Vsaka neprazna družina podmnožic kakšne končne množice ima vsaj en maksimalen element glede na relacijo stroge inkluzije.
+%
+%- Princip indukcije za končne množice.
+%
+%- Surjektivna slika končne množice je končna množica.
+%
+%- Če je $A\sim B$, potem je $A$ končna $\cee$ $B$ je končna.
+%
+%\item $A$ končna, $B$ neskončna $\sledi$ $A<B$.
+%
+%Kartezični produkt končnih množic je končna množica.
+%
+%\item Množica naravnih števil $\mathbb{N}$.
+%
+% Peanovi aksiomi:
+%
+% (i) $0\in N$, (ii) obstaja funkcija $N\to N$, $x\mapsto x'$. (iii) $\neg(\exists x)(x' = 0)$.
+% (iv) $x' = y'\sledi x = y$. (v) $M\subseteq N\inn 0\in M \inn (x\in M\sledi x'\in M)\sledi M = N$.
+%
+%  \item Lastnosti števno neskončnih množic:
+%\begin{itemize}
+%  \item Vsaka neskončna množica ima vsaj eno števno neskončno podmnožico.
+%  \item Končna unija končnih ali števno neskončnih množic je števno neskončna,
+%  če je le neskončna.
+%  \item Števno neskončna unija števno neskončnih množic je števno neskončna.
+%\end{itemize}
+%\end{itemize}
+%
+%\bigskip
+%$-----------------$
+%\bigskip
+
+\medskip
+{\em Posledica:}
+
+$A_1,\ldots, A_k$ množice, vsaka od njih je končna ali števno neskončna
+
+$\sledi$ $A_1\cup\cdots\cup A_k$ je števno neskončna (če je le vsaj ena od $A_i$ števno neskončna),
+
+saj je
+
+$$A_1\cup\cdots\cup A_k = (\cdots ((A_1\cup A_2)\cup A_3)\cup\cdots \cup A_k)\,.$$
+%
+%\bigskip
+%$-----------------$
+%\bigskip
+
+\item Danih je števno neskončno paroma disjunktnih števno neskončnih množic
+$$A_1, A_2,A_3\ldots$$
+Njihova unija je števno neskončna:
+\begin{center}
+\includegraphics[width=50mm]{stevnonesk.eps}
+\end{center}
+
+Funkcija
+$$f:\cup_{k}A_k\to \mathbb{N}$$
+
+definirana s predpisom:
+
+$f(a_1^1) = 0$
+
+$f(a_1^2) = 1$
+
+$f(a_2^1) = 2$
+
+$f(a_3^1) = 3$
+
+$f(a_2^2) = 4$
+
+$f(a_1^3) = 5$
+
+$\ldots$
+
+je bijekcija!
+
+Predpostavka, da so množice paroma disjunktne, ni bistvena. Če imajo te množice kakšne skupne elemente, potem preslikamo vsak tak element samo enkrat, namreč takrat, ko pride prvič na vrsto (pri nadaljnih pojavitvah pa ga preprosto izpustimo).
+\end{enumerate}
+
+\subsection{Zgledi števno neskončnih množic}
+
+\bigskip
+{\em Množica celih števil} $\mathbb{Z}$ je števno neskončna (saj je $\mathbb{Z} = \mathbb{N}\cup (-\mathbb{N})$).
+
+\bigskip
+$-----------------$
+\bigskip
+
+Tudi {\em množica racionalnih števil} $\mathbb{Q}$ je števno neskončna!
+
+Očitno je dovolj pokazati, da je množica pozitivnih racionalnih števil $\mathbb{Q}_+$
+ števno neskončna, saj je $\mathbb{Q} = \mathbb{Q}_-\cup \{0\}\cup \mathbb{Q}_+$ in je
+$\mathbb{Q}_-\sim \mathbb{Q}_+$.
+
+Množico $\mathbb{Q}_+$ pa lahko zapišemo kot števno unijo števno neskončnih množic:
+$$\mathbb{Q}_+ = A_1\cup A_2\cup \cdots$$
+kjer je:
+
+$A_1 = \{\frac{1}{1}, \frac{2}{1}, \frac{3}{1}, \ldots\}$,
+
+$A_2 = \{\frac{1}{2}, \frac{2}{2}, \frac{3}{2}, \ldots\}$,
+
+$A_3 = \{\frac{1}{3}, \frac{2}{3}, \frac{3}{3}, \ldots\}$, $\ldots$
+
+%\bigskip
+%$-----------------$
+%\bigskip
+
+{\em Algebraično število}: tako kompleksno število $x$, ki je rešitev kake enačbe oblike
+$$a_nx^n+a_{n-1}x^{n-1}+\ldots+a_1x+a_0 = 0\,,$$
+kjer je $n\in \mathbb{N}$, $n\neq 0$, $a_n\neq 0$ in $a_i\in \mathbb{Z}$ za vse $i$.
+Tudi množica algebraičnih števil je števno neskončna. Zapišemo jo namreč lahko kot
+(števno neskončno) unijo končnih množic:
+$$A_1\cup A_2\cup A_3\cup \cdots\,,$$
+kjer je $A_k$ množica vseh kompleksnih števil, ki so rešitve
+kakšne enačbe zgornje oblike, pri čemer za njene koeficiente velja
+$n+|a_0|+|a_1|+\ldots+|a_n|\le k$.
+Vsaka množica $A_k$ je končna, saj vsebuje le ničle kvečjemu
+$(2k+1)^{k+1}$ polinomov stopnje $\le k$ s koeficienti iz množice $\{-k,-(k-1), \ldots, k-1,k\}$, vsak od takih polinomov pa ima
+$\le k$ ničel.
+
+
+\section{Neštevno neskončne množice}
+
+Množica realnih števil pa {\em ni števno neskončna}!
+
+Pokažimo, da že množica realnih števil na intervalu $$(0,1] = \{x~;~x\in \mathbb{R}\inn 0<x\le 1\}$$
+ni števno neskončna.
+
+$x\in (0,1]\sledi$ $x$ se da zapisati v obliki neskončnega decimalnega števila
+$$0,a_1a_2a_3\cdots\,,$$
+pri čemer se nikoli ne zgodi, da bi bila vsa števila od nekod naprej enaka 0:
+
+$\frac{1}{2} = 0,5000\cdots = 0,4999\cdots$
+
+$1 = 0,9999\cdots$
+
+Recimo, da je $f:\mathbb{N}\to (0,1]$ bijekcija!
+
+$f(0) = 0,a_1^0a_2^0\cdots$
+
+$f(1) = 0,a_1^1a_2^1\cdots$
+
+$----$
+
+$f(k) = 0,a_1^ka_2^k\cdots a^k_{k-1}$
+
+Definirajmo število $b\in (0,1]$, na naslednji način:
+$$b = 0,b_1b_2b_3\cdots$$
+
+Če je $a_1^0 \neq 1$, naj bo $b_1 = 1$, če pa je $a_1^0 = 1$, naj bo $b_1 = 2$.
+
+Če je $a_2^1 \neq 1$, naj bo $b_2 = 1$, če pa je $a_2^1 = 1$, naj bo $b_2 = 2$.
+
+$----$
+
+Če je $a_k^{k-1} \neq 1$, naj bo $b_k = 1$, če pa je $a_k^{k-1} = 1$, naj bo $b_k = 2$.
+
+Očitno je $b\in (0,1]$ in
+
+$b\neq f(0)$ (saj $b_1 \neq a^0_1 = (f(0))_1$),
+
+$b\neq f(1)$ (saj $b_2 \neq a^1_2 = (f(1))_2$),
+
+$----$
+
+$b\neq f(k)$ (saj $b_{k+1} \neq a^{k}_{k+1} = (f(k))_{k+1}$).
+
+Število $b$ torej ni v zalogi vrednosti preslikave $f$. To pa je protislovje s surjektivnostjo!
+
+Interval $(0,1]$ torej ni števno neskončna množica (in zato tudi $\mathbb{R}$ ni).\qed
+
+\medskip
+Pravkar podanemu argumentu pravimo ``Diagonalni dokaz"~(tudi diagonalizacija, diagonalni argument, ...
+Cantor, 1891).
+
+\bigskip
+% 26. predavanje, 2 uri, 18. 1. 2012
+
+\begin{comment}
+
+
+Poiščimo sedaj nekaj pravih podmnožic množice realnih števil, ki so vse ekvipolentne množici realnih števil.
+
+Naslednje preslikave so vse bijektivne:
+\begin{itemize}
+  \item $f_1:(0,1]\to [0,1)$, $f_1(x) = 1-x$
+  \item $f_2:[0,1)\to [0,\infty)$, $f_2(x) = \frac{x}{1-x}$
+  \item $f_3:(-1,0]\to (-\infty,0]$, $f_3(x) = \frac{x}{1+x}$
+  \item $f_4:(-1,1)\to \mathbb{R}$, $f_4(x)  = \left\{
+               \begin{array}{ll}
+                 f_2(x), & \hbox{če je $x\ge 0$;} \\
+                 f_3(x), & \hbox{sicer.}
+               \end{array}
+             \right.$
+\end{itemize}
+
+\bigskip
+
+\textbf{Domača naloga:} preverite bijektivnost preslikav $f_1$, $f_2$, $f_3$, $f_4$.
+
+\bigskip
+$-----------------$
+\bigskip
+
+Sledi:
+$$(0,1]\sim [0,1)\sim[0,\infty)$$
+$$(-1,0]\sim (-\infty,0]$$
+Ker je tudi $(-1,0]\sim [0,1)$ (saj je preslikava $f:(-1,0]\to [0,1)$, $f(x)=-x$
+bijektivna), sledi
+$$(0,1]\sim [0,1)\sim[0,\infty)\sim (-1,0]\sim (-\infty,0]\,.$$
+Zaradi preslikave $f_4$ pa je
+$$(-1,1)\sim \mathbb{R}\,.$$
+
+\bigskip
+
+Ali so morda vse te množice med seboj ekvipolentne? Do pritrdilnega odgovora nam pomaga naslednja
+
+\begin{trditev}
+Če neskončni množici $S$ odvzamemo končno ali števno neskončno mnogo elementov, potem
+je dobljena množica ekvipolentna $S$, če je le neskončna.
+\end{trditev}
+
+\begin{proof}
+Naj bo $S_0\subseteq S$ taka končna ali števno neskončna podmnožica
+množice $S$, da je množica $S_1 = S\brez S_0$ neskončna.
+Naj bo $S_2$ števno neskončna podmnožica v $S_1$. Lahko zapišemo
+$$S_1 = S_2\cup S_3\,,$$
+kjer je $S_2\cap S_3=\emptyset$. (Vzamemo $S_3 = S_1\brez S_2$.)
+
+$S = S_0\cup S_1= S_0\cup S_2\cup S_3$
+
+Definirajmo preslikavo $f$:
+$$f:S = S_0\cup S_2\cup S_3\to S_1 = S_2\cup S_3$$
+\begin{itemize}
+  \item Na $S_3$ naj bo $f$ identiteta:
+
+  $f(x) = x$ za vse $x\in S_3$.
+
+  \item Množici $S_0\cup S_2$ in $S_2$ sta obe števno neskončni, torej obstaja bijekcija $g:S_0\cup S_2\to S_2$.
+
+      Za $x\in S_0\cup S_2$ pa definiramo $f(x) =g(x)$.
+\end{itemize}
+Očitno je $f$ bijekcija.
+\end{proof}
+
+\bigskip
+$-----------------$
+\bigskip
+
+Sledi:
+$$[0,1]\sim [0,1)\sim (0,1]\sim (0,1)\sim (-1,1)\sim\mathbb{R}$$
+
+(Ekvipolenco $(0,1)\sim (-1,1)$ lahko dokažemo npr.~z bijektivno
+preslikavo $f:(0,1)\to (-1,1)$, $f(x) = 2x-1$.~\footnote{Podobno bi lahko pokazali
+tudi v splošnem, da sta poljubna dva intervala $(a,b)$ in $(c,d)$
+ekvipolentna.})
+
+%\bigskip
+%$-----------------$
+%\bigskip
+
+\newpage
+Vsaka množica, ki je ekvipolentna množici realnih števil $\mathbb{R}$,
+ima \textbf{moč kontinuuma}.
+
+Ker množica realnih števil ni števno neskončna, velja:
+$$\mathbb{R}>\mathbb{N}!$$
+
+\bigskip
+$-----------------$
+\bigskip
+
+Tudi množica vseh realnih števil, ki niso algebraična (to so t.i.~{\em transcendentna števila}),
+ima, po prejšnji trditvi, moč kontinuuma! Torej je transcendentnih števil
+prav toliko kot realnih, algebraičnih pa bistveno manj.
+
+%\subsection*{Neštevno neskončne množice (nadaljevanje)}
+
+\bigskip
+Izkaže se, da obstajajo množice, ki imajo večjo moč kot množica realnih števil.
+
+\begin{izrek}[Cantorjev izrek]
+Naj bo $S$ poljubna množica. Potem velja
+$${\cal P}(S)> S\,.$$
+\end{izrek}
+
+\begin{proof}
+1.~Množica ${\cal P}(S)$ ima vsaj eno podmnožico, ki je ekvipolentna množici $S$.
+\begin{itemize}
+  \item Taka množica je npr.~množica vseh enoelementnih podmnožic
+  $$\{\{x\}~;~x\in S\}\,.$$
+%  $$\{X~;X\subseteq {\cal P}(S)\inn (\exists x\in S)X = \{x\}\}\,.$$
+\end{itemize}
+
+2.~Množica $S$ nima nobene podmnožice, ki bi bila ekvipolentna množici ${\cal P}(S)$.
+
+Recimo, da obstaja $S'\subseteq S$ in bijektivna preslikava $f:S'\to {\cal P}(S)$.
+
+$s'\in S'\sledi f(s')\in {\cal P}(S)\sledi f(s')\subseteq S$.
+
+Dve možnosti: $s'\in f(s')$ ali pa $s'\not\in f(s')$.
+
+Naj bo $$X = \{s'~;~s'\in S'\inn s'\not\in f(s')\}\,.$$
+
+S tem smo definirali množico $X\subseteq S$ oziroma $X\in {\cal P}(S)$. Ker je $f$ surjektivna preslikava, obstaja tak element $x\in S'$, da je $f(x) = X$.
+
+Toda:
+$$x\in X \textrm{~~~ali~~~} x\in S'\brez X\,.$$
+\begin{itemize}
+  \item $x\in X\sledi x \not\in f(x) = X$. Protislovje.
+  \item $x\in S'\brez X\sledi x \in f(x) = X$. Protislovje.
+\end{itemize}
+
+Torej $f$ ni bijekcija!
+\end{proof}
+
+$--------$
+
+\bigskip
+Velja ${\cal P}(\mathbb N)\sim \mathbb{R}$.
+
+\bigskip
+\textbf{Domneva kontinuuma:}
+{\em Ne obstaja množica $X$, za katero bi veljalo $$\mathbb{N}<X<\mathbb{R}\,.$$}
+({\em Ne obstaja množica, ki bi imela večjo moč kot $\mathbb{N}$, a manjšo kot $\mathbb{R}$.})
+
+G\"odel (1940): domneva kontinuuma je konsistentna z drugimi aksiomi teorije množic.
+
+Cohen (1963): domneva kontinuuma je nedokazljiva iz drugih aksiomov teorije množic!
+
+
+\bigskip
+\textbf{Posplošena domneva kontinuuma:}
+{\em Naj bo $S$ neskončna množica. Ne obstaja množica $X$,
+za katero bi veljalo $$S<X<{\cal P}(S)\,.$$}
+
+\bigskip
+
+Za konec omenimo še nekaj pojmov, povezanih z neskončnimi množicami (ki jih ne bomo obravnavali):
+\begin{itemize}
+  \item {\em kardinalna števila} (``moči"~množic; omogočajo študij hierarhije različnih neskončnosti),
+  \item {\em tipi urejenosti} (različni ``načini", kako so lahko množice strogo linearno urejene, npr.~$(\mathbb{N}, <)$, $(\mathbb{N}, >)$, $(\mathbb{Q}, <)$, $(\mathbb{R}, <)$),
+  \item {\em ordinalna števila} (tipi urejenosti dobro urejenih množic),
+  \item {\em princip transfinitne indukcije} (posplošitev principa indukcije na poljubne dobro urejene množice).
+%  \item {\em transfinitna rekurzija} (omogoča rekurzivne definicije pojmov v dobro urejenih množicah).
+\end{itemize}
+Za uvodno obravnavo teh pojmov glej knjigi Nika Prijatelja in Paula Halmosa.
+
+\end{comment}
+
+\section{Pregled najpomembnejših pojmov in nekaj nalog}
+
+Ključni pojmi:
+\begin{itemize}
+\item Relacija ekvipolence: $A\sim B$.
+%\item Ekvipolentna relacija je ekvivalenčna relacija.
+\item Relacija $>$ na množicah (``ima večjo moč kot").
+%\item 4 logične možnosti.
+\item Schröder-Bernsteinov izrek: Množici $A$ in $B$ sta ekvipolentni, če je vsaka od
+njiju ekvipolentna neki podmnožici druge.
+\item Zakon trihotomije.
+\item Definicije končnih in neskončnih množic. (S pomočjo $\mathbb N$; Peirce-Dedekind; Tarski.)
+%\item Lastnosti končnih množic.
+%\item Lastnosti neskončnih množic.
+\item Množica $\mathbb N$, Peanovi aksiomi.
+\item Števno neskončne množice.
+\item Interval $(0,1]$ ni števno neskončna množica; Cantorjev dokaz.
+\item $(0,1]\sim [0,1)\sim [0,1]\sim (0,1)\sim (-1,1)\sim \mathbb{R}$.
+\item Kontinuum. $\mathbb{R}>\mathbb{N}$.
+\item Cantorjev izrek. Domneva kontinuuma.
+\end{itemize}
+
+\begin{problem}
+Pokažite, da ima množica vseh funkcij
+$\{f:\mathbb{R}\to \mathbb{R}\}$ večjo moč kot $\mathbb{R}$.
+\end{problem}
+
+
+\bigskip
+\textbf{Rešitev:} Pokazali smo, da je potenčna množica poljubne množice $X$
+ekvipolentna množici ${\cal C}(X)$ vseh funkcij $f:X\to \{0,1\}$.
+Po Cantorjevem izreku je torej
+$${\cal C}(\mathbb{R})\sim {\cal P}(\mathbb{R})>\mathbb{R}\,.$$
+Torej ima že množica vseh funkcij $f:\mathbb{R}\to \{0,1\}$ večjo moč od kontinuuma!
+\qed
+
+
+%Da se prepričamo, da velja
+%$$\mathbb{R}>\mathbb{N}\,,$$
+%je dovolj pokazati, da obstaja podmnožica $X$ realnih števil, ekvipolentna množici
+%${\cal P}(\mathbb N)$. Tedaj bo po Cantorjevem izreku $$\mathbb{R}\gtrsim X\sim {\cal P}(\mathbb N)>\mathbb{N}\,.$$
+%
+%Definirajmo funkcijo $f:{\cal P}(\mathbb N)\to [0,1)$ s predpisom:
+%$$f(S) = 0,a_0a_1a_2a_3\ldots\,,$$
+%kjer je
+%$$a_i = \left\{
+%        \begin{array}{ll}
+%          1, & \hbox{če je $i\in S$;} \\
+%          0, & \hbox{sicer.}
+%        \end{array}
+%      \right.$$
+%Ta funkcija je očitno injektivna. Torej lahko za iskano množico $S$ vzamemo zalogo vrednosti ${\cal Z}f = f({\cal P}(\mathbb{N}))$.
+%
+%\medskip
+%Velja celo ${\cal P}(\mathbb N)\sim \mathbb{R}$.
+
+%\newpage
+%\subsection*{Za vaje}
+%
+%\begin{trditev}
+%Aksiom izbire $\cee$ Vsaka binarna relacija vsebuje funkcijo z isto domeno.
+%\end{trditev}
+%
+%\begin{proof}
+%$(\Rightarrow)$:
+%
+%Naj bo $R$ binarna relacija na množici $S$ in naj bo $I={\cal D}R$ domena te relacije.
+%
+%Za $\lambda \in I$ definirajmo množico
+%$$A_\lambda = \{a~;~a\in S\inn \lambda Ra\}\,.$$
+%
+%${\cal A} = \{A_\lambda~;~\lambda \in I\}$ je potemtakem družina nepraznih množic.
+%Aksiom izbire zagotavlja obstoj funkcije $f:I\to \cup A_\lambda$, za katero velja
+%$f(\lambda)\in A_{\lambda}$ za vse $\lambda\in I$.
+%Torej je $\lambda Rf(\lambda)$ za vse $\lambda\in I$ in je $f$ funkcija, vsebovana
+%v relaciji $R$. Domena funkcije $f$ pa je seveda $I = {\cal D}R$.
+%
+%\medskip
+%($\Leftarrow$):
+%
+%Naj bo ${\cal A} = \{A_\lambda~;~\lambda \in I\}$ družina nepraznih množic.
+%
+%Definirajmo binarno relacijo $R$ na množici $$I\cup (\cup {\cal A})$$
+%na naslednji način:
+%$$R = \{(\lambda,x)~;~\lambda\in I\inn x\in A_\lambda\}\,.$$
+%Po predpostavki obstaja neka funkcija $f$, vsebovana v $R$, katere domena je
+%${\cal D}R = I$.
+%Za vsak $\lambda\in I$ torej velja $(\lambda, f(\lambda))\in R$, tj., $f(\lambda)\in A_\lambda$.
+%Torej je $f$ funkcija izbire.
+%\end{proof}
+%
+%Trditev  \emph{ ``Vsaka binarna relacija vsebuje funkcijo z isto domeno."~}
+%je moč izpeljati tudi direktno iz Zornove leme. Dokaz te implikacije (ki ga opustimo)
+%temelji na naslednji trditvi o funkcijah:
+%
+%\begin{trditev}
+%Naj bo množica funkcij $\{f_i:A_i\to B~;~i\in I\}$ linearno urejena glede na inkluzijo $\subseteq$. Potem je unija $\cup_{i\in I}f_i$ funkcija iz $\cup_{i\in I}A_i$ v $B$.
+%\end{trditev}
+%
+%\begin{proof}
+%Naj bo $f = \cup_{i\in I}f_i$. Domena te relacije je
+%množica vseh prvih koordinat, torej očitno unija vseh domen funkcij
+%$f_i$:  $${\cal D}f = \cup_{i\in I}{\cal D}f_i
+%= \cup_{i\in I}A_i\,.$$
+%Množica vseh drugih koordinat je prav tako unija vseh
+%množic drugih koordinat, torej podmnožica množice $B$.
+%
+%$f$ je res funkcija:
+%
+%Recimo, da je $(x,y)\in f$ in $(x,z)\in f$.
+%Tedaj obstaja tak $i\in I$, da je $(x,y)\in f_i$, torej
+%$x\in A_i$ in $y = f_i(x)$.
+%Prav tako obstaja tak $j\in I$, da je $(x,z)\in f_j$, torej
+%$x\in A_j$ in $z = f_j(x)$.
+%
+%Po predpostavki o linearni urejenosti je bodisi
+%$f_i\subseteq f_j$ bodisi $f_j\subseteq f_i$.
+%Recimo, da je $f_i\subseteq f_j$. Tedaj je $(x,y)\in f_j$, torej
+%$x\in A_j$ in $y = f_j(x)$.
+%Tedaj pa je $y=z$. Če je $f_j\subseteq f_i$, pa je $z = f_i(x) = y$.
+%\end{proof}
+%
+%\begin{trditev}
+%Aksiom izbire $\cee$
+%Za vsako družino ${\cal A}$ paroma disjunktnih nepraznih množic obstaja taka
+%množica $X$, da za vsak $A\in {\cal A}$ množica $X\cap A$ vsebuje natanko en element.
+%\end{trditev}
+%
+%\begin{proof}
+%$(\Rightarrow)$:
+%
+%Naj bo ${\cal A} = \{A_\lambda~;~\lambda\in I\}$ družina paroma disjunktnih nepraznih množic.
+%Po aksiomu izbire obstaja taka funkcija $f:I\to \cup {\cal A}$, da
+%za vse $\lambda \in I$ velja $f(\lambda)\in A_\lambda$.
+%Definirajmo $X = \textrm{Im} f$, zaloga vrednosti funkcije $f$.
+%Tedaj je $X$ iskana množica, saj za vsak $\lambda\in I$ velja
+%$X\cap A_\lambda = \{f(\lambda)\}$:
+%\begin{itemize}
+%  \item očitno je $f(\lambda)\in X\cap A_\lambda$;
+%  \item če je $y\in X\cap A_\lambda$ potem obstaja tak $\mu \in I$, da
+%  velja $y = f(\mu)$, ker pa je $x\in A_\lambda$ in so
+%  množice $\{A_\lambda~;~\lambda\in I\}$ paroma disjunktne, je
+%  $\mu = \lambda$ in zato $y = f(\lambda)$.
+%\end{itemize}
+%
+%\medskip
+%($\Leftarrow$):
+%
+%Naj bo ${\cal A} = \{A_\lambda~;~\lambda \in I\}$ družina nepraznih množic.
+%
+%Definirajmo družino množic $$\{B_\lambda~;~\lambda\in I\}$$
+%s predpisom
+%$$B_\lambda = \{\lambda\}\times A_\lambda$$
+%za vse $\lambda\in I$.
+%Množice $B_\lambda$ so vse neprazne. So pa tudi paroma disjunktne:
+%
+%Recimo, da je $B_\lambda\cap B_\mu \neq\emptyset$ in naj
+%bo $(x,y)\in B_\lambda\cap B_\mu$.
+%Potem je $x = \lambda$ (ker je $(x,y)\in B_\lambda$) in tudi $x = \mu$ (ker je $(x,y)\in B_\mu$).
+%Sledi $\lambda = \mu$.
+%
+%Po predpostavki obstaja taka množica $X$, da za vsak $\lambda \in I$ množica $X\cap B_\lambda$ vsebuje natanko en element,
+%recimo mu $(\lambda, x_\lambda)$. Ker je $(\lambda, x_\lambda)\in B_\lambda$, je
+%$x_\lambda\in A_\lambda$. Funkcija izbire $f:I\to \cup {\cal A}$ torej obstaja: definirana je s predpisom
+%$f(\lambda) = x_\lambda$ za vse $\lambda\in I$.
+%\end{proof}
+%
+%
+%\bigskip
+%
+%Spomnimo se, da s simbolom $A^B$ označujemo množico vseh funkcij iz množice $B$ v množico $A$.
+%
+%  $A\sim C$ in $B\sim D$ $\sledi$ $A^B\sim C^D$.
+%
+%Naj bosta $g:A\to C$ in $h:B\to D$ bijekciji. Konstruiramo naslednjo preslikavo:
+%
+%$$A^B\to C^D$$
+%
+%$$f\mapsto f' = g\circ f\circ h^{-1}\,.$$
+%
+%Tedaj je $f'=g\circ f\circ h^{-1}:D\to C$,
+%
+%$f'(x) = g(f(h^{-1}(x)))$.
+%
+%Prepričajmo se, da je preslikava $f\mapsto f'$ bijektivna.
+%
+%\begin{itemize}
+%  \item injektivnost:
+%
+%  Recimo, da je $g\circ f_1\circ h^{-1} = g\circ f_2\circ h^{-1}$.
+%
+%  Pokazati moramo: $f_1(x) = f_2(x)$ za vse $x\in B$.
+%
+%  Vzemimo poljuben $x\in B$ in si oglejmo element $y = h(x)$. Vemo, da ga funkciji $g\circ f_1\circ h^{-1}$ in $g\circ f_2\circ h^{-1}$
+%  preslikata v isti element, saj sta enaki.
+%  Torej: $g(f_1(h^{-1}(h(x)))) =  g(f_2(h^{-1}(h(x))))$ $\sledi$ $g(f_1(x)) = g(f_2(x))$.
+%  Torej tudi $g^{-1}(g(f_1(x))) = g^{-1}(g(f_2(x)))$. Sledi $f_1(x) = f_2(x)$.
+%
+%  \item surjektivnost:
+%
+%  Naj bo $F:D\to C$ poljubna funkcija. Iščemo tak $f:B\to A$, da bo veljalo $g\circ f\circ h^{-1} = F$.
+%
+%  Torej $f\circ h^{-1} = g^{-1}\circ F$ in posledično  $f= g^{-1}\circ F\circ h$.
+%  $F$ je torej slika elementa $g^{-1}\circ F\circ h$.
+%  \end{itemize}
+
+
 
 
 \appendix
@@ -4677,6 +6715,522 @@ postavimo $V_0 = A$ (kjer je $A$ množica atomov)
 in naslednji element hierarhije tvorimo iz prejšnjega s pravilom $V_{i+1} = V_i\cup {\cal P}(V_i)$.
 
 \newpage
+
+\chapter{Aksiom izbire}
+
+% Uporabe: neskončni grafi (povezanost implicira obstoj vpetega drevesa), izrek Tyhonova o kompaktnih topoloških prostorih
+% obstoj baz v neskončno-dimenzionalnih vektorskih prostorih; strategija neskončnega števila igralcev, ki mečejo kovanec
+
+%
+%\subsection*{Ponovitev:}
+%
+%Zaključili smo z obravnavo struktur urejenosti:
+%\begin{itemize}
+%\item Sovisna in irefleksivna relacija $R$ je dobra urejenost, če ima vsaka neprazna množica $R$-minimalen element (torej tak element, pod katerim ni nobenega elementa).
+%
+%\item $R$-prvi element: tak, ki je pod vsakim drugim elementom.
+%\item $R$ antisimetrična $\sledi$ ($R$-prvi $\sledi$ $R$-minimalni).
+%\item Dobra urejenost je poseben primer stroge linearne urejenosti.
+%\item $R$ dobra urejenost $\sledi$ ($R$-minimalni $\sledi$ $R$-prvi).
+%\item Definirali smo pojma $R$-zadnjega elementa in
+%   neposrednega naslednika.
+%
+%\zgled
+%
+%%Nasledniki v delni urejenosti, podani s Hassejevim diagramom:
+%\begin{center}
+%\includegraphics[height=50mm]{nasledniki.eps}
+%\end{center}
+%\end{itemize}
+
+$A_1$, $A_2$: množici
+
+$A_1\times A_2 = \{(x,y)~;~x\in A_1,~y\in A_2\}$
+
+Vsak urejeni par je določen tako, da prvi element izberemo iz množice $A_1$, drugega pa iz $A_2$. Tako izbiro lahko ponazorimo s funkcijo:
+
+$f:\{1,2\} \to A_1\cup A_2$, za katero velja
+
+$$f(1)\in A_1 \textrm{ in }f(2)\in A_2\,.$$
+
+Torej
+$$A_1\times A_2 = \{f:\{1,2\} \to A_1\cup A_2,
+f(1)\in A_1, f(2)\in A_2\}\,.$$
+
+Podobno lahko zapišemo za kartezične produkte končnega števila faktorjev:
+$$A_1\times \cdots \times A_n= \{f:\{1,\ldots, n\} \to A_1\cup \cdots\cup A_n,
+f(1)\in A_1, \ldots, f(n)\in A_n\}\,.$$
+
+\bigskip
+Na ta način moremo posplošiti definicijo kartezičnega produkta na produkt poljubne družine množic.
+
+Naj bo
+$${\cal A}=\{A_{\lambda}~;~\lambda\in I\}$$
+poljubna družina množic. {\em Kartezični produkt} družine ${\cal A}$ definiramo kot $$\prod{\cal A} = \prod_{\lambda\in I}A_\lambda = \{f:I\to\cup_{\lambda\in I}A_\lambda,~(\forall\lambda)(\lambda\in I\sledi f(\lambda)\in A_\lambda)\}\,.$$
+
+$f\in \prod_{\lambda\in I}A_\lambda$ se imenuje {\em funkcija izbire}.
+
+Če je vsaj ena od množic $A_\lambda$ prazna, je tudi produkt $\prod_{\lambda\in I}A_\lambda$ prazna množica (saj v primeru $A_\lambda = \emptyset$ pogoj $f(\lambda) \in A_\lambda$ prav gotovo ne more biti izpolnjen)!
+\begin{itemize}
+  \item $(\exists \lambda)(\lambda\in I\inn A_\lambda = \emptyset)\sledi \prod_{\lambda\in I}A_\lambda=\emptyset$.
+\end{itemize}
+
+V končnem primeru velja tudi obrat:
+$$(\forall \lambda)(\lambda\in I\sledi A_\lambda\neq\emptyset)\sledi
+      \prod_{\lambda\in I}A_\lambda\neq\emptyset\,.$$
+
+{\em Kaj pa v neskončnem primeru??}
+
+``Če je $A_\lambda\neq \emptyset$ za vse $\lambda\in I$, potem obstaja vsaj ena funkcija izbire."~
+
+{\em Ali lahko to dokažemo?}
+
+Cohen (1963): ta trditev je nedokazljiva iz drugih aksiomov teorije množic.
+
+\bigskip
+\textbf{Aksiom o kartezičnem produktu:}
+
+Če je ${\cal A}$ poljubna družina nepraznih množic, potem je $\prod {\cal A}$ neprazna množica.
+
+\bigskip
+\textbf{Aksiom izbire:}
+
+Če je ${\cal A} = \{A_\lambda~;~\lambda\in I\}$ poljubna družina nepraznih množic,
+potem obstaja vsaj ena funkcija $f:I\to \cup_{\lambda \in I}A_\lambda$, za katero velja
+$f(\lambda)\in A_\lambda$ za vsak $\lambda\in I$.
+
+Zermelo, 1904 -- uporabil AI pri dokazu izreka o dobri urejenosti množic
+
+(Zermelov aksiom)
+
+% 19. predavanje, 2 uri, 20. 12. 2011
+
+\bigskip
+
+\textbf{G\"odlov izrek (1940):} Aksiom izbire je konsistenten z drugimi aksiomi teorije množic:\footnote{Kurt G\"odel je istočasno s konsistentnostjo aksioma izbire dokazal tudi konsistentnost hipoteze kontinuuma z drugimi aksiomi teorije množic. S tem je rešil prvega od znamenitih $23$ problemov, ki jih je leta $1900$ matematični javnosti zastavil
+nemški matematik David Hilbert.}
+\begin{itemize}
+  \item \emph{ Če pridemo do protislovja v sistemu, kjer poleg drugih aksiomov privzamemo tudi aksiom izbire, potem je mogoče protislovje konstruirati tudi v sistemu, ki sloni le na drugih aksiomih in nima aksioma izbire.}
+\end{itemize}
+
+\bigskip
+S pomočjo aksioma izbire je moč dokazati številne pomembne izreke na različnih področjih matematike (algebra, analiza, topologija, $\ldots$), pa tudi nekatere manj intuitivne izreke, npr.~\textbf{paradoks Banacha in Tarskega:} Tridimenzionalno kroglo je moč razkosati na končno mnogo paroma disjunktnih delov, ki se jih s translacijami in rotacijami sestavi v {\em dve} identični kopiji prvotne krogle!
+
+\bigskip
+Aksiom izbire je ekvivalenten mnogim drugim trditvam, npr.~naslednjima dvema:
+\begin{itemize}
+  \item Vsaka binarna relacija vsebuje funkcijo z isto domeno.
+  \item Če je ${\cal A}$ družina paroma disjunktnih nepraznih množic, potem obstaja taka  množica $X$, da za vsak $A\in {\cal A}$ množica $X\cap A$ vsebuje natanko en element.
+\end{itemize}
+
+
+\section{Principi maksimalnosti}
+
+Podali bomo štiri t.i.~principe maksimalnosti in pokazali, da so med seboj logično ekvivalentni. Ekvivalentni so tudi aksiomu izbire.
+
+\bigskip
+
+Najprej navedimo dve definiciji:
+
+\begin{itemize}
+  \item Naj $R$ delno ureja $S$. Če v $S$ obstaja element $m$, tako da za noben drug element $x\in S$ {\em ne velja} $mRx$, potem pravimo, da je $m$ {\em $R$-maksimalen element} množice $S$.
+
+  \item Podmnožica $X$ množice $S$, ki je z relacijo $R$ delno urejena, je {\em veriga} v množici $S$, če jo $R$ linearno ureja.
+\end{itemize}
+
+
+
+\medskip
+
+\textbf{Zgled:}
+Naj bo $S = \{1,2,\ldots, 8\}$ in naj bo $R$ delacija deljivosti na $S$ ($xRy$ natanko tedaj, ko $x$ deli $y$).
+To delno urejenost prikazuje naslednji Hassejev diagram:
+
+\medskip
+\begin{center}
+\includegraphics[height=50mm]{verige-deljivost.eps}
+\end{center}
+
+Ima $4$ maksimalne elemente ($5$, $6$, $7$, $8$), vsebuje pa naslednje verige:
+\begin{itemize}
+  \item $\emptyset$ (1 veriga brez elementov)
+  \item $\{1\}, \{2\}, \ldots, \{8\}$  ($8$ enoelementnih verig)
+  \item $\{1,2\}, \{1,3\},\ldots, \{1,8\},\{2,4\}, \{2,6\}, \{2,8\}, \{3,6\}, \{4,8\}$  ($12$ dvoelementnih verig)
+  \item $\{1,2,4\}, \{1,2,6\}, \{1,2,8\},\{1,3,6\},\{1,4,8\}, \{2,4,8\}$  ($6$ troelementnih verig)
+  \item $\{1,2,4,8\}$  ($1$ štirielementna veriga)
+\end{itemize}
+
+%\textbf{Zgled:}
+%Potenčna množica množice $\{1,2\}$ je delno urejena glede na inkluzijo.
+%
+%\medskip
+%\begin{center}
+%\includegraphics[height=30mm]{verige0.eps}
+%\end{center}
+%
+%Ima en sam maksimalen element, vsebuje pa naslednje verige:
+%\begin{itemize}
+%  \item $\emptyset$ (1 veriga brez elementov)
+%  \item $\{\emptyset\}$, $\{\{1\}\}$, $\{\{2\}\}$, $\{\{1,2\}\}$ (4 enoelementne verige)
+%  \item $\{\emptyset,\{1\}\}$, $\{\emptyset,\{2\}\}$, $\{\emptyset,\{1,2\}\}$, $\{\{1\},\{1,2\}\}$, $\{\{2\},\{1,2\}\}$ (5 dvoelementnih verig)
+%  \item $\{\emptyset, \{1\}, \{1,2\}\}$, $\{\emptyset, \{2\}, \{1,2\}\}$ (2 trielementni verigi)
+%\end{itemize}
+%
+%\bigskip
+%\textbf{Zgled:}
+%
+%Naslednja delno urejena množica ima dva maksimalna elementa, obkroženi elementi pa tvorijo verigo:
+%\begin{center}
+%\includegraphics[height=50mm]{verige.eps}
+%\end{center}
+
+\bigskip
+\textbf{1. Hausdorffov princip maksimalnosti.}
+
+Naj bo $S$ z relacijo $R$ delno urejena. Naj bo ${\cal V}$ družina vseh verig:
+$${\cal V} = \{X\subseteq S~;~X \textrm { je veriga}\}\,.$$
+Množica ${\cal V}$ je delno urejena glede na relacijo $\subseteq$.
+
+Kdaj je $X$ maksimalen element ${\cal V}$?
+
+Ko za vsak drug $Y\in {\cal V}$ velja, da $X$ ni podmnožica $Y$: $X\nsubseteq Y$.
+Takemu elementu pravimo {\em maksimalna veriga}.
+
+\bigskip
+\underline{Hausdorffov princip maksimalnosti:}
+
+{\em Množica ${\cal V}$ ima vsaj en maksimalen element glede na $\subseteq$.}
+
+Vsaka delno urejena množica ima vsaj eno maksimalno verigo.
+
+\bigskip
+\textbf{2. Zornova lema.}
+
+Zornova lema pravi, da je pogoj, da je vsaka veriga v delno urejeni množici navzgor omejena,
+zadosten pogoj za obstoj maksimalnega elementa dane množice.
+
+\medskip
+\underline{Zornova lema:} {\em Naj bo $S$ z relacijo $R$ delno urejena in naj ima vsaka veriga v $S$ vsaj eno
+$R$-zgornjo mejo. Potem ima množica $S$ vsaj en $R$-maksimalen element.}
+
+\bigskip
+\bigskip
+\textbf{3. Tukeyev princip maksimalnosti.}
+
+Naj bo $S$ poljubna množica in ${\cal D}$ poljubna (neprazna) družina podmnožic množice $S$ (torej ${\cal D}\subseteq {\cal P}(S)$).
+
+\begin{definicija}
+${\cal D}$  ima {\em karakter končnosti} $\cee$ poljubna množica $X\subseteq S$ je v ${\cal D}$ natanko takrat, ko je v ${\cal D}$ vsaka {\em končna} podmnožica množice $X$.
+\end{definicija}
+
+\medskip
+\zgled
+Naj bo $S$ množica vseh pozitivnih celih števil in ${\cal D}$ družina vseh množic paroma tujih naravnih števil:
+$X\in {\cal D}$ natanko tedaj, ko velja:
+$$(\forall x)(\forall x)(x\in X \land y\in X\land x\neq y\sledi \emph{ n.s.d.}(x,y) = 1)\,,$$
+kjer $\emph{ n.s.d.}(x,y)$ označuje največjega skupnega delitelja števil $x$ in $y$.
+Družina ${\cal D}$ ima karakter končnosti, saj za vsak $X\subseteq S$ velja:
+$X\not\in {\cal D}$ natanko tedaj, ko obstajata \textbf{dve} različni števili $x,y\in {\cal X}$,  ki nista tuji.
+
+Po drugi strani pa družina ${\cal D}'$, definirana kot
+$${\cal D}' = \{X\subseteq S; X \textrm{ je končna}\}\,,$$
+nima karakterja končnosti. Množica $S$ namreč ni v družini ${\cal D}'$,
+čeprav so v ${\cal D}$ vse končne podmnožice $S$.\kz
+
+\bigskip
+\underline{Tukeyev princip maksimalnosti:}
+
+{\em Če ima ${\cal D}$ karakter končnosti, potem ima ${\cal D}$ vsaj en maksimalen element glede na relacijo ``$\subseteq$" (ki ${\cal D}$ delno ureja).}
+
+\bigskip
+
+\textbf{4. Lema Kuratowskega.}
+
+Naj bo $S$ delno urejena z relacijo $R$. Naj bo $V\subseteq S$ veriga v $S$.
+$${\cal U}_V = \{X\subseteq S~;~X\textrm{ je veriga v }S \textrm{ in } V\subseteq X\}\,.$$
+${\cal U}_V$ je delno urejena z relacijo ``$\subseteq$".
+
+\underline{Lema Kuratowskega:}
+{\em ${\cal U}_V$ ima vsaj en maksimalen element glede na inkluzijo $\subseteq$.}
+
+\medskip
+Vsaka veriga je vsebovana v neki maksimalni verigi.
+
+------------------------------------------------------------
+
+\bigskip
+
+Vsi ti principi maksimalnosti so med seboj logično ekvivalentni.
+Velja:
+$$\textrm{(Hausdorff) $\sledi$ (Zorn) $\sledi$ (Tukey) $\sledi$ (Kuratowski) $\sledi$ (Hausdorff)}$$
+
+\bigskip
+\textbf{1. etapa: (Hausdorff) $\sledi$ (Zorn)}
+
+Naj $R$ delno ureja $S$ in naj ima vsaka veriga v $S$ $R$-zgornjo mejo.
+Po Hausdorffu obstaja v $S$ vsaj ena maksimalna veriga $V$.
+
+Po hipotezi Zornove leme ima $V$ neko $R$-zgornjo mejo $m$.
+
+Trdimo, da je $m$ $R$-maksimalen element.
+
+Pa recimo, da to ni res. Tedaj obstaja nek element $x\in S$, da velja $x\neq m$ in $mRx$.
+
+Naj bo $y\in V$. Ker je $m$ zgornja meja verige $V$, velja $yRm$ in tudi $mRx$ in
+posledično, zaradi tranzitivnosti, $yRx$. Sledi $y\neq x$, saj bi iz $y=x$ sledilo $mRx$ in $xRm$ in tudi $x = m$.
+
+Potemtakem pa je veriga $V$ prava podmnožica množice $V\cup \{x\}$. Množica $V\cup \{x\}$ pa je z relacijo $R$ linearno urejena, torej je veriga. To pa je v protislovju z zahtevo, da je $V$ maksimalna veriga.
+
+S tem smo pokazali, da ima množica $S$ nek $R$-maksimalen element.\qed
+
+%Ponovitev:
+%
+%Spoznali smo štiri principe maksimalnosti:
+%\begin{itemize}
+%  \item \underline{Hausdorffov princip maksimalnosti:} Vsaka delno urejena množica ima vsaj eno maksimalno verigo.
+%  \item \underline{Zornova lema:} {\em Naj bo $S$ z relacijo $R$ delno urejena in naj ima vsaka veriga v $S$ $R$-zgornjo mejo. Potem ima množica $S$ vsaj en $R$-maksimalen element.}
+%  \item \underline{Tukeyev princip maksimalnosti:} {\em Če ima ${\cal D}\subseteq {\cal P}(S)$ karakter končnosti, potem ima ${\cal D}$ vsaj en maksimalen element glede na relacijo ``$\subseteq$" (ki ${\cal D}$ delno ureja).}
+%\item \underline{Lema Kuratowskega:} Vsaka veriga v delno urejeni množici je vsebovana v neki maksimalni verigi.
+%\end{itemize}
+%
+%Pokazali smo že:
+%
+%1.~etapo: $$\textrm{(Hausdorff) $\sledi$ (Zorn)}$$
+%in
+%
+%4.~etapo: $$\textrm{(Kuratowski) $\sledi$ (Hausdorff)}\,.$$
+%
+\bigskip
+\textbf{2. etapa: (Zorn) $\sledi$ (Tukey)}
+
+Naj bo ${\cal D}$ neprazna družina podmnožic dane množice $S$ in naj ima karakter končnosti.
+
+Družina ${\cal D}$ je delno urejena glede na relacijo ``$\subseteq$".
+
+Preverimo, da ima vsaka veriga v tej družini zgornjo mejo!
+
+Naj bo $V$ poljubna veriga v družini ${\cal D}$. Elementi množice $V$ so podmnožice množice $S$, ki so z relacijo $\subseteq$ linearno urejene (saj je $V$ veriga).
+Napravimo unijo vseh elementov te verige, $W = \cup V$. Očitno je $W$ zgornja meja verige $V$ (saj za vsak element $X\in V$ velja $X\subseteq \cup V = W$).
+
+Pokažimo, da je $W\in{\cal D}$. Ker ima ${\cal D}$ karakter končnosti, je dovolj pokazati, da je vsaka končna podmnožica množice $W$ vsebovana v ${\cal D}$.
+Naj bo $A=\{a_1,\ldots, a_n\}\subseteq W$. Torej obstajajo take množice $A_1,\ldots, A_n\in V$, da velja $a_i\in A_i$ za vse $i$. Ker pa so te množice linearno urejene, morajo nujno v eni izmed teh $n$ podmnožic, recimo ji $A_j$, biti vse druge. V množici $A_j$ je potem tudi množica $A$. Ker je $A\subseteq A_j\in V$ in torej tudi $A_j\in {\cal D}$, pa sledi, da je tudi $A\in {\cal D}$, saj je $A$ končna podmnožica množice $V$,
+ki je element ${\cal D}$, družina ${\cal D}$ pa ima karakter končnosti.
+
+Pokazali smo torej, da ima vsaka veriga zgornjo mejo glede na relacijo inkluzije.
+Po Zornovi lemi od tod sledi, da ima družina ${\cal D}$ vsaj en maksimalen element.\qed
+
+\bigskip
+\textbf{3. etapa: (Tukey) $\sledi$ (Kuratowski)}
+
+Naj relacija $R$ delno ureja množico $S$ in naj bo $V$ poljubna veriga v $S$.
+
+Naj bo ${\cal D}$ družina vseh tistih podmnožic $X$ množice $S$, za katere je
+$X\cup V$ veriga v množici $S$.
+
+Prepričajmo se, da ima ${\cal D}$ karakter končnosti!
+
+Naj bo $X\in {\cal D}$. Potem je tudi vsaka končna podmnožica $X'$ množice $X$ v ${\cal D}$: $V\cup X$ je namreč veriga, torej je tudi $V\cup X'$ veriga.
+
+In obratno: naj bo $X$ taka podmnožica množice $S$, da je v ${\cal D}$ vsaka končna podmnožica množice $X$. Potem za vsaka dva elementa $x,y\in X$ velja, da je
+$\{x,y\}\cup V$ veriga. Torej je očitno tudi $X\cup V$ veriga. Torej je $X\in {\cal D}$.
+
+Po Tukeyu torej v množici ${\cal D}$ eksistira vsaj en maksimalen element $M$ glede na relacijo inkluzije $\subseteq$.
+
+Po definiciji družine ${\cal D}$ pa je potem $M\cup V$ maksimalna veriga v množici $S$, v kateri je veriga $V$. To pa je trditev leme Kuratowskega.\qed
+
+\bigskip
+\textbf{4. etapa: (Kuratowski) $\sledi$ (Hausdorff)}
+
+Naj relacija $R$ delno ureja množico $S$. Izberimo za verigo v množici $S$ prazno množico. Ta je prav gotovo veriga, saj je zahteva po linearni urejenosti na prazno izpolnjena.
+
+Toda prazna množica je podmnožica vsake verige množice $S$. Po lemi Kuratowskega maksimalna veriga obstaja
+in je
+%v njej veriga $\emptyset$
+hkrati tudi maksimalen element družine ${\cal V}$ vseh verig glede na relacijo inkluzije $\subseteq$.
+To pa je vsebina Hausdorffovega principa maksimalnosti.\qed
+
+%
+\bigskip
+
+Principi maksimalnosti so tudi ekvivalentni aksiomu izbire:
+
+(Tukey) $\sledi$ (aksiom izbire) $\sledi$ (Hausdorff)
+
+\bigskip
+\textbf{(Tukey) $\sledi$ (aksiom izbire)}
+
+Naj bo ${\cal A} = \{A_\lambda~;~\lambda\in I\}$ poljubna družina nepraznih množic.
+
+Naj bo ${\cal F}$ množica vseh (parcialnih) funkcij, katerih domena ${\cal D}f$ je podmnožica
+množice $I$ in ki priredijo vsakemu $\lambda\in {\cal D}f$ določen element $f(\lambda)\in A_\lambda$.
+
+Vsaka taka funkcija je množica urejenih parov, torej
+$$f\subseteq I\times \cup {\cal A}\,.$$
+Množica ${\cal F}$ pa je družina podmnožic kartezičnega produkta $I\times \cup {\cal A}$.
+
+\emph{ Trditev: ${\cal F}$ ima karakter končnosti.}
+
+Dokaz trditve: Naj bo funkcija $f\in{\cal F}$. Očitno je tudi vsaka končna podmnožica funkcije $f$ element ${\cal F}$.
+
+Zdaj pa vzemimo poljubno podmnožico $g$ kartezičnega produkta $I\times \cup {\cal A}$,
+ki ima lastnost, da je vsaka njena končna podmnožica element družine ${\cal F}$.
+
+V tem primeru je tudi $g$ funkcija in je element družine ${\cal F}$. Če bi namreč v množici $g$ obstajala različna para $(\lambda,a)$ in $(\lambda,b)$ z isto prvo koordinato, potem bi dvoelementna podmnožica $\{(\lambda,a),(\lambda,b)\}$ ne bila funkcija, kar pa je v nasprotju s predpostavko.
+
+Podobno ugotovimo, da je $g\in {\cal F}$, saj za vsak $(\lambda,a)\in g$ velja, da je
+$\{(\lambda,a)\}\in {\cal F}$, torej $\lambda\in I$ in $a\in A_\lambda$.
+
+Pokazali smo trditev, da ima ${\cal F}$ karakter končnosti.
+Po Tukeyjevem principu maksimalnosti ima ${\cal F}$ vsaj en maksimalen element $F$ glede na relacijo ``$\subseteq$".
+
+Prepričajmo se, da je prav ta $F$ funkcija izbire!
+
+Ker je $F\in{\cal F}$, je $F$ funkcija. Dovolj je torej pokazati, da je domena funkcije $F$ množica $I$. Pa recimo, da ni. Tedaj obstaja nek indeks $\lambda\in I\backslash {\cal D}f$. Naj bo $a$ poljuben element neprazne množice $A_\lambda$ in napravimo urejeni par $(\lambda, a)$ in nato unijo $F\cup\{(\lambda,a)\}$. Ta unija je element družine ${\cal F}$, ki vsebuje funkcijo $F$ kot pravo podmnožico. To pa je v nasprotju s trditvijo, da je $F$ maksimalen element družine ${\cal F}$.
+
+Potem pa je ${\cal D}F = I$ in je $F$ res funkcija izbire.\qed
+
+\bigskip
+
+Da se pokazati, da \textbf{(aksiom izbire) $\sledi$ (Hausdorff)}.
+
+Dokaz opustimo, glej \emph{ Niko Prijatelj: Matemati\v cne strukture I, str.~135--142}.
+
+Za dokaz implikacije \textbf{(aksiom izbire) $\sledi$ (Zornova lema)}
+glej \emph{ Paul Halmos: Naive Set Theory, str. 63--65}.
+
+\section{Izrek o dobri ureditvi}
+
+\emph{ Morda najgloblji razlog, zaradi katerega se zdi mnogim matematikom aksiom izbire problematičen,
+tiči v tem, da je mogoče iz njega izpeljati izrek o dobri ureditvi, ki pravi, da je vsako
+množico mogoče dobro urediti.}
+
+%\bigskip
+%Aksiom izbire je logično ekvivalenten tudi t.i.~izreku o dobri ureditvi.
+
+\medskip
+\textbf{Izrek o dobri ureditvi}: Za vsako množico $S$ obstaja neka relacija $R$, ki to množico dobro ureja.
+
+\bigskip
+Izrek o dobri ureditvi $\cee$ aksiom izbire.
+
+\bigskip
+Pokažimo enostavnejšo  od obeh implikacij:
+
+\textbf{Izrek o dobri ureditvi $\sledi$ aksiom izbire.}
+
+Naj bo ${\cal A} = \{A_\lambda~;~\lambda\in I\}$ poljubna družina nepraznih množic.
+Po izreku o dobri ureditvi obstaja neka relacija $R$, ki dobro ureja \emph{ unijo družine ${\cal A}$}, $\cup {\cal A}$.
+
+Ker pa je vsaka množica $A_\lambda$ družine ${\cal A}$ neprazna podmnožica
+unije $\cup{\cal A}$, ima zato neki $R$-prvi element.
+Funkcijo izbire $f$ zdaj lahko definiramo tako, da vsakemu elementu $\lambda\in I$ priredi
+$R$-prvi element množice $A_\lambda$:
+$$f(\lambda) = R\textrm{-prvi element v }A_\lambda\,.$$
+S to konstrukcijo je aksiom izbire potrjen.\qed
+
+Da se pokazati tudi implikacijo \textbf{(aksiom izbire) $\sledi$ (izrek o dobri ureditvi)}.
+
+Dokaz opustimo, glej \emph{ Niko Prijatelj: Matemati\v cne strukture I, str.~143--151}.
+
+Za dokaz implikacije \textbf{(Zornova lema) $\sledi$ (izrek o dobri ureditvi)}
+glej \emph{ Paul Halmos: Naive Set Theory, str.~68}.
+
+\section{Pregled najpomembnejših pojmov in nekaj nalog}
+
+Ključni pojmi:
+\begin{itemize}
+\item Kartezični produkt poljubne družine množic.
+Funkcija izbire.
+\item Aksiom o kartezičnem produktu. Aksiom izbire. Cohenov izrek.
+\item $R$-maksimalen element, veriga.
+\item Hausdorffov princip maksimalnosti: Vsaka delno urejena množica ima vsaj eno maksimalno verigo.
+\item Zornova lema: Če je vsaka veriga v delno urejeni množici navzgor omejena, potem ima ta množica vsaj en maksimalen element.
+\item Tukeyev princip maksimalnosti: Vsaka družina podmnožic dane množice, ki ima karakter končnosti, ima vsaj en maksimalen element glede na relacijo inkluzije.
+\item Lema Kuratowskega: Vsaka veriga v delno urejeni množici je vsebovana v neki maksimalni verigi.
+\item Izrek o dobri ureditvi.
+\item Logične ekvivalence med temi trditvami.
+\end{itemize}
+
+\begin{problem}
+Množica $S=\{1,\ldots,5\}$ je strogo delno urejena z naslednjo relacijo $R$:
+\begin{center}
+\includegraphics[width=30mm]{hasse5.eps}
+\end{center}
+Naj bo ${\cal V}$ množica vseh nepraznih verig te relacije, urejena glede na strogo inkluzijo.
+Narišite Hassejev diagram te relacije.
+\end{problem}
+
+\textbf{Rešitev:}
+
+Elementi množice ${\cal V}$ so naslednji:
+$$\{1\},\{2\},\{3\},\{4\},\{5\},
+ \{1,2\}, \{1,4\}, \{1,3\}, \{1,5\},\{2,4\},\{2,5\}, \{3,5\},
+ \{1,2,4\}, \{1,2,5\}, \{1,3,5\}$$
+\begin{center}
+\includegraphics[height=30mm]{verige2.eps}
+\end{center}
+
+
+
+\section{Dodatek: Zanimiva uporaba ekvivalenčnih relacij in aksioma izbire}
+
+\emph{ Vsak od neskončno mnogo igralcev, oštevilčenih z naravnimi števili ($0,1,2,\ldots$), vrže pošten kovanec.
+Vsak izmed igralcev vidi izide (cifra ali mož) kovancev vseh ostalih igralcev, le svojega ne.
+Vsi igralci nato hkrati (in neodvisno drug od drugega) ugibajo izide svojih kovanev.
+Pokaži, da obstaja strategija ugibanja, pri kateri bodo vsi igralci, razen končno mnogo njih, pravilno uganili izid svojega kovanca.}
+
+\bigskip
+Označimo možna izida pri metu kovanca z $0$ in $1$.  Kombinacijo izidov metov kovancev vseh igralcev teda lahko opišemo
+z neskončnim zaporedjem $(a_n)_{n = 0}^\infty$, kjer je $a_n\in \{0,1\}$ za vse $n\in \mathbb{N}$.
+Naj bo $S$ množica vseh takih zaporedij.\footnote{Elemente množice $S$ lahko identificiramo s funkcijami
+oblike $f:\mathbb{N}\to\{0,1\}$, pa tudi z elementi potenčne množice ${\cal P}(\mathbb{N})$.}
+
+
+Definirajmo na množici $S$ relacijo $R$ s predpisom
+$$aRa' \cee \textrm{množica $\{n\in \mathbb{N}; a_n\neq a_n'\}$ je končna}\,.$$
+Dve zaporedji sta torej v relaciji natanko tedaj, ko se razlikujeta le v končno mnogo členih.
+Hitro lahko preverimo, da je relacija $R$ ekvivalenčna relacija.
+
+Relacija $R$ množico $S$ razdeli na ekvivalenčne razrede.
+To so paroma disjunktne in neprazne množice.
+Uporabimo sedaj aksiom izbire. Ena od ekvivalentnih oblik aksioma se glasi:
+\begin{itemize}
+ \item Če je ${\cal A}$ družina paroma disjunktnih nepraznih množic, potem obstaja taka  množica $X$, da za vsak $A\in {\cal A}$ množica $X\cap A$ vsebuje natanko en element.
+\end{itemize}
+Naj bo ${\cal A}$ faktorska množica $S$ po $R$, torej množica vseh ekvivalenčnih razredov relacije $R$.
+Uporabimo zgornjo obliko aksioma izbire in naj bo $X$ taka množica, da za vsak $A\in {\cal A}$ množica $X\cap A$ vsebuje natanko en element.
+Množica $X$ torej vsebuje po enega predstavnika vsakega ekvivalenčnega razreda.
+
+\medskip
+Naj $a\in S$ označuje zaporedje, ki opisuje izide vseh metov.
+Igralci ugibajo izide metov svojih kovancev z naslednjo strategijo:
+  \begin{itemize}
+ \item Oglejmo si igralca, oštevilčenega z $n\in \mathbb{N}$.
+  Igralec $n$ pozna zaporedje $a$ v celoti, razen vrednosti člena $a_n$, ki je bodisi $0$ ali $1$.
+  \item Označimo z $b^n$ zaporedje v $S$, podano s predpisom
+  $$b^n_i = \left\{
+               \begin{array}{ll}
+                 a_i, & \hbox{\v ce je $i\neq n$;} \\
+                 0, & \hbox{\v ce je $i = n$.}
+               \end{array}
+             \right.
+  $$
+  Tedaj je $aRb^n$, od koder sledi $R[a] = R[b^n]$.
+  \item Naj bo $c$ edini element množice $X\cap R[a]$.
+Tedaj je $c\in S$. Igralec $n$ za izid svojega meta kovanca ugiba vrednost, ki jo opisuje $c_n$.
+\end{itemize}
+
+\medskip
+Trdimo, da bodo z zgornjo strategijo ugibanja vsi igralci, razen končno mnogo, pravilno uganili izid svojega kovanca.
+Z drugimi besedami, množica $\{n\in \mathbb{N}; c_n\neq a_n\}$ je končna.
+To je ekvivalentno pogoju, da sta zaporedji $a$ in $c$ v relaciji $R$. To pa drži, saj je $c\in X\cap R[a]$ in torej $c\in R[a]$.
+
+\bigskip
+\bigskip
+\emph{ Zgornji zgled bi lahko interpretirali tudi v jeziku vremenske napovedi, če predpostavimo, da dneve štejemo z naravnimi števili in
+da imamo vsak dan lahko le dva možna izida (npr.~jasno ali oblačno). Če bi torej vsak dan poznali tako zgodovino kot
+tudi prihodnost vremena, bi lahko skoraj vse dni vreme pravilno napovedali za tekoči dan.}
+
 
 
 \end{document}
