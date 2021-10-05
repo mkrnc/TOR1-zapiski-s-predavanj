@@ -2,6 +2,8 @@
 % Titlepage
 %*******************************************************
 \begin{titlepage}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\pagecolor{amber}\afterpage{\nopagecolor}
 	% if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
 	\begin{addmargin}[-1cm]{-1cm}
     \begin{center}
@@ -19,13 +21,10 @@
 
         \vfill
 
-        \includegraphics[width=11cm]{Desargues.png} %\\ \medskip
+        \includegraphics[width=10cm]{Desargues.png} %\\ \medskip
 				\vfill
-        \myName \\ \medskip   
-        %\myDegree \\
-        %\myDepartment \\                            
-        %\myFaculty \\
-        %\myUni \\ \bigskip
+        \textsc{\Large\frontpageAuthors}   
+        \vfill   
 
         \myMonth \xspace \myYear \ -- \verzija
 
