@@ -1908,6 +1908,53 @@ Iz $(i)$ in $(ii)$ izpeljemo, da je izjava $(\exists! x)A(x)$ pravilna.\qed
 
 \section{Naloge}
 \begin{enumerate}
+\item Dani sta izjavi $A$: "Zunaj je mrzlo." in $B$: "Zunaj dežuje.". V naravnem jeziku napiši naslednje sestavljene izjave:
+\begin{enumerate}
+  \item $\neg A$
+  \item $A \land B$
+  \item $A \lor B$
+  \item $B \lor \neg A$
+\end{enumerate}
+
+\item Naj bo $A$: "Janez bere Finance.", $B$: "Janez bere Delo.", in $C$: "Janez bere Večer.".
+Prepiši v simbolne izjave:
+\begin{enumerate}
+  \item Janez bere Finance ali Delo, a ne Večera. \[(A \lor B) \land \neg C\]
+  \item Janez bere Finance in Delo ali pa ne bere Financ in Dela. \[(A \land B) \lor \neg (A \land B)\]
+  \item Ni res, da Janez bere Finance, ne pa Večera. \[\neg (A \land \neg C)\]
+  \item Ni res, da Janez bere Večer ali Delo, ne pa Financ. \[\neg ((B \lor C) \land \neg A)\]
+\end{enumerate}
+
+\item Poišči pravilnostne tabele za primere v prejšnji nalogi.
+
+\item Za tri različne premice $p$, $q$ in $r$ v prostoru velja $(p \parallel r) \land (p \cap q = A) \land (q \cap r = B)$. Kaj lahko sklepaš? Rešitev: Nariši skico. Premica $q$ leži v ravnini, in jo določata $p$ in $r$.
+
+\item Vitezi in oprode (vitez vedno govori resnico, oproda vedno lažejo):
+\begin{enumerate}
+  \item Artur: Ni res, da je Cene oproda.
+  Bine: Cene je vitez ali pa sem jaz vitez.
+  Cene: Bine je oproda.
+  Kdo od njih je vitez in kdo oproda?
+  \item Artur: Cene je oproda ali je Bine oproda.
+  Bine: Cene je vitez in Artur je vitez.
+  Kdo od njih je vitez in kdo oproda?
+\end{enumerate}
+
+\item Z osnovnima povezavama $\neg$ in $\land$ izrazi naslednje sestavljene izjave:
+\begin{enumerate}
+  \item $A \lor B$
+  \item $A \rightarrow B$
+  \item $A \iff B$
+\end{enumerate}
+
+\item Prepričaj se, da veljajo naslednje logične ekvivalence:
+\begin{enumerate}
+  \item $A \land (B \lor C) \iff \neg (A \land B) \rightarrow (A \land C)$
+  \item $\neg A \land (A \rightarrow B) \iff A \rightarrow (\neg A \land B)$
+  \item $A \lor B \lor C \iff \neg (A \lor B) \rightarrow C$
+  \item $(A \rightarrow B) \land (B \rightarrow A) \iff (A \land B) \lor (\neg A \land \neg B)$
+\end{enumerate}
+
     \item 
     (Naloga o vitezih in oprodah)
 A, B, C, D, E
