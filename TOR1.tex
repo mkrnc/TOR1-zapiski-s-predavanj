@@ -282,14 +282,19 @@ Pravilnostne tabele lahko zapišemo tudi za sestavljene izjave, z uporabo poljub
 zaporedja, s katerim sestavimo izjavo.
 
 \begin{example*}
+Zapišimo  izjavo
 \begin{equation}\label{eq:izjava2}
-(A \sledi B) \inn (B\sledi C) \inn  (\neg A \ali C)
+\mathcal I\sim(A \sledi B) \inn (B\sledi C) \inn  (\neg A \ali C)
 \end{equation}
+ter označimo  
+\[
+\mathcal I' \sim (A \sledi B) \inn (B\sledi C)
+\]
 
 $$\begin{tabular}{c|c|c|c|c|c|c|c}
   \hline
   % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-   & $A, B, C$ & $A \sledi B$ & $B \sledi C$ & $(A \sledi B) \inn (B\sledi C)$ & $\neg A$ & $\neg A \ali C$ & $(\ref{eq:izjava2})$\\
+   & $A, B, C$ & $A \sledi B$ & $B \sledi C$ & $\mathcal I'$ & $\neg A$ & $\neg A \ali C$ & $\mathcal I$\\
   \hline
   1. & 1, 1, 1 & 1 & 1 & 1 & 0 & 1 & 1 \\
   2. & 1, 1, 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
@@ -1018,11 +1023,20 @@ Sklep: Koper je mesto.
 
 \newpage 
 
-\section{Načini dokazovanja}
+\section{Dokazovanje}
 
 Logične implikacije uporabljamo pri dokazovanju novih trditev iz aksiomov in že dokazanih trditev.
-Poglejmo si nekaj načinov dokazovanja.
+Poglejmo si osnovna  pravila sklepanja ter nekaj načinov dokazovanja.
 
+\subsection{Pravila sklepanja}
+Kako pa pokažemo pravilnost sklepa? Zapis
+pravilnostne tabele in preverjanje vseh naborov je časovno potraten postopek. Precej
+rajši bi imeli kratko izpeljavo, v kateri bi izvajali relativno enostavne, majhne korake
+proti cilju.
+Majhne, enostavne sklepe, ki jih bomo potrebovali za dokazovanje pravilnosti sklepov,
+imenujemo pravila sklepanja.
+
+\subsection{Načini dokazovanja}
 \subsubsection*{1)~Direktni dokaz implikacije $A \sledi  B$}
 
 Dokazujemo logično implikacijo $A \sledi  B$.
@@ -1206,7 +1220,7 @@ V obeh primerih sta $m$ in $n$ iste parnosti.
 Povzemimo:
 
 \begin{center}
-\fbox{\parbox{0.5\linewidth}{\noindent
+\fbox{\parbox{0.8\linewidth}{\noindent
 \textbf{ Dokaz ekvivalence $A\cee B$ v dveh delih}
 
 \textbf{ Dokaz:}
@@ -1256,7 +1270,7 @@ Torej je $a^2+b^2 = c^2$ natanko tedaj, ko je $T$ pravokotni trikotnik s hipoten
 Če imamo $n$ vmesnih izjav $C_1,\ldots, C_n$, ima dokaz naslednjo obliko:
 
 \begin{center}
-\fbox{\parbox{0.5\linewidth}{\noindent
+\fbox{\parbox{0.8\linewidth}{\noindent
 \textbf{ ``Če in samo če'' dokaz $A\cee B$}
 
 \textbf{ Dokaz:}
@@ -1278,7 +1292,7 @@ Včasih nam pri dokazu pravilnosti izjave $A$ pomaga, če pregledamo vse primere
 
 
 \begin{center}
-	\fbox{\parbox{0.6\linewidth}{\noindent
+	\fbox{\parbox{0.8\linewidth}{\noindent
 			\textbf{ Dokazovanje $A$ s pomočjo analize primerov.}
 			
 			\textbf{ Dokaz:}
@@ -1296,144 +1310,108 @@ Včasih nam pri dokazu pravilnosti izjave $A$ pomaga, če pregledamo vse primere
 			~~~~$A$.\hspace{-2cm}\qed
 	}}
 \end{center}
+\subsubsection*{7)~Dokaz z indukcijo}
 
+Matemátična ali popólna indúkcija je v matematiki metoda dokaza, ki se običajno uporablja za dokazovanje ali je dana trditev ali izrek resničen za vsa naravna števila ali za vse člene neskončnega zaporedja. 
+
+Najenostavnejša in najsplošnejša oblika matematične indukcije dokazuje trditev za vsa naravna števila $k$ v dveh korakih:
+
+\begin{itemize}
+    \item Trditev velja za $k = 1$.
+    \item  Če velja trditev za $k = m$, potem iz tega sledi trditev tudi za $k = m + 1$.
+\end{itemize}
+Da razumemo zakaj sta dovolj dva koraka, je pripravno pomisliti na pojav domine. Če imamo eno dolgo vrsto domin, in želimo preveriti če bodo  padle vse domine  je dovolj pokazati, da
+\begin{itemize}
+    \item bo padla prva domina, ter
+    \item če pade neka domina, bo padla tudi tista pred njo. 
+\end{itemize}
+
+
+\begin{center}
+\fbox{\parbox{0.8\linewidth}{\noindent
+\textbf{ Indukcija po $k\in \mathbb N$ }
+
+\textbf{ Dokaz:}
+
+(i) Dokažemo da trditev velja za začetni element, tj. ponavadi $k=1$ (\textit{baza indukcije})
+
+(ii) Dokažemo da ob  predpostavki trditve  za  $k=i$, sledi  pravilnost trditve  za vrednost $k=i+1$ (\textit{indukcijski  korak}).
+\hspace{-2cm}\qed
+}}
+\end{center}
+\begin{example*}
+    Pokažimo da za $n\in\mathbb N$ velja 
+    $$1^2 + 2^2 + \ldots + n^2 = \frac{n(n+1)(2n+1)}{6}$$
+\begin{proof}
+    Indukcija po $n$. 
+    \begin{description}
+        \item[Baza  indukcije:] Predpostavimo  $n=1$ in brez  težav  preverimo da $1^2=\frac{1\cdot 2\cdot 3}{6}$.
+        \item[Indukcijski korak:]
+        Korak indukcije je drugi del indukcijskega procesa. V tem koraku predpostavimo, da trditev velja za neko poljubno celo število $k$ in dokažemo, da velja tudi za $k+1$.
+        Potem lahko  zapišemo
+\[
+1^2 + 2^2 + \ldots + k^2 = \frac{k(k+1)(2k+1)}{6}
+\]
+
+Nato moramo dokazati, da trditev velja tudi za $k+1$. Za to uporabimo predpostavko:
+\[
+1^2 + 2^2 + \ldots + k^2 + (k+1)^2 = \frac{k(k+1)(2k+1)}{6} + (k+1)^2
+\]
+
+Sedaj poenostavimo izraz:
+\begin{align*}
+\frac{k(k+1)(2k+1)}{6} + (k+1)^2 &= \frac{k(k+1)(2k+1) + 6(k+1)^2}{6}\\
+ &= \frac{(k+1)[k(2k+1) + 6(k+1)]}{6}\\
+ &= \frac{(k+1)[2k^2+k+6k+6]}{6}\\
+ &= \frac{(k+1)[2k^2+7k+6]}{6}\\
+ &= \frac{(k+1)(k+2)(2k+3)}{6}
+\end{align*}
+
+Kar je enako desni strani trditve za $k+1$. Tako smo dokazali, da trditev velja tudi za $k+1$. To zaključi korak indukcije.
+    \end{description}
+\end{proof}
+
+\end{example*}
+
+\begin{example*}
+    Dokaži, da za poljuben $n\in \mathbb N$ velja $1 + 3 + 5 + \ldots + (2n-1) = n^2$.
+
+\begin{proof}
+Indukcija po $n$.
+\begin{description}
+    \item[Baza indukcije:] Pokažemo, da trditev velja za $n = 1$:
+\[
+1 = 1^2,
+\]
+kar očitno drži.
+\item[Indukcijski korak:]Predpostavimo, da trditev velja za poljubno pozitivno celo število $k$, torej:
+\[
+1 + 3 + 5 + \ldots + (2k-1) = k^2.
+\]
+
+Sedaj moramo dokazati, da trditev velja tudi za $k+1$. Želimo pokazati, da:
+\[
+1 + 3 + 5 + \ldots + (2k-1) + (2(k+1)-1) = (k+1)^2.
+\]
+
+Začnemo s levo stranjo:
+\begin{align*}
+&1 + 3 + 5 + \ldots + (2k-1) + (2(k+1)-1) \\
+&= k^2 + (2(k+1) - 1) \quad \text{(Ob upoštevanju indukcijske predpostavke)} \\
+&= k^2 + 2k + 1 \\
+&= (k+1)^2.
+\end{align*}
+
+S tem smo dokazali, da trditev velja tudi za $k+1$. S tem zaključimo korak indukcije.
+
+\end{description}
+
+\end{proof}
+\end{example*}
 % predavanja 24.10. ponovitev načinov dokazovanja
 % analiza primerov..
 
-\newpage
-\subsection{Množice izjav}
-
-Dane so atomarne izjave $A_1,\ldots, A_n$ (take, da v njih ne nastopa nobena logična povezava).
-
-Koliko različnih izjav lahko sestavimo iz njih?
-
-Zdi se, da neskončno mnogo! Vendar pa, za logiko sta dve izjavi isti, če sta logično ekvivalentni.
-
-Izjav, ki med seboj niso logično ekvivalentne, pa je le končno mnogo.
-
-Vsaka izjava, sestavljene iz $A_1,\ldots, A_n$, ima natanko $2^n$ različnih določil.
-Izjava je enolično določena, brž ko so določene njene vrednosti za vsako od teh $2^n$ določil.
-
-Vsako določilo ima vrednost 0 ali 1, neodvisno od drugih. Sledi, da je vseh možnih izjav
-$2^{(2^n)}$.
-
-\bigskip
-Oglejmo si konstrukcijo vseh možnih izjav za $n = 1$ in $n=2$.
-
-\textbf{ n = 1}
-
-Imamo eno samo izjavo, $A$. Iz nje lahko sestavimo $2^{(2^1)} = 4$ izjave, $C_1,\ldots, C_4$.
-
-$$\begin{tabular}{c|c|c|c|c}
-  \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-$A$ & $C_1$ & $C_2$  & $C_3$ & $C_4$\\
-  \hline
-1 & 1 & 1 & 0  & 0  \\
-0 & 1 & 0 & 1  & 0  \\
-\end{tabular}$$
-
-$C_1$ je tavtologija, npr.~$A\ali \neg A$.
-
-$C_4$ je protislovje, npr.~$A\inn \neg A$.
-
-Za $C_2$ lahko vzamemo kar $A$.
-
-Za $C_3$ pa $\neg A$.
-
-
-\bigskip
-\textbf{ n = 2}
-
-Imamo dve izjavi, $A$ in $B$. Iz njiju lahko sestavimo $2^{(2^2)} = 16$ izjav,
-$C_1,\ldots, C_{16}$.
-
-$$\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
-  \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-$A$ & $B$
-& $C_1$ & $C_2$  & $C_3$ & $C_4$
-& $C_5$ & $C_6$  & $C_7$ & $C_8$
-& $C_9$ & $C_{10}$  & $C_{11}$ & $C_{12}$
-& $C_{13}$ & $C_{14}$  & $C_{15}$ & $C_{16}$\\
-  \hline
-1 & 1 &   1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-1 & 0 &   1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0\\
-0 & 1 &   1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0\\
-0 & 0 &   1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\
-\end{tabular}$$
-
-Seveda je $C_1$ je tavtologija, npr.~$A\ali \neg A$ in
-$C_{16}$ protislovje $A\inn \neg A$.
-
-Ker so izjave $C_2$, $C_3$, $C_5$ in $C_9$ nepravilne le pri enem določilu, bomo v teh primerih izbrali
-izbrano konjunktivno obliko:
-\begin{itemize}
-  \item $C_2 = A\ali B$
-  \item $C_3 = A\ali \neg B$
-  \item $C_5 = \neg A\ali B$
-  \item $C_8 = \neg A\ali \neg B$
-\end{itemize}
-Podobno za izjave $C_{8}$, $C_{12}$, $C_{14}$ in $C_{15}$ izrazimo s pomočjo izbrane disjunktivne oblike:
-\begin{itemize}
-  \item $C_8 = A\inn B$
-  \item $C_{12} = A\inn\neg B$
-  \item $C_{14} = \neg A\inn B$
-  \item $C_{15} = \neg A\inn\neg B$
-\end{itemize}
-Vse preostale izjave pa so pravilne pri dveh določilih in prav tako nepravilne pri dveh določilih.
-
-Za $C_4$ vzamemo $$(A\inn B) \ali (A\inn \neg B)\,,$$
-kar je ekvivalentno
-$$A\inn (B \ali \neg B)$$
-in ker je disjunkcija $B \ali \neg B$ vedno pravilna izjava, je torej izjava $C_4$ ekvivalentna z izjavo $A$.
-
-Podobno se prepričamo, da je:
-\begin{itemize}
-  \item  izjava $C_6$ ekvivalentna z izjavo $B$,
-  \item  izjava $C_{11}$ ekvivalentna z izjavo $\neg B$,
-  \item  izjava $C_{13}$ ekvivalentna z izjavo $\neg A$.
-\end{itemize}
-Za $C_7$ pišimo
-$$(A\inn B) \ali (\neg A\ali \neg B)\,,$$
-kar je ekvivalentno z
-$$A\cee B\,.$$
-Podobno pa lahko za $C_{10}$ vzamemo ekvivalenco
-$$A\cee \neg B\,.$$
-\qed
-\subsection{Pravila sklepanja}
-Kako pa pokažemo pravilnost sklepa? Zapis
-pravilnostne tabele in preverjanje vseh naborov je časovno potraten postopek. Precej
-rajši bi imeli kratko izpeljavo, v kateri bi izvajali relativno enostavne, majhne korake
-proti cilju.
-Majhne, enostavne sklepe, ki jih bomo potrebovali za dokazovanje pravilnosti sklepov,
-imenujemo pravila sklepanja.
-
-\begin{tabular}{|c|c|c|}
-	\hline 
-	ime & predpostavke & sklep\\
-	\hline 
-	\hline 
-	modus ponens & $A,A\Rightarrow B$ & $B$\\
-	\hline 
-	modus tollens & $A\Rightarrow B,\neg B$ & $\neg A$\\
-	\hline 
-	hipoteti\v{c}ni silogizem & $A\Rightarrow B,B\Rightarrow C$ & $A\Rightarrow C$\\
-	\hline 
-	disjunktivni silogizem & $A\vee B,\neg A$ & $B$\\
-	\hline 
-	združitev  & $A,B$ & $A\wedge B$\\
-	\hline 
-	poenostavitev & $A\wedge B$ & $A$\\
-	\hline 
-	pridružitev & $A$ & $A\vee B$\\
-	\hline 
-\end{tabular}
-
-{
-
 \section{Izjave s predikati in kvantifikatorji}
-}
 
 Kvantifikatorji povedo, za koliko objektov neke vrste velja neka izjava.
 Pri tem moramo povedati, katere vrste objekti nas zanimajo (npr.~elementi množic $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$, itd.), pogosto pa je to že razvidno iz konteksta.
@@ -1905,6 +1883,11 @@ Torej, $y = z$.
 Iz $(i)$ in $(ii)$ izpeljemo, da je izjava $(\exists! x)A(x)$ pravilna.\qed
 }}
 \end{center}
+
+
+
+
+\newpage
 
 \section{Naloge}
 \begin{enumerate}
@@ -6833,6 +6816,605 @@ Torej ima že množica vseh funkcij $f:\mathbb{R}\to \{0,1\}$ večjo moč od kon
 
 \appendix
 \cleardoublepage\part*{Dodatek}
+
+\chapter{Dodatna poglavja iz logike}
+\subsection{Množice izjav}
+
+Dane so atomarne izjave $A_1,\ldots, A_n$ (take, da v njih ne nastopa nobena logična povezava).
+
+Koliko različnih izjav lahko sestavimo iz njih?
+
+Zdi se, da neskončno mnogo! Vendar pa, za logiko sta dve izjavi isti, če sta logično ekvivalentni.
+
+Izjav, ki med seboj niso logično ekvivalentne, pa je le končno mnogo.
+
+Vsaka izjava, sestavljene iz $A_1,\ldots, A_n$, ima natanko $2^n$ različnih določil.
+Izjava je enolično določena, brž ko so določene njene vrednosti za vsako od teh $2^n$ določil.
+
+Vsako določilo ima vrednost 0 ali 1, neodvisno od drugih. Sledi, da je vseh možnih izjav
+$2^{(2^n)}$.
+
+\bigskip
+Oglejmo si konstrukcijo vseh možnih izjav za $n = 1$ in $n=2$.
+
+\textbf{ n = 1}
+
+Imamo eno samo izjavo, $A$. Iz nje lahko sestavimo $2^{(2^1)} = 4$ izjave, $C_1,\ldots, C_4$.
+
+$$\begin{tabular}{c|c|c|c|c}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+$A$ & $C_1$ & $C_2$  & $C_3$ & $C_4$\\
+  \hline
+1 & 1 & 1 & 0  & 0  \\
+0 & 1 & 0 & 1  & 0  \\
+\end{tabular}$$
+
+$C_1$ je tavtologija, npr.~$A\ali \neg A$.
+
+$C_4$ je protislovje, npr.~$A\inn \neg A$.
+
+Za $C_2$ lahko vzamemo kar $A$.
+
+Za $C_3$ pa $\neg A$.
+
+
+\bigskip
+\textbf{ n = 2}
+
+Imamo dve izjavi, $A$ in $B$. Iz njiju lahko sestavimo $2^{(2^2)} = 16$ izjav,
+$C_1,\ldots, C_{16}$.
+
+$$\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+$A$ & $B$
+& $C_1$ & $C_2$  & $C_3$ & $C_4$
+& $C_5$ & $C_6$  & $C_7$ & $C_8$
+& $C_9$ & $C_{10}$  & $C_{11}$ & $C_{12}$
+& $C_{13}$ & $C_{14}$  & $C_{15}$ & $C_{16}$\\
+  \hline
+1 & 1 &   1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+1 & 0 &   1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0\\
+0 & 1 &   1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0\\
+0 & 0 &   1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\
+\end{tabular}$$
+
+Seveda je $C_1$ je tavtologija, npr.~$A\ali \neg A$ in
+$C_{16}$ protislovje $A\inn \neg A$.
+
+Ker so izjave $C_2$, $C_3$, $C_5$ in $C_9$ nepravilne le pri enem določilu, bomo v teh primerih izbrali
+izbrano konjunktivno obliko:
+\begin{itemize}
+  \item $C_2 = A\ali B$
+  \item $C_3 = A\ali \neg B$
+  \item $C_5 = \neg A\ali B$
+  \item $C_8 = \neg A\ali \neg B$
+\end{itemize}
+Podobno za izjave $C_{8}$, $C_{12}$, $C_{14}$ in $C_{15}$ izrazimo s pomočjo izbrane disjunktivne oblike:
+\begin{itemize}
+  \item $C_8 = A\inn B$
+  \item $C_{12} = A\inn\neg B$
+  \item $C_{14} = \neg A\inn B$
+  \item $C_{15} = \neg A\inn\neg B$
+\end{itemize}
+Vse preostale izjave pa so pravilne pri dveh določilih in prav tako nepravilne pri dveh določilih.
+
+Za $C_4$ vzamemo $$(A\inn B) \ali (A\inn \neg B)\,,$$
+kar je ekvivalentno
+$$A\inn (B \ali \neg B)$$
+in ker je disjunkcija $B \ali \neg B$ vedno pravilna izjava, je torej izjava $C_4$ ekvivalentna z izjavo $A$.
+
+Podobno se prepričamo, da je:
+\begin{itemize}
+  \item  izjava $C_6$ ekvivalentna z izjavo $B$,
+  \item  izjava $C_{11}$ ekvivalentna z izjavo $\neg B$,
+  \item  izjava $C_{13}$ ekvivalentna z izjavo $\neg A$.
+\end{itemize}
+Za $C_7$ pišimo
+$$(A\inn B) \ali (\neg A\ali \neg B)\,,$$
+kar je ekvivalentno z
+$$A\cee B\,.$$
+Podobno pa lahko za $C_{10}$ vzamemo ekvivalenco
+$$A\cee \neg B\,.$$
+\qed
+
+
+\begin{tabular}{|c|c|c|}
+	\hline 
+	ime & predpostavke & sklep\\
+	\hline 
+	\hline 
+	modus ponens & $A,A\Rightarrow B$ & $B$\\
+	\hline 
+	modus tollens & $A\Rightarrow B,\neg B$ & $\neg A$\\
+	\hline 
+	hipoteti\v{c}ni silogizem & $A\Rightarrow B,B\Rightarrow C$ & $A\Rightarrow C$\\
+	\hline 
+	disjunktivni silogizem & $A\vee B,\neg A$ & $B$\\
+	\hline 
+	združitev  & $A,B$ & $A\wedge B$\\
+	\hline 
+	poenostavitev & $A\wedge B$ & $A$\\
+	\hline 
+	pridružitev & $A$ & $A\vee B$\\
+	\hline 
+\end{tabular}
+
+\section{Izjave s predikati in kvantifikatorji}
+
+Kvantifikatorji povedo, za koliko objektov neke vrste velja neka izjava.
+Pri tem moramo povedati, katere vrste objekti nas zanimajo (npr.~elementi množic $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$, itd.), pogosto pa je to že razvidno iz konteksta.
+
+Naj bo $A(x)$ neka izjava, smiselna za vsak objekt $x$ iz domene pogovora.
+\iftoggle{long}{
+{\color{blue}Taki izjavi pravimo \emph{ predikat}.
+Predikati oblike $A(x)$ so enomestni. Poznamo pa tudi dvo- in večmestne predikate, npr.~$A(x,y)$, $P(x_1,x_2,x_3)$ ipd.}
+}
+{Taki izjavi pravimo \emph{ predikat}. Predikati oblike $A(x)$ so enomestni. Poznamo pa tudi dvo- in večmestne predikate, npr.~$A(x,y)$, $P(x_1,x_2,x_3)$ ipd.}
+
+Za zapis izjav s kvantifikatorji bomo uporabljali naslednje oznake:
+\begin{itemize}
+  \item
+  $(\forall x) A(x)$: to je izjava, ki je pravilna natanko tedaj, ko je za vsak $x$ izjava $A(x)$ pravilna
+
+$\forall$ je t.i.~\emph{ univerzalni kvantifikator}
+  \item
+  $(\exists  x) A(x)$: to je izjava, ki je pravilna natanko tedaj, ko obstaja vsaj en $x$, za katerega je izjava $A(x)$ pravilna
+
+$\exists$ je t.i.~\emph{ eksistencialni kvantifikator}
+
+  \item
+  $(\exists!  x) A(x)$: to je izjava, ki je pravilna natanko tedaj, ko obstaja \textbf{ natanko en} $x$, za katerega je izjava $A(x)$ pravilna
+
+Ekvivalentno: $(\exists x)A(x) \inn (\forall y)(\forall z)(A(y) \inn A(z) \sledi y = z)$
+\end{itemize}
+
+\begin{example*}
+Zadnjič smo dokazali izjavo \emph{ Če je $n$ liho naravno število, je tudi $n^2$ liho število.}
+To pomeni: za vsako naravno število $n$ velja, da če je liho, potem je tudi $n^2$ liho število.
+To lahko zapišemo kot $(\forall n)A(n)$, kjer je $A(n)$ izjava ``Če je $n$ liho število, potem je tudi $n^2$ liho število."
+\end{example*}
+
+\medskip
+\begin{sloppypar}
+\begin{example*}
+Dana je izjava ``Vsa jabolka so okusna.''
+Kako bi to izjavo zapisali s predikati in kvantifikatorji?
+
+Uporabimo $\forall$, a kako?
+
+Če se omejimo le na objekte, ki so jabolka, potem zapišemo $(\forall x)(x$ je okusen).
+
+Če pa je $x$ lahko poljubno sadje, potem moramo uporabiti dve izjavi:
+
+$A(x)$: $x$ je jabolko
+
+ in
+
+$B(x)$: $x$ je okusen
+
+Kako pa zapišemo izjavo vsi $A(x)$ so $B(x)$? Kot $(\forall x)(A(x)\inn B(x))$
+ali kot $(\forall x)(A(x) \sledi B(x))$?
+Prva izjava bi pomenila, da je vsako sadje okusno jabolko, tega pa ne želimo trditi. Pravilen je drugi zapis.
+\end{example*}
+\end{sloppypar}
+
+\medskip
+\begin{example*}
+Dana je izjava ``Nekatera jabolka so okusna.'' Kako bi pa to izjavo zapisali s kvantifikatorji, pri čemer kot objekte upoštevamo vse vrste sadja?
+Naj bo spet
+
+$A(x)$: $x$ je jabolko
+ in
+$B(x)$: $x$ je okusen
+
+Bomo zapisali $(\exists x)(A(x)\inn B(x))$ ali $(\exists x)(A(x) \sledi B(x))$?
+
+Prva izjava pomeni, da obstaja sadje, ki je okusno jabolko, in to je pravilen zapis.
+Druga izjava pa trdi, da za vsako sadje velja, da če je jabolko, potem je okusno. Ta izjava pa ne zagotavlja obstoja jabolka;
+pravilna je v vsakem kontekstu, kjer obstaja objekt, ki ni jabolko ali pa je okusno. Tega pa ne želimo trditi.
+\end{example*}
+
+\medskip
+Povzemimo:
+
+{Izjavo oblike "vsi $A(x)$ so $B(x)$" zapišemo kot $(\forall x)(A(x)\sledi B(x))$.
+
+Izjavo oblike "nekateri $A(x)$ so $B(x)$" pa kot $(\exists x)(A(x)\inn B(x))$.}
+
+\medskip
+
+\medskip
+\noindent\textbf{ Še nekaj zgledov izjav s kvantifikatorji:}
+
+\iftoggle{long}{
+{\color{blue}Naj bo domena pogovora množica naravnih števil. Tedaj so naslednje izjave s kvantifikatorji smiselne:}
+\begin{itemize}
+  \item $(\forall$ $n)$ ($n$ je deljiv z 2).
+  \item
+$(\exists n)$ ($n$ je deljiv z 2).
+  \item
+$(\exists !n)$ ($n$ je najmanjše naravno število).
+\end{itemize}
+
+Kako bi zapisali zgornje izjave, če bi bila domena pogovora množica realnih števil z uporabo predikata
+$N(n):$ ``$n$ je naravno število''?
+\begin{itemize}
+  \item $(\forall$ $n)$ ($N(n)\sledi n$ je deljiv z 2).
+  \item
+$(\exists n)$ ($N(n)\inn n$ je deljiv z 2).
+  \item
+$(\exists !n)$ ($N(n)\inn n$ je najmanjše naravno število).
+\end{itemize}
+
+\medskip
+}
+{Naj bo domena pogovora množica naravnih števil. Tedaj so naslednje izjave s kvantifikatorji smiselne:
+\begin{itemize}
+  \item $(\forall$ $n)$ ($n$ je deljiv z 2).
+  \item
+$(\exists n)$ ($n$ je deljiv z 2).
+  \item
+$(\exists !n)$ ($n$ je najmanjše naravno število).
+\end{itemize}
+Kako bi zapisali zgornje izjave, če bi bila domena pogovora množica realnih števil z uporabo predikata
+$N(n):$ ``$n$ je naravno število''?
+\begin{itemize}
+  \item $(\forall$ $n)$ ($N(n)\sledi n$ je deljiv z 2).
+  \item
+$(\exists n)$ ($N(n)\inn n$ je deljiv z 2).
+  \item
+$(\exists !n)$ ($N(n)\inn n$ je najmanjše naravno število).
+\end{itemize}
+}
+
+
+\subsubsection{Negacije izjav s kvantifikatorji}
+
+\textbf{ Negacija $\forall$}
+$$\neg (\forall x)A(x) \cee  (\exists x) (\neg A(x))$$
+
+\medskip
+\begin{example*}
+
+$B$: Vsak državljan Slovenije je rjavolas.
+
+$\neg B$: Ni res, da je vsak državljan Slovenije rjavolas.
+
+Ekvivalentno: Obstaja vsaj en državljan Slovenije, ki ni rjavolas.\end{example*}
+
+\medskip
+
+\noindent\textbf{ Negacija $\exists$}
+$$\neg  (\exists x)A(x) \cee (\forall x) \neg A(x)$$
+
+\medskip
+\begin{example*}
+
+$B$: V škatli obstaja rdeča kroglica.
+
+$\neg B$: Ni res, da obstaja v škatli rdeča kroglica.
+
+Ekvivalentno: Za vse kroglice v škatli velja, da niso rdeče.\end{example*}
+
+
+%VAJE:
+%\begin{example*}
+%
+%Zapiši negacijo izjave $(\exists ! x)A(x)$.
+%
+%$(\exists ! x)A(x)\cee (\exists x)A(x) \inn (\forall y)(\forall z)(A(y) \inn A(z) \sledi y = z)$
+%
+%Sledi:
+%
+%$\neg (\exists ! x)A(x)\cee \neg \left((\exists x)A(x) \inn (\forall y)(\forall z)(A(y) \inn A(z) \sledi y = z)\right)$
+%
+%$\cee \neg (\exists x)A(x) \ali \neg (\forall y)(\forall z)(A(y) \inn A(z) \sledi y = z)$
+%
+%$\cee (\forall x)\neg A(x) \ali (\exists y)\neg \left((\forall z)(A(y) \inn A(z) \sledi y = z)\right)$
+%
+%$\cee (\forall x)\neg A(x) \ali (\exists y)(\exists z)\neg (A(y) \inn A(z) \sledi y = z)$
+%
+%$\cee (\forall x)\neg A(x) \ali (\exists y)(\exists z)(A(y) \inn A(z) \inn y \neq z)$
+%\end{example*}
+%
+%\medskip
+%\begin{example*}
+%
+%$B$: Obstaja natanko eno praštevilo.
+%
+%$\neg B$: Ni res, da obstaja natanko eno praštevilo.
+%
+%Ekvivalentno: Nobeno število ni praštevilo ali obstajata vsaj dve praštevili.\end{example*}
+%
+%\medskip
+\begin{example*}
+
+Naj $P(x)$ označuje izjavo ``$x$ je praštevilo".
+
+Za vsako naravno število $x$ obstaja naravno število $y$, večje od $x$, ki je praštevilo:
+  $(\forall x)(\exists y)(y>x\inn P(y))$.
+
+  Negacija:
+
+  $\neg (\forall x)(\exists y)(y>x\inn P(y)) \cee(\exists  x)\neg (\exists y)(y>x\inn P(y))$
+
+  $\cee(\exists  x)(\forall  y)\neg (y>x\inn P(y))\cee(\exists  x)(\forall  y)(y\le x\ali \neg P(y))\,.$\end{example*}
+
+\bigskip
+\begin{example*}
+Zapišimo negacijo izjave
+  $(\forall x)(\exists y)(y<x)\,.$
+
+  $\neg(\forall x)(\exists y)(y<x)$
+
+  $\cee (\exists x)(\neg(\exists y)(y<x))$
+
+  $\cee (\exists x)(\forall y)\neg(y<x)$
+
+  $\cee (\exists x)(\forall y)(y\ge x)$
+  \end{example*}
+
+\begin{itemize}
+  \item Ali je izjava pravilna v realnih številih?
+
+  $(\forall x)(\exists y)(y<x)$
+
+  Da, izjava je pravilna!
+
+  \item Ali je izjava pravilna v naravnih številih?
+  $(\forall x)(\exists y)(y<x)$
+
+Ne, pravilna je njena negacija:
+$(\exists x)(\forall y)(y\ge x)\,,$
+obstaja namreč najmanjše naravno število.
+\end{itemize}
+
+\textbf{ Domača naloga:}
+%\begin{example*}
+
+Ali je naslednja izjava pravilna?
+
+Obstaja realno število $x$, za katerega velja $\frac{1}{1+x^2}>1$.
+
+%$(\exists x) (\frac{1}{1+x^2} > 1)$
+%
+%Izjava ni pravilna. Prepričamo se namreč lahko v pravilnost njene negacije:
+%
+%$\neg (\exists x) (\frac{1}{1+x^2} > 1)$
+%
+%$\cee (\forall x) \neg (\frac{1}{1+x^2} > 1)$
+%
+%$\cee (\forall x) (\frac{1}{1+x^2} \le  1)$
+%
+%$\cee (\forall x) (1 \le  1+x^2)$
+%
+%$\cee (\forall x) (0 \le  x^2)$
+%
+%Torej:
+%$\neg  \left(\exists \textrm{ realno število }x: \frac{1}{x^2+1}>1\right)$\end{example*}
+
+
+\subsubsection{Dokazovanje izjav s kvantifikatorji}
+
+Poglejmo si nekaj načinov dokazovanja izjav s kvantifikatorji.
+
+\subsubsection*{1)~Direktni dokaz izjave $(\forall x)A(x)$}
+
+Dokazujemo trditev oblike $(\forall x)A(x)$.  Pokazati moramo torej, da je izjava $A(x)$
+pravilna za vsak objekt $x$ iz domene pogovora.
+
+\medskip
+\begin{example*}
+\emph{ Dokaži, da za vsako naravno število $n$ velja $4n^2-4n+1\ge 0$.
+}
+
+\medskip \noindent\textbf{ Dokaz.}
+
+\emph{ Trditev je oblike $(\forall x)A(x)$, kjer preučujemo naravna števila, $\mathbb{N}$, in je $A(x)$ izjava ``$4x^2 -4x+1 \ge 0$''.}
+
+Naj bo $n$ poljubno naravno število. Zapišimo $4n^2 -4n+1 = (2n-1)^2$.
+Kvadrat poljubnega realnega števila je nenegativno število.
+Torej je $4n^2 -4n+1\ge 0$. Ker je bilo število $n$ poljubno, smo pokazali, da velja
+ $4n^2-4n+1\ge 0$ za vsa naravna števila.
+\qed
+\end{example*}
+\medskip
+\begin{center}
+\fbox{\parbox{0.85\linewidth}{\noindent
+\textbf{ Direktni dokaz izjave $(\forall x)A(x)$}
+
+\medskip \textbf{ Dokaz:}
+
+Naj bo $x$ poljuben objekt iz domene pogovora. \emph{ (Katere vrste objektov preučujemo, mora biti zapisano v trditvi ali razvidno iz konteksta.)}
+
+~~~~$\vdots$
+
+Torej, $A(x)$ je pravilna izjava.
+
+Ker je bil $x$ poljuben, je izjava $(\forall x)A(x)$ pravilna. \qed
+}}
+\end{center}
+
+
+\subsubsection*{2)~Dokaz izjave $(\forall x)A(x)$ s protislovjem}
+
+Za dokazovanje izjav oblike $(\forall x)A(x)$  pogosto uporabimo dokaz s protislovjem.
+
+\medskip
+\begin{example*}
+\emph{ Dokaži, da za vse $x\in (0,\pi/2)$ velja $\sin x+\cos x>1$.
+}
+
+\medskip \noindent\textbf{ Dokaz.}
+
+\emph{ Trditev je oblike
+$(\forall x)A(x)$, kjer je
+%preučujemo elemente odprtega intervala $(0,\pi/2)$ in je
+$A(x)$ izjava ``$0<x<\pi/2\sledi \sin x+\cos x>1$''.}
+
+Predpostavimo, da je trditev napačna.
+Tedaj obstaja neko realno število $t$, za katerega je $0<t<\pi/2$ in $\sin t+\cos t\le 1$.
+Ker sta funkciji $\sin x$ in $\cos x$ pozitivni za vse $x\in (0,\pi/2)$, velja $\sin t>0$ in $\cos t>0$.
+Sledi:
+
+$0<\sin t+\cos t \le 1$
+
+$0<(\sin t+\cos t)^2 \le 1^2 = 1$
+
+$0<\sin^2 t+2\sin t\cos t + \cos ^2t  \le 1$
+
+$0<1+2\sin t\cos t \le 1$
+
+$-1<2\sin t\cos t \le 0$
+
+(Uporabili smo identiteto $\sin^2 t + \cos^2 t = 1$.)
+
+Ampak $2\sin t\cos t\le 0$ je nemogoče, saj sta tako $\sin t$ kot $\cos t$ pozitivna.
+Torej, če je $0<x<\pi/2$, potem je $\sin x+\cos x>1$.
+\qed
+\end{example*}
+\medskip
+Ker je izjava $\neg(\forall x)A(x)$ ekvivalentna izjavi $(\exists x)\neg A(x)$, ima dokaz s protislovjem naslednjo obliko:
+
+\begin{center}
+\fbox{\parbox{0.85\linewidth}{\noindent
+\textbf{ Dokaz izjave $(\forall x)A(x)$ s protislovjem}
+
+\medskip \textbf{ Dokaz:}
+
+Predpostavimo, da $\neg(\forall x)A(x)$.
+
+Tedaj $(\exists x)\neg A(x)$.
+
+Naj bo $t$ objekt, za katerega velja $\neg A(t)$.
+
+~~~~$\vdots$
+
+Torej, $B \inn \neg B$.
+
+Sledi, da je izjava $(\exists x)\neg A(x)$ nepravilna, torej je izjava $(\forall x)A(x)$ pravilna.\qed
+}}
+\end{center}
+
+\subsubsection*{3)~Dokazovanje izjav oblike $(\exists x)A(x)$}
+
+Kako dokazujemo eksistenčne izreke, tj.~trditve oblike $(\exists x)A(x)$?
+
+Včasih lahko kar direktno.
+
+\begin{example*}
+\emph{ Dokaži, da obstaja sodo praštevilo.}
+
+\medskip \noindent\textbf{ Dokaz.}
+Število $2$ je sodo praštevilo.\qed
+
+\bigskip
+Nekateri dokazi so težji. Znameniti matematik Euler je sredi 18.~stoletja vprašal, ali obstaja tako naravno število, katerega $n$-to potenco lahko zapišemo kot vsoto manj kot $n$ $n$-tih potenc drugih števil. (Euler je postavil domnevo, da takih števil ni. Protiprimeri so znani za $n = 4,5$.)
+\end{example*}
+\smallskip
+\begin{example*}
+\emph{ Dokaži, da obstaja naravno število, katerega četrta potenca je vsota četrtih potenc treh drugih naravnih števil.}
+
+\medskip \noindent\textbf{ Dokaz.}
+Tako število je npr.~$20.615.673$, saj velja
+$$20615673^4 = 2682440^4+1536539^4+18796760^4\,.$$
+(Zgornjo rešitev je našel Noam Elkies leta 1988. Kmalu zatem je Roger Frye našel najmanjšo rešitev: $95.800^4 + 217.519^4 + 414.560^4 = 422.481^4$.)
+\qed
+
+
+Včasih pa je ugodneje uporabiti dokaz s protislovjem.
+\end{example*}
+\medskip
+\begin{example*}
+\emph{ Hribolazec krene na pot iz doline v ponedeljek ob 9:00 in prispe na vrh gore ob 15:00. Tam prenoči in v torek zjutraj krene nazaj ob 9:00 po isti poti in se vrne v dolino ob 15:00. Na poti navzdol se je vmes večkrat ustavil, ponekod pa hodil hitreje kot prejšnji dan navzgor.
+Dokaži, da obstaja točka na poti, na kateri je bil oba dneva ob istem času.}
+
+\medskip \noindent\textbf{ Dokaz.}
+
+\emph{ Če merimo čas v urah od $0$ do $6$ ($t = 0$ ustreza času 9:00, $t = 6$ pa času 15:00, je treba dokazati:\\
+ $(\exists t\in (0,6))($točka na poti ob času $t$ v ponedeljek je enaka točki na poti ob času $t$ v torek).}
+
+Recimo, da taka točka ne obstaja. Torej za vsak $t\in (0,6)$ točka na poti ob času $t$ v ponedeljek različna od točke na poti ob času $t$ v torek.
+Vzemimo dva hribolazca, ki gresta istočasno po poti od 9:00 dalje, prvi gre navzgor,
+in sicer z enakim tempom kot je šel naš hribolazec navzgor v ponedeljek, drugi pa navzdol,
+in sicer z enakim tempom kot je šel naš hribolazec navzdol v torek.
+Ker sta ta dva hribolazca ves čas na različnih točkah, se ne bosta nikoli srečala.
+To pa ni možno, enkrat se namreč morata srečati, saj gresta po isti poti. To je protislovje.
+
+Sledi, da obstaja točka na poti, na kateri je bil hribolazec oba dneva ob istem času.
+\qed
+\end{example*}
+\medskip
+\begin{center}
+\fbox{\parbox{0.85\linewidth}{\noindent
+\textbf{ Dokaz izjave $(\exists x)A(x)$ s protislovjem}
+
+\medskip \textbf{ Dokaz:}
+
+Predpostavimo, da $\neg(\exists x)A(x)$.
+
+Tedaj $(\forall x)\neg A(x)$.
+
+~~~~$\vdots$
+
+Torej, $B \inn \neg B$, protislovje.
+
+Sledi, da je izjava $(\forall x)\neg A(x)$ nepravilna, torej je izjava $(\exists x)A(x)$ pravilna.\qed
+}}
+\end{center}
+
+\subsubsection*{4)~Dokazovanje izjav oblike $(\exists ! x)A(x)$}
+
+\begin{example*}
+\emph{ Vsako neničelno realno število ima enoličen multiplikativni inverz.}
+
+\medskip \noindent\textbf{ Dokaz.}
+
+\emph{ Izjava ima obliko $(\forall x)(x\neq 0\sledi (\exists ! y)(xy = 1))$, domena pogovora je množica realnih števil.}
+
+Naj bo $x\neq 0$.
+Obstoj inverza bomo pokazali v dveh korakih: najprej bomo pokazali, da tako število $y$ obstaja, potem pa še, da $x$ ne more imeti dveh različnih inverzov.
+
+$(i)$ Naj bo $y = 1/x$. Ker je $x\neq 0$, je $y$ realno število. Tedaj je $xy = x\cdot (1/x) = 1$. Število $x$ torej ima multiplikativni inverz.
+
+$(ii)$ Naj bosta $y$ in $z$ multiplikativna inverza števila $x$. \emph{ (Tu ne predpostavimo, da je ta $y$ enak $y$ iz točke $(i)$.)}
+
+Sledi $xy = 1$ in $xz = 1$ in od tod
+
+$xy = xz$
+
+$xy -xz = 0$
+
+$x(y-z) = 0$.
+
+Ker je $x\neq 0$, sledi $y - z = 0$, torej $y = z$.
+\qed
+\end{example*}
+\medskip
+
+\begin{center}
+\fbox{\parbox{0.85\linewidth}{\noindent
+\textbf{ Dokaz izjave $(\exists! x)A(x)$}
+
+\medskip \textbf{ Dokaz:}
+
+$(i)$ Dokaži pravilnost izjave $(\exists  x)A(x)$ (s katerokoli metodo).
+
+$(ii)$ Dokaži pravilnost izjave $(\forall y)(\forall z)(A(y)\inn A(z)\sledi y = z)$.
+
+Predpostavi, da sta $y$ in $z$ obravnavana objekta, za katera sta izjavi $A(y)$ in $A(z)$ pravilni.
+
+~~~~$\vdots$
+
+Torej, $y = z$.
+
+Iz $(i)$ in $(ii)$ izpeljemo, da je izjava $(\exists! x)A(x)$ pravilna.\qed
+}}
+\end{center}
+
+
 \chapter{Dodatna poglavja iz teorije množic}
 
 
