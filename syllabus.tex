@@ -1,0 +1,132 @@
+\documentclass[11pt, a4paper]{article}
+
+% Language and font encodings
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+
+% Page layout and styling
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+% Custom section styling for a modern look
+\definecolor{primary}{RGB}{0, 75, 135}
+\titleformat{\section}{\Large\bfseries\color{primary}}{\thesection}{1em}{}[\titlerule]
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.8em}
+
+% Hyperlink styling
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=magenta,      
+    urlcolor=primary,
+}
+
+\begin{document}
+
+\begin{center}
+    {\huge\bfseries Teoretične osnove računalništva I \par}
+    \vspace{0.5cm}
+    {\Large Univerza na Primorskem \par}
+    {\large Jesenski semester 2026/2027 \par}
+\end{center}
+\vspace{1cm}
+
+\section*{Informacije o predmetu}
+
+\textbf{Nosilec:} Matjaž Krnc\\
+\textbf{Kabinet:} Galeb, 1. nadstropje, soba I/2-1 \\
+\textbf{Govorilne ure:} torek, 8:30–9:30 oz. po dogovoru (obvezna predhodna najava, npr. preko e-maila)\\
+\textbf{Predavanja:} torek, 13:00–16:00 (3KU) \\
+\textbf{Laboratorijske vaje:} sreda, 14:30–16:00 (2KU); teme vaj in naloge sledijo ločenemu načrtu. \\
+\textbf{Obdobje izvajanja:} 1. oktober 2026 – 22. januar 2027. Vsi navedeni časi so v lokalnem času (Koper).
+
+\section*{Opis predmeta}
+
+Predmet sistematično razvija logične in množične osnove, ki se uporabljajo za opisovanje matematičnih struktur in strogo sklepanje o njih. Predvidena predavanja dajejo poudarek izjavni in predikatni logiki, množicam, relacijam, funkcijam, urejenostnim strukturam, aksiomu izbire ter končnim in neskončnim kardinalnostim, pri čemer sledijo priloženim zapiskom predavanj.
+
+Uradni opis predmeta ob upoštevanju potreb in razvoja kurikuluma dopušča tudi dodatne teme, kot so formalni jeziki, grafi, Booleova algebra, kategorije, ordinalna števila, Peanova aritmetika, matematična indukcija, NBG in ZFC teorija množic ter simbolno računanje v ustreznem programskem jeziku. Ta osnutek vključuje izbrane uvode v nekatere izmed naštetih tem; kategorije in podrobnejša obravnava formalnih jezikov pa spadata med izbirne razširitve in nista predvideni kot redni študijski enoti. Aktivnosti z orodjem Mathematica oz. Python so del ločenega načrta za laboratorijske vaje.
+
+Predmet se bo izvajal v slovenskem jeziku. Študenti, ki bi predavanja raje poslušali v angleškem jeziku, se lahko udeležijo predavanj prof. Gottlieba, ki potekajo ob sredah med 8:00 in 11:00.
+
+\section*{Učni izidi}
+\begin{itemize}[label={\color{primary}\textbullet}]
+    \item Analizirati logične formule z uporabo pravilnostnih tabel, ekvivalenc, normalnih oblik in kvantifikatorjev ter konstruirati jasne matematične dokaze.
+    \item Natančno uporabljati operacije nad množicami, relacije, ekvivalenčne razrede in funkcije.
+    \item Analizirati delne in linearne ureditve, mreže ter dobro urejene množice.
+    % \item Navesti aksiom izbire in Zornovo lemo ter pojasniti njuno povezavo z dobro urejenostjo.
+    \item Primerjati kardinalnosti z uporabo injekcij in bijekcij; dokazovati osnovne rezultate o števnosti in neštevnosti ter pri tem uporabljati matematično indukcijo.
+\end{itemize}
+
+\section*{Študijsko gradivo}
+
+\textbf{Osnovna literatura:} \textit{TCS I – Discrete Structures, Class RIN1-EN}, pomladni semester 2018, priložen osnutek predavanj. Reference za branje v spodnjem urniku se nanašajo na natisnjene številke strani iz tega gradiva. Teme, ki presegajo ta osnutek, bodo podprte z dodatnimi zapiski predavatelja.
+
+\section*{Urnik predavanj}
+
+Razpored ur je začasen in se lahko prilagodi napredku študentov. Vsako srečanje vključuje definicije, primere in dokaze. Laboratorijske vaje niso vključene v ta urnik.
+
+\begin{tabularx}{\textwidth}{@{} l X p{3.5cm} @{}}
+\toprule
+\textbf{Teden} & \textbf{Teme predavanj} & \textbf{Branje} \\ 
+\midrule
+2. teden & Propozicije in logični vezniki; pravilnostne tabele, tavtologije in logična ekvivalenca. & §§1.1–1.3, str. 1–7 \\ \addlinespace
+3. teden & Kanonične normalne oblike; stikalna vezja; logična implikacija ter direktni dokazi, dokazi s protislovjem in kontrapozicijo. & §§1.4–1.6, str. 8–17 \\ \addlinespace
+4. teden & Predikatna logika in kvantifikatorji; negacija in vrstni red kvantifikatorjev; množice propozicij in logična posledica. & §§1.7–1.8, str. 18–23 \\ \addlinespace
+5. teden & Opisovanje množic; vključenost in enakost; unije, preseki, komplementi, družine množic, potenčne množice in kartezični produkti. & Pogl. 2, str. 24–37 \\ \addlinespace
+6. teden & Relacije in njihove lastnosti; kompozitum in inverzi; ekvivalenčne relacije, razredi in particije; grafične predstavitve relacij. & Pogl. 3 pred §3.1, str. 38–45; dodatni primeri \\ \addlinespace
+7. teden & Funkcije, slike in praslike; injekcije, surjekcije in bijekcije; kompozitum in inverzne funkcije. Ponovitev logike, množic in relacij. & §3.1, str. 46–52 \\ \addlinespace
+9. teden & Delne in linearne ureditve; Hassejevi diagrami, verige in antiverige; minimalni, maksimalni, najmanjši in največji elementi. & §3.2, izbrani deli str. 53–63 \\ \addlinespace
+10. teden & Zgornje in spodnje meje; supremumi in infimumi; mreže in polne mreže; mreže potenčnih množic in uvod v Booleovo algebro. & §3.2, izbrani deli str. 53–63; dodatni zapiski \\ \addlinespace
+11. teden & Dobro urejene množice, nasledniki in tipi ureditev; Peanovi aksiomi in matematična indukcija; uvod v ordinale in transfinitna indukcija. & §3.2 in Pogl. 5, izbrana besedila; dodatni zapiski \\ \addlinespace
+12. teden & Aksiomatična teorija množic: motivacija in pregled ZFC; množice in razredi v NBG; funkcije izbire in aksiom izbire. & Pogl. 2 (zaključek); Pogl. 4, str. 64–66; dodatni zapiski \\ \addlinespace
+13. teden & Zornova lema in načela maksimalnosti; izrek o dobri urejenosti; povezave z aksiomom izbire in izbrane aplikacije. & §§4.1–4.2, str. 67–69; dodatni primeri \\ \addlinespace
+15. teden & Ekvipolentne (enako močne) množice in primerjava kardinalnosti; končne in neskončne množice; števne množice in konstrukcije števnosti. & Pogl. 5, izbrani deli str. 70–86 \\ \addlinespace
+16. teden & Neštevnost in diagonalni argumenti; Cantorjev izrek in kontinuum; sinteza in ponovitev pred izpitom. & Pogl. 5, zaključni deli str. 70–86 \\
+\bottomrule
+\end{tabularx}
+
+
+\section*{Izjeme na koledarju}
+
+\textbf{21. oktober (teden 3):} ni vaj (Rektoričin dan). \textbf{8. teden:} začasno rezervirano za teden kolokvijev (23.–27. november); morebitna odpoved rednih predavanj bo še potrjena. \textbf{30. december:} ni predavanj (zimski premor). 
+
+\section*{Laboratorijske vaje}
+
+Teme, ki jih obravnavamo pri tem predmetu, pri svojem delu vsakodnevno uporabljajo aktivni matematiki. Laboratorijske vaje bodo vključevale naloge iz snovi predavanj in raziskovanje kombinatorične teorije iger (CGT), ki je izbrana za ponazoritev obravnavanih tem. Kolokvij in končni izpit lahko vključujeta tudi vprašanja o CGT.
+
+\section*{Ocenjevanje in pravila predmeta}
+
+Znanje se bo preverjalo z dvema ocenjevanima obveznostma:
+\begin{itemize}[label={\color{primary}\textbullet}]
+    \item \textbf{Kolokvij} bo potekal v okviru predavanj v sredo, 25. novembra. Prispeval bo \textbf{30 \%} k skupni oceni.
+    \item \textbf{Končni izpit} bo sestavljen iz dveh delov:
+    \begin{itemize}[label={--}]
+        \item Pisni del bo prispeval \textbf{50 \%} k skupni oceni.
+        \item Ustni del bodo lahko opravljali le študenti, ki so na kolokviju in pisnem delu izpita dosegli vsaj 40 točk. Študenti lahko izbirajo med skrajšano in razširjeno različico ustnega izpita. Pri skrajšani različici lahko slabši zagovor zniža skupno oceno za največ 5 \%, odličen zagovor pa jo zviša za največ 10 \%. Pri razširjeni različici lahko slabši zagovor zniža skupno oceno za do 10 \%, odličen zagovor pa jo zviša za do 20 \%.
+    \end{itemize}
+\end{itemize}
+
+Študenti, ki se kolokvija ne udeležijo in želijo pristopiti k nadomestnemu kolokviju, morajo v Referat pravočasno predložiti ustrezno dokazilo (npr. zdravniško potrdilo).
+
+Od študentov se pričakuje, da vse ocenjevane obveznosti opravijo samostojno in brez kakršne koli zunanje pomoči. Uporaba elektronskih naprav, vključno z računalniki, tablicami, mobilnimi telefoni, pametnimi urami, slušalkami in pametnimi očali (z umetno inteligenco), je med izpiti strogo prepovedana. Če študent med izpitom iz katerega koli razloga zapusti prostor, mora svoje delo obvezno oddati. V primeru suma kršitev se upoštevajo pravila univerze. Za več informacij si oglejte \textit{Etični kodeks Univerze na Primorskem}.
+
+\textbf{Zimsko izpitno obdobje:} 25. januar – 19. februar 2027. Datume bo določil Referat.
+
+Končna ocena je izračunana na podlagi ponderiranega povprečja kolokvija in izpita (skupne pridobljene točke):
+\begin{itemize}[label={\color{primary}\textbullet}, itemsep=0pt]
+    \item \textbf{50 točk:} ocena 6
+    \item \textbf{60 točk:} ocena 7
+    \item \textbf{70 točk:} ocena 8
+    \item \textbf{80 točk:} ocena 9
+    \item \textbf{90 točk:} ocena 10
+\end{itemize}
+
+\end{document}
