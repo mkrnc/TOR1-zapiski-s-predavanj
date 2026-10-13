@@ -1,6 +1,3 @@
-\RequirePackage{silence} % :-\
-    \WarningFilter{scrbook}{Usage of package `titlesec'}
-    \WarningFilter{titlesec}{Non standard sectioning command detected}
 \documentclass[11pt,paper=b5,footinclude,headinclude]{scrbook} % KOMA-Script book
 \usepackage[T1]{fontenc}
 \usepackage[style=arsclassica, parts=false, eulermath=false, palatino=true, eulerchapternumbers=true]{classicthesis}
@@ -47,10 +44,8 @@
 
 \newcommand{\komentar}[1]{\textcolor{red}{[#1]}} %for displaying red texts
 
-\usepackage{fullpage}
 %\usepackage{fancyhdr}
 \usepackage{enumerate}
-
 
 \usepackage[slovene]{babel} % slovenske nastavitve (naslovi, deljenje besed ...)
 \usepackage[utf8]{inputenc}
@@ -59,8 +54,6 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{epsf}
 \usepackage{epsfig}
-\usepackage{graphics}
-\usepackage{color}
 \usepackage{comment}
 %\usepackage{times}
 %\usepackage{txfonts}
@@ -81,15 +74,16 @@
 \newcommand{\myTitle}{Teoretične osnove računalništva\xspace}
 \newcommand{\mySubtitle}{Diskretne strukture za računalničarje \xspace} 				%dodaj podnaslov if needed
 \newcommand{\myName}{UP FAMNIT \xspace}
-\newcommand{\myPublisher}{XXX}
+\newcommand{\myPublisher}{Samozaložba}
 \newcommand{\myMonth}{Pomlad}
 \newcommand{\myYear}{2021}
 \newcommand{\verzija}{Verzija 0.1 }
+\providecommand{\myVersion}{0.1}
 \newcommand{\shortAuthors}{M. Krnc, Š. Miklavič, M. Milanič, R. Požar, P. Škraba}
 \newcommand{\myAuthors}{Matjaž Krnc, Štefko Miklavič, \\Martin Milanič, Rok Požar, Primož Škraba}
 \newcommand{\frontpageAuthors}{Matjaž Krnc, Štefko Miklavič,\\[3mm] Martin Milanič, Rok Požar, Primož Škraba}
 
-\newcommand{\myISBN}{978-961-XXX-XXX-X }
+\newcommand{\myISBN}{v pripravi}
 
 
 \newtheorem*{trditev}{Trditev}
@@ -157,7 +151,7 @@ Prispevek logike k znanju je v odkrivanju novih izjav, ki so logične posledice 
   iz katerih se s pomočjo logičnega sklepanja izpelje izreke in gradi teorije.
 \end{itemize}
 
-O razvoju logike in teorije množic si lahko preberete v Prijateljevi knjigi (Osnove matematične logike, 1.~poglavje, 2.~podpoglavje).
+O razvoju logike in teorije množic si lahko preberete v Prijateljevi knjigi \cite{prijatelj1996} (Osnove matematične logike, 1.~poglavje, 2.~podpoglavje).
 
 \section{Vezniki med logičnimi izjavami}
 
@@ -921,27 +915,27 @@ Na vajah boste spoznali in dokazali številne druge logične implikacije.
 
 \subsubsection*{Nekaj poglavitnih logičnih implikacij}
 
-\begin{enumerate}
-  \item $A \inn (A \sledi B) \sledi B$
-  \item $\neg B \inn (A \sledi B) \sledi \neg A$
-  \item $\neg A \inn (A \ali B) \sledi B$
-  \item $A \inn B \sledi A$
-  \item $A \sledi A\ali B$
-  \item $A \inn \neg A\sledi B$
-  \item $(A \sledi B) \inn (B \sledi C) \sledi (A\sledi C)$
-  \item $(A \sledi B) \sledi ((C \sledi A) \sledi (C\sledi B))$
-  \item $(A \sledi B) \sledi ((B \sledi C) \sledi (A\sledi C))$
-  \item $(A \sledi B) \sledi (A\inn C \sledi B\inn C)$
-  \item $(A \sledi B) \sledi (A\ali C \sledi B\ali C)$
-  \item $(A \cee B) \inn (B\cee C) \sledi (A\cee C)$
-  \item $(A \cee B) \sledi (A\sledi B)$
-  \item $(A \cee B) \sledi (B\sledi A)$
-  \item $A \inn (A \cee B) \sledi B$
-  \item $\neg A \inn (A \cee B) \sledi \neg B$
-  \item $B\sledi (A\cee A \inn B)$
-  \item $\neg B\sledi (A\cee A \ali B)$
-  \item $(A\sledi (B\inn \neg B)) \sledi \neg A$
-\end{enumerate}
+\begin{alignat*}{2}
+  \text{1.}\qquad & A \inn (A \Rightarrow B) &\quad\vDash\quad & B \\
+  \text{2.}\qquad & \neg B \inn (A \Rightarrow B) &\quad\vDash\quad & \neg A \\
+  \text{3.}\qquad & \neg A \inn (A \ali B) &\quad\vDash\quad & B \\
+  \text{4.}\qquad & A \inn B &\quad\vDash\quad & A \\
+  \text{5.}\qquad & A &\quad\vDash\quad & A\ali B \\
+  \text{6.}\qquad & A \inn \neg A &\quad\vDash\quad & B \\
+  \text{7.}\qquad & (A \Rightarrow B) \inn (B \Rightarrow C) &\quad\vDash\quad & (A\Rightarrow C) \\
+  \text{8.}\qquad & (A \Rightarrow B) &\quad\vDash\quad & ((C \Rightarrow A) \Rightarrow (C\Rightarrow B)) \\
+  \text{9.}\qquad & (A \Rightarrow B) &\quad\vDash\quad & ((B \Rightarrow C) \Rightarrow (A\Rightarrow C)) \\
+  \text{10.}\qquad & (A \Rightarrow B) &\quad\vDash\quad & (A\inn C \Rightarrow B\inn C) \\
+  \text{11.}\qquad & (A \Rightarrow B) &\quad\vDash\quad & (A\ali C \Rightarrow B\ali C) \\
+  \text{12.}\qquad & (A \cee B) \inn (B\cee C) &\quad\vDash\quad & (A\cee C) \\
+  \text{13.}\qquad & (A \cee B) &\quad\vDash\quad & (A\Rightarrow B) \\
+  \text{14.}\qquad & (A \cee B) &\quad\vDash\quad & (B\Rightarrow A) \\
+  \text{15.}\qquad & A \inn (A \cee B) &\quad\vDash\quad & B \\
+  \text{16.}\qquad & \neg A \inn (A \cee B) &\quad\vDash\quad & \neg B \\
+  \text{17.}\qquad & B &\quad\vDash\quad & (A\cee A \inn B) \\
+  \text{18.}\qquad & \neg B &\quad\vDash\quad & (A\cee A \ali B) \\
+  \text{19.}\qquad & (A \Rightarrow (B\inn \neg B)) &\quad\vDash\quad & \neg A
+\end{alignat*}
 
 Za vajo se prepričajte o veljavnosti teh logičnih implikacij. Namesto pravilnostnih tabel lahko uporabite tole metodo:  {\em Izhajamo iz definicije implikacije in poskušamo konstruirati tako določilo, za katero bi bila implikacija nepravilna. Potem se mora seveda izkazati, da takega določila ni.}
 
@@ -5235,12 +5229,76 @@ $x$ je pod $y$ $\cee$ $x$ je poseben primer $y$
 
 \section{Grafi}
 
+Pravimo, da je graf $G$ relacija, ki je \textbf{irefleksivna} in \textbf{simetrična}. Množico vozlišč označimo z $V(G)$, množico povezav pa z $E(G)$.
+
+Vsebino množice povezav $E(G)$ predstavimo kot množico parov:
+\[ \{x, y\} \in E(G) \quad \text{ali krajše} \quad xy \in E(G) \]
+
+\subsection{Zgled grafa}
+Naj bo $V = \{1, 2, 3, 4, 5, 6, 7, 8\}$ in množica povezav\footnote{Tu je potrebno paziti, saj krajša oblika zapisa (npr $12$ namesto $\{1,2\}$) lahko pripelje do dvoumnosti. Kadar so vozlišča poimenovana s črkami teh težav ni.}:
+\[ E = \{14, 13, 15, 23, 25, 46, 75, 85\} \]
+
+\section{Izomorfizem in Automorfizem}
+
+Naj bosta $G$ in $H$ grafa. Preslikava $f: V(G) \to V(H)$ je \textbf{izomorfizem} med $G$ in $H$, če je $f$ bijekcija in velja:
+\[ \forall x, y \in V(G): xy \in E(G) \iff f(x)f(y) \in E(H) \]
+
+\textbf{Avtomorfizem} je izomorfizem grafa $G$ v samega sebe ($G = H$).
+
+\section{Operacije na grafih}
+
 \begin{itemize}
-    \item Družine: cikli, poti, kolesa, polni grafi
-    
+    \item \textbf{Odstranjevanje vozlišča:} Naj bo $v \in V(G)$. Graf $G - v$ je definiran z:
+    \[ V(G - v) = V(G) \setminus \{v\} \]
+    \item \textbf{Odstranjevanje povezave:} Naj bo $xy \in E(G)$. Graf $G - xy$ je definiran z:
+    \[ V(G - xy) = V(G) \quad \text{in} \quad E(G - xy) = E(G) \setminus \{xy\} \]
 \end{itemize}
 
-\section{Pregled najpomembnejših pojmov in nekaj nalog}
+\section{Podgrafi}
+
+\begin{itemize}
+    \item \textbf{Podgraf:} Dobimo ga z odstranjevanjem nekaterih vozlišč ali povezav.
+    \item \textbf{Induciran podgraf:} Dobimo ga tako, da odstranimo nekatera vozlišča in obdržimo \textbf{vse} preostale povezave med preostalimi vozlišči.
+\end{itemize}
+
+\section{Posebni grafi}
+
+\begin{itemize}
+    \item \textbf{Poln graf ($K_n$):} Vsako vozlišče je povezano z vsakim. $E(K_n) = \{xy \mid x, y \in V(G), x \neq y\}$.
+    \item \textbf{Prazen graf ($\bar{K}_n$):} Množica povezav je prazna (neodvisna množica).
+    \item \textbf{Pot ($P_n$):} Graf na $n$ vozliščih, ki tvori pot.
+    \item \textbf{Cikel ($C_n$):} Graf na $n$ vozliščih, ki tvori sklenjen krog.
+\end{itemize}
+
+\section{Parametri grafa}
+
+Naj bo $v \in V(G)$.
+\begin{itemize}
+    \item \textbf{Stopnja vozlišča ($\deg(v)$):} Število vozlišč, s katerimi je $v$ povezan.
+    \begin{quote}
+      \textbf{Lema o rokovanju:} V vsakem grafu je vsota stopenj vseh vozlišč enaka dvakratniku števila povezav.
+    \end{quote}
+    \item \textbf{Soseščina ($N(v)$):} Množica vozlišč, ki so sosednja $v$.
+    \item \textbf{Maksimalna stopnja ($\Delta(G)$):} $\max_{v \in V(G)} \deg(v)$.
+    \item \textbf{Minimalna stopnja ($\delta(G)$):} $\min_{v \in V(G)} \deg(v)$.
+    \item \textbf{Ožina grafa ($g(G)$):} Minimalno število $k$, tako da obstaja cikel $C_k$ kot podgraf v $G$. Če cikel ne obstaja, je $g(G) = \infty$.
+    \item \textbf{Klično število ($\omega(G)$):} Velikost največjega polnega podgrafa (klike).
+    \item \textbf{Neodvisnostno število ($\alpha(G)$):} Velikost največje neodvisne množice vozlišč.
+\end{itemize}
+
+\subsection*{Zgled:  Petersenov graf}
+
+Za Petersenov graf (pogost zgled v vaših zapiskih) veljajo naslednji parametri:
+\begin{itemize}
+    \item $|V(G)| = 10$
+    \item $|E(G)| = 15$
+    \item $g(G) = 5$ (najkrajši cikel je dolžine 5)
+    \item $\delta(G) = 3$ in $\Delta(G) = 3$ (je 3-regularen)
+    \item $\omega(G) = 2$ (ni trikotnikov $K_3$)
+    \item $\alpha(G) = 4$
+\end{itemize}
+
+
 
 
 \subsection{(Binarne) relacije}
@@ -8016,9 +8074,7 @@ To je ekvivalentno pogoju, da sta zaporedji $a$ in $c$ v relaciji $R$. To pa dr�
 da imamo vsak dan lahko le dva možna izida (npr.~jasno ali oblačno). Če bi torej vsak dan poznali tako zgodovino kot
 tudi prihodnost vremena, bi lahko skoraj vse dni vreme pravilno napovedali za tekoči dan.}
 
-\chapter{TODO: Osnove teorije grafov}
-
-\chapter{TODO: Osnove teorije kategorij}
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
-
