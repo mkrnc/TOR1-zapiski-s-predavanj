@@ -2,8 +2,8 @@
 % Titlepage
 %*******************************************************
 \begin{titlepage}
-\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
-\pagecolor{amber}\afterpage{\nopagecolor}
+\definecolor{CoverBackground}{rgb}{1.0, 0.75, 0.0}
+\pagecolor{CoverBackground}\afterpage{\nopagecolor}
 	% if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
 	\begin{addmargin}[-1cm]{-1cm}
     \begin{center}
@@ -14,16 +14,16 @@
         \vfill
 
         \begingroup
-            \color{Maroon}\spacedallcaps{\LARGE\myTitle} \\ \bigskip
+            \color{HeadingColor}\textsf{\bfseries\LARGE\myTitle} \\ \bigskip
         \endgroup
 
-        \spacedlowsmallcaps{\mySubtitle}
+        \textsf{\large\mySubtitle}
 
         \vfill
 
         \includegraphics[width=10cm]{Desargues.png} %\\ \medskip
 				\vfill
-        \textsc{\Large\frontpageAuthors}   
+        \textsf{\Large\frontpageAuthors}
         \vfill   
 
         \myMonth \xspace \myYear \ -- \verzija

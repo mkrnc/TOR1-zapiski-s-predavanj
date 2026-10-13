@@ -1,13 +1,25 @@
-\documentclass[11pt,paper=b5,footinclude,headinclude]{scrbook} % KOMA-Script book
+\documentclass[11pt,paper=b5,DIV=13,headinclude,footinclude]{scrbook}
 \usepackage[T1]{fontenc}
-\usepackage[style=arsclassica, parts=false, eulermath=false, palatino=true, eulerchapternumbers=true]{classicthesis}
-
+\usepackage{libertinus}
+\usepackage{microtype}
 \usepackage{afterpage}
 \usepackage{xcolor}
 \usepackage{xspace}
 \usepackage{etoolbox}
 \providetoggle{long}
 
+\definecolor{HeadingColor}{HTML}{23415D}
+\definecolor{CoverBackground}{HTML}{F3F6F8}
+
+\setkomafont{chapter}{\normalfont\huge\bfseries\color{HeadingColor}}
+\setkomafont{section}{\normalfont\Large\bfseries\color{HeadingColor}}
+\setkomafont{subsection}{\normalfont\large\bfseries\color{HeadingColor}}
+\setkomafont{subsubsection}{\normalfont\normalsize\bfseries\color{HeadingColor}}
+\setkomafont{pageheadfoot}{\normalfont\small\sffamily\color{HeadingColor}}
+\RedeclareSectionCommand[beforeskip=-3ex plus -1ex minus -.2ex,afterskip=1.5ex plus .2ex]{chapter}
+\RedeclareSectionCommand[beforeskip=-1.5ex plus -.5ex minus -.2ex,afterskip=.7ex plus .2ex]{section}
+\RedeclareSectionCommand[beforeskip=-1.2ex plus -.4ex minus -.2ex,afterskip=.5ex plus .2ex]{subsection}
+\RedeclareSectionCommand[beforeskip=-1ex plus -.3ex minus -.2ex,afterskip=.4ex plus .1ex]{subsubsection}
 
 %framed example
 \usepackage[framemethod=TikZ]{mdframed}
@@ -18,13 +30,13 @@
 
 %% define the style
 \mdfdefinestyle{example}{%
-    linecolor=blue,
-    backgroundcolor=blue!5,
-    outerlinewidth=2pt,
+    linecolor=HeadingColor!65,
+    backgroundcolor=HeadingColor!4,
+    outerlinewidth=.8pt,
     bottomline=false,
     leftline=false,rightline=false,
-    skipabove=\baselineskip,
-    skipbelow=\baselineskip,
+    skipabove=.65\baselineskip,
+    skipbelow=.65\baselineskip,
     frametitle=\mbox{},
 }
 %% setup the environments
@@ -48,13 +60,13 @@
 \usepackage{enumerate}
 
 \usepackage[slovene]{babel} % slovenske nastavitve (naslovi, deljenje besed ...)
-\usepackage[utf8]{inputenc}
 \usepackage{amsfonts,amssymb}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{epsf}
 \usepackage{epsfig}
 \usepackage{comment}
+\usepackage[hidelinks]{hyperref}
 %\usepackage{times}
 %\usepackage{txfonts}
 \def\P {{\cal P}}
@@ -75,9 +87,9 @@
 \newcommand{\mySubtitle}{Diskretne strukture za računalničarje \xspace} 				%dodaj podnaslov if needed
 \newcommand{\myName}{UP FAMNIT \xspace}
 \newcommand{\myPublisher}{Samozaložba}
-\newcommand{\myMonth}{Pomlad}
-\newcommand{\myYear}{2021}
-\newcommand{\verzija}{Verzija 0.1 }
+\newcommand{\myMonth}{Jesen}
+\newcommand{\myYear}{2026}
+\newcommand{\verzija}{Verzija 0.9 }
 \providecommand{\myVersion}{0.1}
 \newcommand{\shortAuthors}{M. Krnc, Š. Miklavič, M. Milanič, R. Požar, P. Škraba}
 \newcommand{\myAuthors}{Matjaž Krnc, Štefko Miklavič, \\Martin Milanič, Rok Požar, Primož Škraba}
@@ -115,7 +127,7 @@ Gradivo je osnovano na izročkih  predhodnih predavateljev istega predmeta, ter 
 
 Dokument je zamišljen kot dopolnjevanje predavanj, in se ga ne sme jemati kot samostojno gradivo za pripravo na izpit. 
 Morebitna vprašanja in najdene napake, lepo prosim, sporočite na
-\url{matjaz.krnc@upr.si}, oz. ustvarite t.i. "issue"\xspace na našem javnem repozitoriju.
+\url{matjaz.krnc@upr.si}, oz. ustvarite t.i. "issue"\xspace na GitHub repozitoriju.
 \begin{center}
     \url{https://github.com/mkrnc/TCS1-course-notes.git}.    
 \end{center}
@@ -274,7 +286,7 @@ Uporabo oklepajev pa z uporabo naslednjega dogovora omejimo, kolikor se da:
 \medskip
 Pravilnostne tabele lahko zapišemo tudi za sestavljene izjave, z uporabo poljubnega
 zaporedja, s katerim sestavimo izjavo.
-
+\pagebreak
 \begin{example*}
 Zapišimo  izjavo
 \begin{equation}\label{eq:izjava2}
@@ -407,13 +419,14 @@ Naslednje izjave zapiši simbolično:
 S pomočjo pravilnostnih tabele lahko rešujemo uganke o vitezih in oprodah.
 Vitezi vselej govorijo resnico, oprode pa vselej lažejo.
 
-\textbf{ Naloga:} Artur in Bine podata naslednji izjavi:
+\begin{example*}
+  Artur in Bine podata naslednji izjavi:
 \begin{itemize}
   \item Artur: ``Bine je oproda."
   \item Bine: ``Nobeden od naju ni oproda."
 \end{itemize}
 Za vsakega od njiju določi, ali je vitez ali oproda!
-
+\end{example*} 
 \medskip
 Naj bo $A$ izjava: ``Artur je vitez,"~$B$ pa izjava: ``Bine je vitez."
 
@@ -437,12 +450,14 @@ $$\begin{tabular}{c|c|c|c|c|c|c}
 Artur je vitez, Bine pa oproda.\qed
 
 \bigskip
-\textbf{ Še ena podobna naloga:} Tokrat podata Artur in Bine naslednji izjavi:
+\begin{example*}
+Tokrat podata Artur in Bine naslednji izjavi:
 \begin{itemize}
   \item Artur: ``Jaz in Bine nisva iste vrste."~
   \item Bine: ``Natanko eden od naju je vitez."
 \end{itemize}
-
+Za vsakega od njiju določi, ali je vitez ali oproda!
+\end{example*}
 \medskip
 Naslednja konjunkcija izjav je pravilna:
 \begin{equation}\label{eq:izjava3}
@@ -467,8 +482,6 @@ Oba sta oprodi.\qed
   \item Artur: ``Ni res, da je Bine oproda."~Bine: ``Nisva oba iste vrste."
   \item Artur: ``Ni res, da je Cene oproda."~Bine: ``Cene je vitez ali pa sem jaz vitez."~Cene: ``Bine je oproda."
 \end{itemize}
-\qed
-
 
 Videli smo, kako priredimo vsaki sestavljeni izjavi njeno pravilnostno tabelo.
 Obratna naloga: Če imamo dane neodvisne izjave $A_1,\ldots, A_n$,
@@ -491,25 +504,30 @@ Naj bosta $B$ in $C$ izjavi, sestavljeni iz izjav $A_1,\ldots, A_n$.
 Za logiko: $B = C$ (dve  različni obliki iste izjave).
 
 Naštejmo najpoglavitnejše logične ekvivalence:
-\begin{enumerate}
-  \item $A \cee \neg(\neg A)$, zakon dvakratne negacije
-  \item $A\inn B\cee B \inn A$,~~~$A\ali B\cee B \ali A$, komutativnost konjunkcije in disjunkcije
-  \item $A\inn (B\inn C) \cee (A\inn B)\inn C$,~~~$A\ali (B\ali C) \cee (A\ali B)\ali C$, asociativnostna zakona
-   \item $A\ali (B\inn C) \cee (A\ali B) \inn (A\ali C)$, ~~~~
-   $A\inn (B\ali C) \cee (A\inn B) \ali (A\inn C)$, distributivnostna zakona
-   \item $A\inn A\cee A$, ~~~~$A\ali A \cee A$
-   \item $\neg(A\inn B)\cee \neg A \ali \neg B$
-   \item $\neg(A\ali B)\cee \neg A \inn \neg B$, De Morganova zakona (6. in 7.)
-   \item $(A\sledi B) \cee (\neg B\sledi \neg A)$
-   \item $(A\sledi B) \cee \neg A\ali B$
-   \item $(A\sledi B) \cee \neg(A\inn \neg B)$
-   \item $(A\cee B) \cee (A\sledi B) \inn (B\sledi A)$
-  \item $(A \cee B) \cee (B\cee A)$,  komutativnost ekvivalence
-  \item $(A \cee B) \cee (\neg A\cee \neg B)$
-  \item $(A \cee B) \cee (\neg A\ali B)\inn (A\ali \neg B)$
-  \item $(A \cee B) \cee (A\inn B)\ali (\neg A\inn \neg B)$
-  \item $\neg(A \cee B) \cee (A\cee \neg B)$
-\end{enumerate}
+\begin{alignat*}{2}
+  \text{1.}\quad & A &\qquad\sim\qquad& \neg(\neg A)\\
+  \text{2.}\quad & A\inn B &\qquad\sim\qquad& B\inn A\\
+                 & A\ali B &\qquad\sim\qquad& B\ali A \\
+  \text{3.}\quad & A\inn(B\inn C) &\qquad\sim\qquad& (A\inn B)\inn C\\
+                 & A\ali(B\ali C) &\qquad\sim\qquad& (A\ali B)\ali C \\
+  \text{4.}\quad & A\ali(B\inn C) &\qquad\sim\qquad& (A\ali B)\inn(A\ali C)\\
+                 & A\inn(B\ali C) &\qquad\sim\qquad& (A\inn B)\ali(A\inn C)\\
+  \text{5.}\quad & A\inn A &\qquad\sim\qquad& A\\
+                 & A\ali A &\qquad\sim\qquad& A\\
+  \text{6.}\quad & \neg(A\inn B) &\qquad\sim\qquad& \neg A\ali\neg B\\
+  \text{7.}\quad & \neg(A\ali B) &\qquad\sim\qquad& \neg A\inn\neg B\\
+  \text{8.}\quad & (A\sledi B) &\qquad\sim\qquad& (\neg B\sledi\neg A)\\
+  \text{9.}\quad & (A\sledi B) &\qquad\sim\qquad& \neg A\ali B\\
+  \text{10.}\quad & (A\sledi B) &\qquad\sim\qquad& \neg(A\inn\neg B)\\
+  \text{11.}\quad & (A\cee B) &\qquad\sim\qquad& (A\sledi B)\inn(B\sledi A)\\
+  \text{12.}\quad & (A\cee B) &\qquad\sim\qquad& (B\cee A)\\
+  \text{13.}\quad & (A\cee B) &\qquad\sim\qquad& (\neg A\cee\neg B)\\
+  \text{14.}\quad & (A\cee B) &\qquad\sim\qquad& (\neg A\ali B)\inn(A\ali\neg B)\\
+  \text{15.}\quad & (A\cee B) &\qquad\sim\qquad& (A\inn B)\ali(\neg A\inn\neg B)\\
+  \text{16.}\quad & \neg(A\cee B) &\qquad\sim\qquad& (A\cee\neg B)
+\end{alignat*}
+
+Nekaj izmed teh ekvivalenc ima imena, npr.~ zakon dvojne negacije (1.), De Morganova zakona (6. in 7.), komutativnost (2. in 12.), asociativnost (3.) in distributivnost (4.).
 
 Za vajo se prepričajmo v pravilnost 16.~ekvivalence s pomočjo pravilnostne tabele:
 $$\begin{tabular}{c|c|c|c|c|c}
@@ -549,8 +567,8 @@ Vzemimo izjavo ``Če je kakšna reč lepa, potem je minljiva."
 ($\neg$ in $\sledi$) Če kakšna reč ni minljiva, potem ni lepa.\end{example*}
 
 % 2. predavanje (2018) - konec
-
-\section{Izbrani obliki izjav}
+\pagebreak
+\section{Izbrani oz. kanonični obliki izjav}
 
 Od zadnjič dolgujemo še rešitev naslednje naloge: iz danih izjav $A_1,\ldots, A_n$ konstruiraj izjavo,
 ki bo imela pri vsakem izmed $2^n$ določil vnaprej predpisano vrednost.
@@ -710,7 +728,7 @@ Obratni stikali sta taki stikali, da je natanko eno od njiju odprto.
 Zveza med vezji in izjavami:
 {\em vezje je zaprto natanko tedaj, ko je ustrezna izjava pravilna, in odprto sicer.}
 
-\medskip
+\pagebreak
 \begin{example*}
 Vzemimo izjavo $$(A\sledi B) \inn (B\sledi C) \inn (\neg A \ali C)$$
 V poglavju $1.2.$ smo izračunali pravilnostno tabelo te izjave:
@@ -874,44 +892,27 @@ je $B\sledi C$ tavtologija.
 \iftoggle{long}{\komentar{Izpuščeno: DO TU}\\}
 
 \bigskip
-Veljajo naslednje resnice o logičnih implikacijah:
-\begin{enumerate}
-  \item Če je antecedens tavtologija, mora biti tudi konsekvens tavtologija.
-  \item Če je konsekvens protislovje, mora biti tudi antecedens protislovje.
-  \item Če je konsekvens tavtologija, je lahko antecedens katerakoli izjava.
-  \item Če je antecedens protislovje, je lahko konsekvens katerakoli izjava.
-  \item Vsaka izjava logično implicira samo sebe.
-  \item Vsaka izjava, ki logično implicira hkrati kakšno izjavo $A$ in njeno negacijo $\neg A$, mora biti protislovje.
-  \item Izjava, ki logično implicira svojo negacijo, je protislovje.
-\end{enumerate}
+% Veljajo naslednje resnice o logičnih implikacijah:
+% \begin{enumerate}
+%   \item Če je antecedens tavtologija, mora biti tudi konsekvens tavtologija.
+%   \item Če je konsekvens protislovje, mora biti tudi antecedens protislovje.
+%   \item Če je konsekvens tavtologija, je lahko antecedens katerakoli izjava.
+%   \item Če je antecedens protislovje, je lahko konsekvens katerakoli izjava.
+%   \item Vsaka izjava logično implicira samo sebe.
+%   \item Vsaka izjava, ki logično implicira hkrati kakšno izjavo $A$ in njeno negacijo $\neg A$, mora biti protislovje.
+%   \item Izjava, ki logično implicira svojo negacijo, je protislovje.
+% \end{enumerate}
 
-\medskip
-\iftoggle{long}{
-{\color{blue}
+\begin{example*}
 Zgled logične implikacije:
 $$A \sledi B \sledi (A\inn C \sledi B\inn C)\,.$$
 Dokažimo jo. Ta implikacija bi bila nepravilna le pri takem določilu, pri katerem bi bila izjava
 $A \sledi B$ pravilna, izjava $A\inn C \sledi B\inn C$ pa nepravilna. To je po definiciji implikacije res samo, če sta izjavi $A\inn C$ pravilni, izjava $B$ pa nepravilna.
 V tem primeru pa je implikacija $A \sledi B$ nepravilna, kar je v nasprotju s predpostavko, da je
 pravilna. Torej ne obstaja tako določilo, za katero bi bila izjava  $A \sledi B$ pravilna, izjava $A\inn C \sledi B\inn C$ pa nepravilna. Implikacija je res tavtologija.
-
-\medskip
-Logične implikacije z majhnim številom osnovnih izjav lahko dokažemo tudi z uporabo pravilnostnih tabel.
-
+\end{example*}
 \medskip
 Na vajah boste spoznali in dokazali številne druge logične implikacije.
-}}
-{
-Zgled logične implikacije:
-$$A \sledi B \sledi (A\inn C \sledi B\inn C)\,.$$
-Dokažimo jo. Ta implikacija bi bila nepravilna le pri takem določilu, pri katerem bi bila izjava
-$A \sledi B$ pravilna, izjava $A\inn C \sledi B\inn C$ pa nepravilna. To je po definiciji implikacije res samo, če sta izjavi $A\inn C$ pravilni, izjava $B$ pa nepravilna.
-V tem primeru pa je implikacija $A \sledi B$ nepravilna, kar je v nasprotju s predpostavko, da je
-pravilna. Torej ne obstaja tako določilo, za katero bi bila izjava  $A \sledi B$ pravilna, izjava $A\inn C \sledi B\inn C$ pa nepravilna. Implikacija je res tavtologija.
-
-\medskip
-Na vajah boste spoznali in dokazali številne druge logične implikacije.
-}
 
 \subsubsection*{Nekaj poglavitnih logičnih implikacij}
 
@@ -939,7 +940,7 @@ Na vajah boste spoznali in dokazali številne druge logične implikacije.
 
 Za vajo se prepričajte o veljavnosti teh logičnih implikacij. Namesto pravilnostnih tabel lahko uporabite tole metodo:  {\em Izhajamo iz definicije implikacije in poskušamo konstruirati tako določilo, za katero bi bila implikacija nepravilna. Potem se mora seveda izkazati, da takega določila ni.}
 
-\bigskip
+\pagebreak
 \begin{example*}
 Dokažimo 10. logično implikacijo s seznama:
 $$A \sledi B \sledi (A\inn C \sledi B\inn C)$$
@@ -950,70 +951,70 @@ pravilna. Torej ne obstaja tako določilo, za katero bi bila izjava  $A \sledi B
 
 
 
-\medskip
+% \medskip
 
-\iftoggle{long}{\komentar{Izpuščeno: OD TU}}
+% \iftoggle{long}{\komentar{Izpuščeno: OD TU}}
 
-\iftoggle{long}{
-{\color{blue}
+% \iftoggle{long}{
+% {\color{blue}
 
-\textbf{ Nekaj komentarjev k implikacijam:}
+% \textbf{ Nekaj komentarjev k implikacijam:}
 
-(1.) Iz pravilnosti antecedensa in pravilnosti implikacije sklepamo na pravilnost konsekvensa. To je t.i.~{\em zakon osamitve}.
-\begin{itemize}
-  \item V klasični logiki so imenovali ta sklep {\em mešani hipotetični silogizem} in sicer {\em načina ponendo ponens} (lat. način, ki potrjuje s potrditvijo)
-\end{itemize}
+% (1.) Iz pravilnosti antecedensa in pravilnosti implikacije sklepamo na pravilnost konsekvensa. To je t.i.~{\em zakon osamitve}.
+% \begin{itemize}
+%   \item V klasični logiki so imenovali ta sklep {\em mešani hipotetični silogizem} in sicer {\em načina ponendo ponens} (lat. način, ki potrjuje s potrditvijo)
+% \end{itemize}
 
-\begin{example*}
-Če je danes sreda, bom šel na predavanja.
+% \begin{example*}
+% Če je danes sreda, bom šel na predavanja.
 
-Danes je sreda.
+% Danes je sreda.
 
-Sklep: Šel bom na predavanja.\end{example*}
+% Sklep: Šel bom na predavanja.\end{example*}
 
-(2.) {\em mešani hipotetični silogizem} {\em načina tollendo tollens} (lat. način, ki zanika z zanikanjem)
+% (2.) {\em mešani hipotetični silogizem} {\em načina tollendo tollens} (lat. način, ki zanika z zanikanjem)
 
-\textbf{ Zgleda:}
+% \textbf{ Zgleda:}
 
-1. Kjer je dim, je tudi ogenj.
+% 1. Kjer je dim, je tudi ogenj.
 
-Tu ni ognja.
+% Tu ni ognja.
 
-Sklep: Tu ni dima.
+% Sklep: Tu ni dima.
 
-2. Dobro živi, komur je malo zadosti.
+% 2. Dobro živi, komur je malo zadosti.
 
-Pohlepni ne živi dobro.
+% Pohlepni ne živi dobro.
 
-Sklep: Pohlepnemu malo ni zadosti.
+% Sklep: Pohlepnemu malo ni zadosti.
 
 
-(3.) {\em disjunktivni silogizem} {\em načina tollendo ponens}
-(lat. način, ki potrjuje z zanikanjem)
+% (3.) {\em disjunktivni silogizem} {\em načina tollendo ponens}
+% (lat. način, ki potrjuje z zanikanjem)
 
-\textbf{ Zgled:}
+% \textbf{ Zgled:}
 
-Koper je država ali pa je mesto.
+% Koper je država ali pa je mesto.
 
-Koper ni država.
+% Koper ni država.
 
-Sklep: Koper je mesto.
+% Sklep: Koper je mesto.
 
-(4.) Zakon poenostavitve.
+% (4.) Zakon poenostavitve.
 
-(5.) Zakon dodajanja.
+% (5.) Zakon dodajanja.
 
-(6.) Iz protislovja lahko izpeljemo katerokoli izjavo.
+% (6.) Iz protislovja lahko izpeljemo katerokoli izjavo.
 
-(7.) Tranzitivnost implikacije (t.i.~{\em čisti hipotetični silogizem}).
+% (7.) Tranzitivnost implikacije (t.i.~{\em čisti hipotetični silogizem}).
 
-(12.) Tranzitivnost ekvivalence.
+% (12.) Tranzitivnost ekvivalence.
 
-(19.) Zakon o absurdu.
-}
-\\}
+% (19.) Zakon o absurdu.
+% }
+% \\}
 
-\iftoggle{long}{\komentar{Izpuščeno: DO TU.}\\}
+% \iftoggle{long}{\komentar{Izpuščeno: DO TU.}\\}
 
 \newpage 
 
@@ -1429,7 +1430,7 @@ S tem smo dokazali, da trditev velja tudi za $k+1$. S tem zaključimo korak indu
 \end{example*}
 % predavanja 24.10. ponovitev načinov dokazovanja
 % analiza primerov..
-
+\pagebreak
 \section{Izjave s predikati in kvantifikatorji}
 
 Kvantifikatorji povedo, za koliko objektov neke vrste velja neka izjava.
@@ -2101,71 +2102,27 @@ Zaradi (4) je $A_4(d) = 0$. To pa je protislovje s (3).
 
 Torej je sklepanje pravilno.\qed
 
-% 8. in 9. predavanje, 4 ure (Istvan), 7. in 8. 11. 2012
+% Vključimo tudi vsebino nekdanjega komentiranega primera, z urejenim zapisom.
+\item Baronovega umora je osumljen eden od treh članov osebja: kuharica,
+strežnik ali šofer. Če je morilka kuharica, je zastrupila hrano; če je morilec
+šofer, je v avto nastavil bombo. Hrana ni bila zastrupljena, strežnik pa ni
+morilec. Ali iz teh dejstev sledi, da je morilec šofer?
 
-%\bigskip
-%Rešitev domače naloge:
-%
-%Dejstva:
-%
-%Barona je umoril eden izmed njegovega osebja: kuharica, strežnik ali šofer.
-%
-%Če je morilka kuharica, je zastrupila hrano.
-%
-%Če je morilec šofer, mu je postavil bombo v avto.
-%
-%Hrana ni bila zastrupljena in strežnik ni morilec.
-%
-%Sklep: Morilec je šofer.
-%
-%\bigskip
-%
-%\textbf{ Rešitev:}
-%
-%$K$: Morilka je kuharica.
-%
-%$S$: Morilec je strežnik.
-%
-%Š: Morilec je šofer.
-%
-%H: Kuharica je zastrupila hrano.
-%
-%B: Šofer je postavil bombo v avto.
-%
-%\medskip
-%Ali je naslednja implikacija tavtologija?
-%
-%$(K\ali S\ali$ \v S$)\inn(K\sledi H)\inn($Š$\sledi B)\inn(\neg H\inn \neg S)\sledi $Š
-%
-%\bigskip
-%Recimo, da ni.
-%
-%(1) $(K\ali S\ali$ \v S$)(d) = 1$
-%
-%(2) $(K\sledi H)(d) = 1$
-%
-%(3) (Š$\sledi B)(d) = 1$
-%
-%(4) $(\neg H\inn \neg S)(d) = 1$
-%
-%(5) Š$(d) = 0$
-%
-%Iz (4) sledi:
-%
-%(5)  $H(d) = S(d) = 0$.
-%
-%Iz (2) in (5) potem sledi
-%
-%(6) $K(d) = 0$.
-%
-%Iz (1), (5) in (6) potem sledi Š$(d) = 1$. Protislovje. Izjava je tavtologija  in sklepanje je pravilno.
-%
+\emph{Rešitev.} Naj $K$ pomeni, da je morilka kuharica, $S$, da je morilec
+strežnik, $V$, da je morilec šofer, $H$, da je hrana zastrupljena, in $B$,
+da je v avto nastavljena bomba. Velja
+$$
+(K\lor S\lor V)\land(K\Rightarrow H)\land(V\Rightarrow B)
+\land\neg H\land\neg S\Rightarrow V.
+$$
+Iz $\neg H$ in $K\Rightarrow H$ sledi $\neg K$. Skupaj z $\neg S$ in
+$K\lor S\lor V$ to da $V$, zato je sklepanje pravilno.
 
 
 \item
-The following two propositions are given:
-$A$: ``Andrej speaks French.'' and $B$: ``Andrej speaks Danish.''
-Write the following compound propositions in natural language:
+{\color{blue}
+Dani sta izjavi $A$: »Andrej govori francosko.« in $B$: »Andrej govori
+dansko.« Zapiši naslednje sestavljene izjave v naravnem jeziku:
 
 (a) $A\ali B$
 
@@ -2178,104 +2135,103 @@ Write the following compound propositions in natural language:
 (e) $\neg \neg A$
 
 (f) $\neg (\neg A\inn \neg B)$
+}
 
 \medskip
 \item
-The following two propositions are given:
-$A$: ``Janez is rich.'' and $B$: ``Janez is happy.''
+{\color{blue}
+Dani sta izjavi $A$: »Janez je bogat.« in $B$: »Janez je srečen.« Zapiši
+naslednje izjave simbolno:
 
-Write the following propositions symbolically:
+(a) {\color{blue}Če je Janez bogat, potem je nesrečen.}
 
-(a) If Janez is rich, then he is unhappy.
+(b) {\color{blue}Janez ni ne srečen ne bogat.}
 
-(b) Janez is neither happy nor rich.
+(c) {\color{blue}Janez je srečen samo, če je reven.}
 
-(c) Janez is happy only if he is poor.
+(d) {\color{blue}Janez je reven natanko tedaj, ko je nesrečen.}
+}
 
-(d) Janez is poor if and only if he is unhappy.
-
-\item Solve the following exercises about knights and servants:
+\item {\color{blue}Reši naslednji nalogi o vitezih in oprodah (vitez vedno
+govori resnico, oproda pa vedno laže):}
 \begin{itemize}
-  \item Arthur: ``It is not true that Bine is a servant."~Bine: ``We are not both of the same kind.''
-  \item Arthur: ``It is not true that Cene is servant."~Bine: ``Cene is a knight or I am a knight."~Cene: ``Bine is a servant."
+  \item {\color{blue}Artur: »Ni res, da je Bine oproda.« Bine: »Nisva oba iste vrste.«}
+  \item {\color{blue}Artur: »Ni res, da je Cene oproda.« Bine: »Cene je vitez ali pa sem jaz vitez.« Cene: »Bine je oproda.«}
 \end{itemize}
 
-\item {A similar exercise:}
-Now Arthur and Bine say the following:
+\item {\color{blue}Podoben primer. Artur in Bine izrečeta naslednji izjavi:}
 \begin{itemize}
- \item Arthur: ``Me and Bine are not of the same kind.''
- \item Bine: ``Exactly one of us is a knight.''
+ \item {\color{blue}Artur: »Ni res, da sva z Binetom iste vrste.«}
+ \item {\color{blue}Bine: »Natanko eden od naju je vitez.«}
 \end{itemize}
-\item Given the propositions:\\
-$A:$ ``It's cold outside''\\
-$B:$ ``It's raining''\\
-express the following propositions in natural language:
+\item {\color{blue}Dani sta izjavi $A$: »Zunaj je mrzlo.« in $B$: »Dežuje.«
+Zapiši naslednje izjave v naravnem jeziku:}
 \begin{enumerate}
-\item $\neg A$
-\item $A\wedge B$
-\item $A\vee B$
-\item $B\vee\neg A$
+\item {\color{blue}$\neg A$}
+\item {\color{blue}$A\wedge B$}
+\item {\color{blue}$A\vee B$}
+\item {\color{blue}$B\vee\neg A$}
 \end{enumerate}
-\item Given the propositions:\\
-$A:$ ``John reads The New York Times.''\\
-$B:$ ``John reads The Wall Street Journal.''\\
-$C:$ ``John reads The Daily Mail.''\\
-\\
-Transcribe the following statements into symbolic propositions:
+\item {\color{blue}Dane so izjave $A$: »Janez bere The New York Times.«,
+$B$: »Janez bere The Wall Street Journal.« in $C$: »Janez bere The Daily
+Mail.« Prepiši naslednje trditve v simbolni jezik:}
 \begin{enumerate}
-\item John reads The New York Times, but not The Wall Street Journal.
-\item Either John reads both The New York Times and The Wall Street Journal,
-or he does not read The New York Times and The Wall Street Journal.
-\item It is not true that John reads The New York Times, and does not read
-The Daily Mail.
-\item It is not true that John reads The Daily Mail or The Wall Street Journal,
-and not The New York Times.
+\item {\color{blue}Janez bere The New York Times, ne pa The Wall Street Journala.}
+\item {\color{blue}Janez bere oba časopisa, The New York Times in The Wall Street Journal, ali pa ni res, da bere oba časopisa.}
+\item {\color{blue}Ni res, da Janez bere The New York Times, ne pa The Daily Maila.}
+\item {\color{blue}Ni res, da Janez bere The Daily Mail ali The Wall Street Journal, ne pa The New York Timesa.}
 \end{enumerate}
-\item Find the truth tables for the symbolic propositions from (2).
-\begin{enumerate}
-\item For three lines $p,q,r$ we may construct also geometric propositions.
-Suppose that the following is true:
+\item {\color{blue}Sestavi pravilnostne tabele za simbolne izjave iz prejšnje
+naloge.}
+\item {\color{blue}Za tri premice $p,q,r$, pri čemer sta $p$ in $q$ različni,
+zapišemo geometrijske trditve. Predpostavimo, da velja:
 \[
-(p||q)\wedge(p\cap q\neq\emptyset)\wedge(q\cap r\neq\emptyset).
+(p\parallel q)\land(p\cap q\neq\emptyset)\land(q\cap r\neq\emptyset).
 \]
-What can you ay about the lines $p,q,r$?
-\end{enumerate}
-\item Knights and servants! For both cases below (separately) determine
-the roles.
+Kaj lahko poveš o premicah $p,q,r$? Pokaži, da so predpostavke protislovne:
+vzporedni različni premici se ne sekata.}
+\item {\color{blue}Vitezi in oprode! V vsakem od naslednjih primerov posebej
+določi, kdo je vitez in kdo oproda:}
 \begin{enumerate}
-\item Arthur: It's not true that Chloe is a servant.\\
-Bob: Chloe is a knight, or I am a knight.\\
-Chloe: Bob is a servant.
-\item Arthur: Chloe or Bob are servants.\\
-Bob: Cene and Arthur are knights.
+\item {\color{blue}Artur: »Ni res, da je Klara oproda.«
+Bine: »Klara je vitez ali pa sem jaz vitez.«
+Klara: »Bine je oproda.«}
+\item {\color{blue}Artur: »Klara ali Bine sta oprodi.«
+Bine: »Cene in Artur sta viteza.«}
 \end{enumerate}
-\item Express the propositions below with connectives $\wedge$ and $\neg$
-only!
+\item {\color{blue}Naslednje sestavljene izjave izrazi samo s povezavama
+$\wedge$ in $\neg$:}
 \begin{enumerate}
-\item $A\vee B$
-\item $A\Rightarrow B$
-\item $A\Leftrightarrow B$
+\item {\color{blue}$A\vee B$}
+\item {\color{blue}$A\Rightarrow B$}
+\item {\color{blue}$A\Leftrightarrow B$}
 \end{enumerate}
 
 
-\item Find the canonical disjunctive normal form (DNF) and the canonical conjuctive normal form (CNF) for the following propositions:
+\item {\color{blue}Za naslednji izjavi določi kanonično disjunktivno normalno
+obliko (DNO) in kanonično konjunktivno normalno obliko (KNO):}
 \begin{enumerate}
 \item[(i)] $\neg(A\wedge B) \Rightarrow (\neg B \Rightarrow A)$
 \item[(ii)] $\neg (A\vee B) \wedge (A \Rightarrow B)$
 \end{enumerate}
 
-\emph{Re"sitev.} (i) Napi"si pravilnostno tabelo. DNO: vzemi vrstice z enicami (pove"zi jih med sabo s konjunkcijo) in jih pove"zi med sabo z disjunkcijo
-$(A\wedge B) \vee (A\wedge \neg B) \vee (\neg A \wedge B)$. KNO: vzemi vrstice z ni"clami (vzemi nasprotne vrednosti in jih pove"zi med sabo z disjunkcijo) in jih pove"zi med sabo s konjunkcijo $(A \vee B)$. (ii) Podobno.
+\emph{Rešitev.} (i) Poenostavimo izraz:
+$$\neg(A\land B)\Rightarrow(\neg B\Rightarrow A)
+\equiv (A\land B)\lor(B\lor A)\equiv A\lor B.$$
+Zato je DNO $(A\land\neg B)\lor(\neg A\land B)\lor(A\land B)$,
+KNO pa $(A\lor B)$. (ii) Izraz je enakovreden $\neg A\land\neg B$,
+zato sta DNO in KNO enaki $\neg A\land\neg B$.
 
-\item For the following compound proposition find  a truth table, determine DNF, CNF and draw the corresponding circuit.
+\item {\color{blue}Za naslednjo sestavljeno izjavo sestavi pravilnostno tabelo,
+določi DNO in KNO ter nariši ustrezno vezje:}
 $$
 (A \Rightarrow (B\Rightarrow C)) \Rightarrow ((A\Rightarrow B)\Rightarrow (A \Rightarrow C)).
 $$
 
 
-\item Find a compound proposition $\mathcal{I}$ such that
+\item {\color{blue}Poišči sestavljeno izjavo $\mathcal{I}$, za katero je
+naslednji izraz tavtologija:}
 $$(A\Rightarrow (\mathcal{I} \Rightarrow \neg B))\Rightarrow (A\wedge B) \vee \mathcal{I}$$
-is tautology.
 
 \emph{Re"sitev.} Napi"si pravilnostno tabelo za osnovni izjave $A, B$ skupaj s (sestavljeno) izjavo $\mathcal{I}$. Iz nje razberi, da je pravilnostna tabela za $\mathcal{I}$ enaka
 \begin{table}[ht!]
@@ -2293,7 +2249,7 @@ A & B & $\mathcal{I}$\\
 Torej je $\mathcal{I} \Leftrightarrow \neg A \vee \neg B$ v KNO.
 \pagebreak
 
-\item For the following circuits find the  corresponding compound propositions
+\item {\color{blue}Za naslednja vezja zapiši pripadajoče sestavljene izjave:}
 
 \noindent (i)
 \begin{center}
@@ -2311,7 +2267,7 @@ Torej je $\mathcal{I} \Leftrightarrow \neg A \vee \neg B$ v KNO.
 
 
 
-\item Simplify the following logical equivalence
+\item {\color{blue}Poenostavi naslednjo sestavljeno izjavo:}
 $$(A\Rightarrow B) \vee (B \Rightarrow C).$$
 
 \emph{Re"sitev.} 
@@ -2323,7 +2279,8 @@ $$(A\Rightarrow B) \vee (B \Rightarrow C).$$
 &\Leftrightarrow & 1.
 \end{eqnarray*}
 
-\item Show that the following propositions are logical implications (a tautology where the main connective is implication).
+\item {\color{blue}Pokaži, da so naslednje izjave logične implikacije
+(tavtologije, katerih glavna vez je implikacija):}
 \begin{enumerate}
 \item[(i)] $A \wedge (A \Rightarrow B) \Rightarrow B$
 \item[(ii)] $\neg B \wedge (A \Rightarrow B) \Rightarrow \neg A$
@@ -2335,7 +2292,7 @@ $$(A\Rightarrow B) \vee (B \Rightarrow C).$$
 \emph{Re"sitev.} (i) Recimo $A \wedge (A \Rightarrow B)$ pravilna, $B$ pa nepravilna. Potem je $A$ pravilna in $A\Rightarrow B$ pravilna. Sledi $B$ pravilna. Protislovje. 
 
 
-\item Are the following propositions logical implications?
+\item {\color{blue}Ali so naslednje izjave logične implikacije?}
 \begin{enumerate}
 \item[(i)] $(A \Rightarrow B ) \wedge (A \Rightarrow C) \wedge A \Rightarrow B \wedge C$
 \item[(ii)] $\neg (A \vee B) \wedge (A\vee C) \wedge (D\Rightarrow C) \Rightarrow D$
@@ -2344,15 +2301,21 @@ $$(A\Rightarrow B) \vee (B \Rightarrow C).$$
 
 \item Z direktnim dokazom implikacije poka"zi: "Ce je $n$ sodo "stevilo, potem je $n^2 +3n$ sodo. Ali je obrat pravilen? 
 
-\item Z direktnim dokazom implikacije poka"zi: "Ce je realno "stevilo $x$ nenegtivno, potem je vsota  "stevila $x$  in njegove obratne vrednosti  ve"cja ali enaka $2$.
+\item Z direktnim dokazom implikacije pokaži: če je realno število $x$
+pozitivno, potem je vsota števila $x$ in njegove obratne vrednosti večja
+ali enaka $2$.
 
-
-\emph{ Re"sitev.} Poka"zimo $x + \frac{1}{x}\geq 2$. Ker $x\geq 0$, pomno"zimo neenakost z $x$ in dobimo
-$x^2 + 1 \geq 2x$ oziroma $(x- 1)^2\geq 0$. Slednje je o"citno vedno res.
+\emph{Rešitev.} Pokažimo $x+\frac{1}{x}\geq 2$. Ker je $x>0$, smemo
+neenakost pomnožiti z $x$; dobimo $x^2+1\geq 2x$, kar je ekvivalentno
+$(x-1)^2\geq 0$.
 
 \item S protislovjem poka"zi, da je pra"stevil neskon"cno.
 
-\emph{ Re"sitev.} Recimo, da jih je kon"cno mnogo $p_1,p_2,\ldots, p_n$. Potem  $p=p_1p_2\cdots p_n+1$ ni deljivo z nobenim pra"stevilom $p_i$ in $p_i\neq p$ za vsak $i$. Po definiciji je torej $p$ pra"stevilo, ki ni enako nobenemu prej"snjemu. Protislovje.
+\emph{Rešitev.} Predpostavimo, da je praštevil končno mnogo in jih označimo
+z $p_1,\ldots,p_n$. Število $N=p_1p_2\cdots p_n+1$ ni deljivo z nobenim
+od števil $p_i$. Ker ima $N>1$ vsaj en praštevilski delitelj, ta ni
+noben od $p_1,\ldots,p_n$. To je protislovje s predpostavko, da smo našteli
+vsa praštevila.
 
 \item Poi"s"ci napako v naslednjem dokazu. 
 
@@ -2361,7 +2324,11 @@ $x^2 + 1 \geq 2x$ oziroma $(x- 1)^2\geq 0$. Slednje je o"citno vedno res.
 \textbf{Dokaz} (s protislovjem):
 Predpostavimo nasprotno. Naj bo $n>1$ najve"cje naravno "stevilo. Ker je $n$ pozitivno, lahko neenakost $n>1$ pomno"zimo z $n$. Torej $n>1\Leftrightarrow n^2>n$. Dobili smo, da je $n^2$ ve"cje od $n$, kar je v protislovju s predpostavko, da je $n$ najve"cje naravno "stevilo. Torej je bila predpostavka napa"cna in je $1$ najve"cje naravno "stevilo.
 
-\emph{ Re"sitev.} Nasporotna trdtev je: obstaja naravno "stevilo, ki je ve"cje od $1$.
+\emph{Rešitev.} Negacija trditve »$1$ je največje naravno število« je:
+»obstaja naravno število, ki je večje od $1$.« Dokaz nato predpostavi prav
+to negacijo, ne pa njenega protislovja; poleg tega iz $n>1$ sledi $n^2>n$,
+ne pa enakovrednost $n>1\Leftrightarrow n^2>n$. Zato sklep ne ovrže
+začetne predpostavke.
 
 
 \item Naj bosta $x$ in $y$ realni "stevili, da velja $x<2y$. Z indirektnim dokazom poka"zi: "Ce je $7xy\leq 3x^2 + 2y^2$, potem je $3x\leq y$.
@@ -2375,7 +2342,8 @@ Predpostavimo nasprotno. Naj bo $n>1$ najve"cje naravno "stevilo. Ker je $n$ poz
 ($\Leftarrow$) Poka"zemo indirektno in sicer: "Ce sta $m$ in $n$ iste parnosti, potem je $m^2- n^2$ sodo. Obravnavaj oba primera.
 
 
-\item Z uporabo "ce in samo "ce dokaza poka"zi: $ac\,|\,bc \Leftrightarrow a\,|\,b$.
+\item Naj bodo $a,b,c\in\mathbb{Z}$ in $c\neq 0$. Z uporabo dokaza »če in
+samo če« pokaži: $ac\,|\,bc \Leftrightarrow a\,|\,b$.
 
 \item Ali je naslednji sklep pravilen?
 \begin{enumerate}
@@ -2403,7 +2371,8 @@ Predpostavimo nasprotno. Naj bo $n>1$ najve"cje naravno "stevilo. Ker je $n$ poz
 
 
 
-\item Which of the following propositions are correct where the language of the conversation are real numbers?
+\item {\color{blue}Katere od naslednjih izjav so pravilne, če je področje
+obravnave množica realnih števil?}
 \begin{enumerate}
 \item[(i)] $(\forall x)(\exists y)(x+y=0)$.
 \item[(ii)] $(\exists x)(\forall y)(x+y=0)$.
@@ -2411,97 +2380,15 @@ Predpostavimo nasprotno. Naj bo $n>1$ najve"cje naravno "stevilo. Ker je $n$ poz
 \item[(iv)] $(\forall x)[x>0 \Rightarrow (\exists y)(y<0 \wedge xy>0)]$.
 \end{enumerate} 
 
-
-
-
-\item Let $A = \{ x \in \mathbb{N}; x < 7\}, B = \{x \in  \mathbb{Z}; |x - 2| < 4\}$ and $C = \{x \in\mathbb{R}; x^3 -  4x = 0\}$.
+\item {\color{red}Naj bo področje obravnave množica celih števil. Zapiši
+negacijo vsake izjave in določi, ali je izjava pravilna:
 \begin{enumerate}
-\item[(i)]  Write down the elements for all three sets.
-\item[(ii)] Find $A \cup C, B \cap C, B \setminus C, (A \setminus B) \setminus C$ and $A \setminus (B \setminus C)$.
+\item[(i)] $(\forall x)(\exists y)(x+y=0)$.
+\item[(ii)] $(\exists y)(\forall x)(x+y=0)$.
+\item[(iii)] $(\exists!x)(x^2=1)$.
+\end{enumerate}}
 \end{enumerate}
-
-\item Let  $\mathbb{Z}$ be a universal set and let  $P$ denote the set of all prime numbers, and $S$ the set of all even integers. Write the following propositions in terms of set theory:
-\begin{itemize}
-\item[(i)] There exists an even prime number. \quad [$P\cap S \neq \emptyset$]
-\item[(ii)] $0$ is an integer, but it is not natural number. \quad [$0 \in \mathbb{Z}\setminus \mathbb{N}$]
-\item[(iii)] Every natural number is an integer. \quad [$\mathbb{N}\subseteq \mathbb{Z}$]
-\item[(iv)] Not every integer is a natural number. \quad [$\mathbb{Z}\nsubseteq \mathbb{N}$]
-\item[(v)] Every prime number except 2 is odd. \quad [$P\setminus \{2\} \subseteq \overline{S}$]
-\item[(vi)] 2 is an even prime number. \quad [$2\in S\cap P$]
-\end{itemize}
-
-\item Let  $A, B, C$ and $D$  be subsets of some universal set  $U$. Simplify the following expression
-$$\overline{(\overline{(A\cup B)} \cap \overline{(\overline{A} \cup C)})}\setminus \overline{D}.$$
-
-\item Show that $(A\cup C)\cap (B\setminus C) = (A\cap B)\setminus C$.
-
-\emph{ Re"sitev.} 
-\begin{eqnarray*}
-x\in (A\cup C)\cap (B\setminus C) &\Leftrightarrow & (x\in A \vee x\in C) \wedge (x\in B \wedge x\notin C)\\
- &\Leftrightarrow & ((x\in A \vee x\in C) \wedge (x\notin C))\wedge x\notin B\\
-&\Leftrightarrow & ((x\in A \wedge x\notin C) \vee (x\in C \wedge x\notin C)) \wedge
- x\in B\\
-&\Leftrightarrow & x\in A \wedge x\notin C  \wedge x\in B\\
-&\Leftrightarrow & x\in A \wedge x\in B  \wedge x\notin C \\
-&\Leftrightarrow & x \in (A\cap B)\setminus C. 
-\end{eqnarray*}
-
-\item (Zadnja lastnost pri uniji) Prove that $A\subseteq C  \wedge B\subseteq C \Rightarrow A\cup B\subseteq C$.
-
-\emph{ Re"sitev.} Direktno.
-
-\item (Predzadnja lastnost pri preseku) Prove that $A\subseteq  B \Leftrightarrow A\cap B = A$.
-
-\emph{ Re"sitev.} V dveh delih.
-
-\item (Predzadnja lastnost pri kartezi"cnemu produktu) Prove that $A\times (B\cap C) = (A\times B)\cap (A\times C)$.
-
-\emph{ Re"sitev.} 
-\begin{eqnarray*}
-(x,y)\in A\times (B\cap C) &\Leftrightarrow & x \in A \wedge y\in B\cap C\\
-&\Leftrightarrow & x \in A \wedge y\in B  \wedge y\in C\\
-&\Leftrightarrow & x \in A \wedge x \in A\wedge y\in B  \wedge y\in C\\
-&\Leftrightarrow & x \in A \wedge  y\in B  \wedge x \in A\wedge y\in C\\
-&\Leftrightarrow & (x,y) \in A\times B \wedge  (x,y) \in A\times C\\
-&\Leftrightarrow & (x,y) \in (A\times B)\cap   (A\times C).
-\end{eqnarray*}
-
-\item (Predzadnja lastnost pri razliki) Prove that $(A\cap B )\setminus B = \emptyset$.
-\emph{ Re"sitev.} 
-\begin{eqnarray*}
-x\in (A\cap B )\setminus B  &\Leftrightarrow & x \in (A\cap B)  \wedge x\notin B\\
-&\Leftrightarrow & (x\in A\wedge x\in  B ) \wedge x\notin B\\
-&\Leftrightarrow & x\in A\wedge (x\in  B  \wedge x\notin B)\\
-&\Leftrightarrow & x\in \emptyset.
-\end{eqnarray*}
-
-\item Determine the following sets:
-\begin{enumerate}
-\item[(i)] $\{\emptyset, \{\emptyset\}\}\setminus \emptyset$ \quad [$\{\emptyset, \{\emptyset\}\}$]
-\item[(ii)] $\{\emptyset, \{\emptyset\}\}\setminus \{\emptyset\}$
-\item[(iii)] $\{\emptyset, \{\emptyset\}\}\setminus \{\}\emptyset\}\}$
-\item[(iv)] $\{1,2,3,\{1\}, \{5\}  \}\setminus \{2,\{3\},5\}$
-\end{enumerate}
-
-\item Which of the following propositions are correct for arbitrary sets $A, B$ and $C$:
-\begin{enumerate}
-\item If $A\in B$ and $B\in C$, then $A\in C$.
-\item If $A\subseteq B$ and $B\in C$, then $A\in C$.
-\item If $A\cap B\subseteq \overline{C}$ and $A\cup C \subseteq B$, then $A\cap C = \emptyset$.
-\item If $A\neq B$ and $B\neq C$, then $A\neq C$.
-\item If $A\subseteq \overline{(B\cup C)}$ and $B\subseteq \overline{(A\cup C)}$, then $B=\emptyset$.
-\end{enumerate}
-
-\emph{ Re"sitev.}
-\begin{enumerate}
-\item Napa"cna. Vzemi $A=\emptyset$, $B=\{\emptyset\}$, $B=\{\{\emptyset\}\}$.
-\item Napa"cna. Vzemi isti primer kot v (a).
-\item Pravilna. Dokaz s protislovjem. Recimo, da trditev ni pravilna. Naj bo $A\cap B\subseteq \overline{C}$, $A\cup C\subseteq B$  in naj obstaja $x\in A\cap C$. Torej je $x\in A$ in $x\in C$. Ker je po drugi predpostavki $A\cup C\subseteq B$, je $x\in B$. Sledi $x\in A \cap B$. Ker je po prvi predpostavki $A\cap B\subseteq \overline{C}$, je $x\in \overline{C}$. Protislovje, saj $x\in C$. 
-\item Napa"cna. Vzemi $A=C\neq B$.
-\item Napa"cna. Vzemi tri paroma disjunktne neprazne mno"zice.
-\end{enumerate}
-
-\end{enumerate}
+% DELIMITER
 
 \chapter{Teorija množic}
 
@@ -3453,6 +3340,115 @@ Ne drži. Že zato, ker množica na levi strani ni nujno kartezični produkt dve
 
 Zgled: $A = \{1\}, B = C = \emptyset$.
 
+\section{Naloge}
+\begin{enumerate}
+\item {\color{blue}Naj bodo $A = \{x \in \mathbb{N};\,x < 7\}$,
+$B = \{x \in \mathbb{Z};\,|x - 2| < 4\}$ in
+$C = \{x \in\mathbb{R};\,x^3 - 4x = 0\}$.}
+\begin{enumerate}
+\item {\color{blue}Zapiši elemente vseh treh množic.}
+\item {\color{blue}Določi $A \cup C, B \cap C, B \setminus C,
+(A \setminus B) \setminus C$ in $A \setminus (B \setminus C)$.}
+\end{enumerate}
+
+\item {\color{blue}Naj bo $\mathbb{Z}$ univerzalna množica, $P$ množica vseh
+praštevil, $S$ pa množica vseh sodih celih števil. Naslednje trditve zapiši
+z jezikom teorije množic:}
+\begin{itemize}
+\item[(i)] {\color{blue}Obstaja sodo praštevilo.} \quad [$P\cap S \neq \emptyset$]
+\item[(ii)] {\color{blue}$0$ je celo število, ni pa naravno število.} \quad [$0 \in \mathbb{Z}\setminus \mathbb{N}$]
+\item[(iii)] {\color{blue}Vsako naravno število je celo število.} \quad [$\mathbb{N}\subseteq \mathbb{Z}$]
+\item[(iv)] {\color{blue}Ni vsako celo število naravno število.} \quad [$\mathbb{Z}\nsubseteq \mathbb{N}$]
+\item[(v)] {\color{blue}Vsako praštevilo razen števila $2$ je liho.} \quad [$P\setminus \{2\} \subseteq \overline{S}$]
+\item[(vi)] {\color{blue}$2$ je sodo praštevilo.} \quad [$2\in S\cap P$]
+\end{itemize}
+
+\item {\color{blue}Naj bodo $A,B,C,D$ podmnožice univerzalne množice $U$.
+Poenostavi naslednji izraz:}
+$$\overline{(\overline{(A\cup B)} \cap \overline{(\overline{A} \cup C)})}\setminus \overline{D}.$$
+
+\item {\color{blue}Pokaži, da je
+$(A\cup C)\cap (B\setminus C) = (A\cap B)\setminus C$.}
+
+\emph{Rešitev.}
+\begin{eqnarray*}
+x\in (A\cup C)\cap (B\setminus C) &\Leftrightarrow & (x\in A \vee x\in C) \wedge (x\in B \wedge x\notin C)\\
+ &\Leftrightarrow & ((x\in A \vee x\in C) \wedge (x\notin C))\wedge x\in B\\
+&\Leftrightarrow & ((x\in A \wedge x\notin C) \vee (x\in C \wedge x\notin C)) \wedge x\in B\\
+&\Leftrightarrow & x\in A \wedge x\notin C  \wedge x\in B\\
+&\Leftrightarrow & x\in A \wedge x\in B  \wedge x\notin C \\
+&\Leftrightarrow & x \in (A\cap B)\setminus C. 
+\end{eqnarray*}
+
+\item {\color{blue}(Zadnja lastnost pri uniji) Pokaži, da iz
+$A\subseteq C \land B\subseteq C$ sledi $A\cup B\subseteq C$.}
+
+\emph{ Re"sitev.} Direktno.
+
+\item {\color{blue}(Predzadnja lastnost pri preseku) Pokaži, da velja
+$A\subseteq B \Leftrightarrow A\cap B = A$.}
+
+\emph{ Re"sitev.} V dveh delih.
+
+\item {\color{blue}(Predzadnja lastnost pri kartezičnem produktu) Pokaži, da
+je $A\times (B\cap C) = (A\times B)\cap (A\times C)$.}
+
+\emph{ Re"sitev.} 
+\begin{eqnarray*}
+(x,y)\in A\times (B\cap C) &\Leftrightarrow & x \in A \wedge y\in B\cap C\\
+&\Leftrightarrow & x \in A \wedge y\in B  \wedge y\in C\\
+&\Leftrightarrow & x \in A \wedge x \in A\wedge y\in B  \wedge y\in C\\
+&\Leftrightarrow & x \in A \wedge  y\in B  \wedge x \in A\wedge y\in C\\
+&\Leftrightarrow & (x,y) \in A\times B \wedge  (x,y) \in A\times C\\
+&\Leftrightarrow & (x,y) \in (A\times B)\cap   (A\times C).
+\end{eqnarray*}
+
+\item {\color{blue}(Predzadnja lastnost pri razliki) Pokaži, da je
+$(A\cap B)\setminus B = \emptyset$.}
+\emph{ Re"sitev.} 
+\begin{eqnarray*}
+x\in (A\cap B )\setminus B  &\Leftrightarrow & x \in (A\cap B)  \wedge x\notin B\\
+&\Leftrightarrow & (x\in A\wedge x\in  B ) \wedge x\notin B\\
+&\Leftrightarrow & x\in A\wedge (x\in  B  \wedge x\notin B)\\
+&\Leftrightarrow & x\in \emptyset.
+\end{eqnarray*}
+
+\item {\color{blue}Določi naslednje množice:}
+\begin{enumerate}
+\item[(i)] $\{\emptyset, \{\emptyset\}\}\setminus \emptyset$ \quad [$\{\emptyset, \{\emptyset\}\}$]
+\item[(ii)] $\{\emptyset, \{\emptyset\}\}\setminus \{\emptyset\}$
+\item[(iii)] $\{\emptyset, \{\emptyset\}\}\setminus \{\{\emptyset\}\}$
+\item[(iv)] $\{1,2,3,\{1\}, \{5\}  \}\setminus \{2,\{3\},5\}$
+\end{enumerate}
+
+\item {\color{red}Naj bo $A=\{1,2,3\}$. Zapiši potenčno množico
+$\mathcal{P}(A)$ in določi njeno moč. Nato pojasni, ali velja
+$\{1,2\}\in\mathcal{P}(A)$ in ali velja $\{1,2\}\subseteq A$.}
+
+\item {\color{red}Za množici $A$ in $B$ definiramo simetrično razliko
+$A\triangle B=(A\setminus B)\cup(B\setminus A)$. Pokaži, da je
+$A\triangle B=(A\cup B)\setminus(A\cap B)$, in razloži rezultat z besedami.}
+
+\item {\color{blue}Katere od naslednjih trditev veljajo za poljubne množice
+$A,B,C$?}
+\begin{enumerate}
+\item {\color{blue}Če je $A\in B$ in $B\in C$, potem je $A\in C$.}
+\item {\color{blue}Če je $A\subseteq B$ in $B\in C$, potem je $A\in C$.}
+\item {\color{blue}Če je $A\cap B\subseteq \overline{C}$ in $A\cup C\subseteq B$, potem je $A\cap C=\emptyset$.}
+\item {\color{blue}Če je $A\neq B$ in $B\neq C$, potem je $A\neq C$.}
+\item {\color{blue}Če je $A\subseteq \overline{(B\cup C)}$ in $B\subseteq \overline{(A\cup C)}$, potem je $B=\emptyset$.}
+\end{enumerate}
+
+\emph{ Re"sitev.}
+\begin{enumerate}
+\item Napačna. Vzemi $A=\emptyset$, $B=\{\emptyset\}$ in $C=\{\{\emptyset\}\}$.
+\item Napa"cna. Vzemi isti primer kot v (a).
+\item Pravilna. Dokaz s protislovjem. Recimo, da trditev ni pravilna. Naj bo $A\cap B\subseteq \overline{C}$, $A\cup C\subseteq B$  in naj obstaja $x\in A\cap C$. Torej je $x\in A$ in $x\in C$. Ker je po drugi predpostavki $A\cup C\subseteq B$, je $x\in B$. Sledi $x\in A \cap B$. Ker je po prvi predpostavki $A\cap B\subseteq \overline{C}$, je $x\in \overline{C}$. Protislovje, saj $x\in C$. 
+\item Napa"cna. Vzemi $A=C\neq B$.
+\item Napa"cna. Vzemi tri paroma disjunktne neprazne mno"zice.
+\end{enumerate}
+
+\end{enumerate}
 
 
 
@@ -5234,18 +5230,18 @@ Pravimo, da je graf $G$ relacija, ki je \textbf{irefleksivna} in \textbf{simetri
 Vsebino množice povezav $E(G)$ predstavimo kot množico parov:
 \[ \{x, y\} \in E(G) \quad \text{ali krajše} \quad xy \in E(G) \]
 
-\subsection{Zgled grafa}
+\subsection*{Zgled grafa}
 Naj bo $V = \{1, 2, 3, 4, 5, 6, 7, 8\}$ in množica povezav\footnote{Tu je potrebno paziti, saj krajša oblika zapisa (npr $12$ namesto $\{1,2\}$) lahko pripelje do dvoumnosti. Kadar so vozlišča poimenovana s črkami teh težav ni.}:
 \[ E = \{14, 13, 15, 23, 25, 46, 75, 85\} \]
 
-\section{Izomorfizem in Automorfizem}
+\subsection{Izomorfizem in Automorfizem}
 
 Naj bosta $G$ in $H$ grafa. Preslikava $f: V(G) \to V(H)$ je \textbf{izomorfizem} med $G$ in $H$, če je $f$ bijekcija in velja:
 \[ \forall x, y \in V(G): xy \in E(G) \iff f(x)f(y) \in E(H) \]
 
 \textbf{Avtomorfizem} je izomorfizem grafa $G$ v samega sebe ($G = H$).
 
-\section{Operacije na grafih}
+\subsection{Operacije na grafih}
 
 \begin{itemize}
     \item \textbf{Odstranjevanje vozlišča:} Naj bo $v \in V(G)$. Graf $G - v$ je definiran z:
@@ -5254,14 +5250,14 @@ Naj bosta $G$ in $H$ grafa. Preslikava $f: V(G) \to V(H)$ je \textbf{izomorfizem
     \[ V(G - xy) = V(G) \quad \text{in} \quad E(G - xy) = E(G) \setminus \{xy\} \]
 \end{itemize}
 
-\section{Podgrafi}
+\subsection{Podgrafi}
 
 \begin{itemize}
     \item \textbf{Podgraf:} Dobimo ga z odstranjevanjem nekaterih vozlišč ali povezav.
     \item \textbf{Induciran podgraf:} Dobimo ga tako, da odstranimo nekatera vozlišča in obdržimo \textbf{vse} preostale povezave med preostalimi vozlišči.
 \end{itemize}
 
-\section{Posebni grafi}
+\subsection{Posebni grafi}
 
 \begin{itemize}
     \item \textbf{Poln graf ($K_n$):} Vsako vozlišče je povezano z vsakim. $E(K_n) = \{xy \mid x, y \in V(G), x \neq y\}$.
@@ -5270,7 +5266,7 @@ Naj bosta $G$ in $H$ grafa. Preslikava $f: V(G) \to V(H)$ je \textbf{izomorfizem
     \item \textbf{Cikel ($C_n$):} Graf na $n$ vozliščih, ki tvori sklenjen krog.
 \end{itemize}
 
-\section{Parametri grafa}
+\subsection{Parametri grafa}
 
 Naj bo $v \in V(G)$.
 \begin{itemize}
@@ -5301,9 +5297,12 @@ Za Petersenov graf (pogost zgled v vaših zapiskih) veljajo naslednji parametri:
 
 
 
-\subsection{(Binarne) relacije}
 
-Ključni pojmi:
+\section{Ključni pojmi in naloge}
+
+
+\subsection{(Binarne) relacije.}
+
 \begin{itemize}
   \item Binarne relacije:
   $R = \{(x,y) ; xRy \}\subseteq S\times S$.
